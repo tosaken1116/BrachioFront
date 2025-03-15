@@ -1,7 +1,7 @@
 /**
  * カードの基本情報を表す型。
  */
-type CardBase = {
+export type CardBaseType = {
   /** 一意な識別子 */
   id: string;
   /** カード名 */
@@ -77,7 +77,7 @@ export type AttackType = {
 
 /**
  * モンスターカードの詳細情報を表す型。
- * @extends CardBase
+ * @extends CardBaseType
  */
 export type MonsterType = {
   /** カードのスーパーカテゴリーは常に "Monster" */
@@ -100,29 +100,29 @@ export type MonsterType = {
   evolvesFrom?: string;
   /** 進化先のカード名（存在する場合のみ） */
   evolvesTo?: string;
-} & CardBase;
+} & CardBaseType;
 
 /**
  * サポーターカードの情報を表す型。
- * @extends CardBase
+ * @extends CardBaseType
  */
 export type SupporterType = {
   /** カードのスーパーカテゴリーは "Supporter" */
   supertype: "Supporter";
   /** サポーターカードの効果や説明文 */
   text: string;
-} & CardBase;
+} & CardBaseType;
 
 /**
  * グッズカードの情報を表す型。
- * @extends CardBase
+ * @extends CardBaseType
  */
 export type GoodsType = {
   /** カードのスーパーカテゴリーは "Goods" */
   supertype: "Goods";
   /** グッズカードの効果や説明文 */
   text: string;
-} & CardBase;
+} & CardBaseType;
 
 /**
  * モンスター、サポーター、グッズのいずれかのカード型を表すユニオン型。
