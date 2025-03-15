@@ -5,4 +5,13 @@
 
 @theme {
   --aspect-card: 63/88;
+  --animate-ping-small: ping-small 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping-small {
+  75%,
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
 }
