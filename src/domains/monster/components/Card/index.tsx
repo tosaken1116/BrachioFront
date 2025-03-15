@@ -7,12 +7,13 @@ import { SupporterCard } from "./SupporterCard";
 
 type CardProps = {
   card: MonsterCardType;
+  className?: string;
 };
 
-export const Card: FC<CardProps> = ({ card }) => {
+export const Card: FC<CardProps> = ({ card, className }) => {
   switch (card.supertype) {
     case "Monster":
-      return <MonsterCard card={card} />;
+      return <MonsterCard card={card} className={className} />;
     case "Supporter":
       return <SupporterCard card={card} />;
     case "Goods":

@@ -7,8 +7,10 @@ import type {
   MonsterTypes,
 } from "../../types";
 import { Energy } from "../Energy";
+import { CardBase } from "./Card";
 type MonsterCardProps = {
   card: MonsterType;
+  className?: string;
 };
 
 const typeColorMap: Record<MonsterTypes, string> = {
@@ -32,7 +34,7 @@ const typeColorMap: Record<MonsterTypes, string> = {
   Fairy: "bg-pink-200",
 } as const;
 
-export const MonsterCard: FC<MonsterCardProps> = ({ card }) => {
+export const MonsterCard: FC<MonsterCardProps> = ({ card, className = "" }) => {
   const {
     id,
     name,
@@ -52,16 +54,7 @@ export const MonsterCard: FC<MonsterCardProps> = ({ card }) => {
   const typeClass = typeColorMap[type] || "bg-gray-100 border-gray-300";
 
   return (
-    <div
-      className={clsx(
-        "w-64 aspect-card rounded-md p-3 ",
-        rarity === 3
-          ? "bg-[url(/horogram.png)]"
-          : rarity === 4
-          ? "bg-[url(/horogram2.png)]"
-          : "bg-slate-100"
-      )}
-    >
+    <CardBase card={card} className={className}>
       <div
         className={clsx(
           "flex flex-col p-2 w-full h-full rounded-sm relative",
@@ -71,7 +64,8 @@ export const MonsterCard: FC<MonsterCardProps> = ({ card }) => {
         <img
           src={"/fog.png"}
           alt="fog"
-          className=" opacity-[15%] absolute left-0 top-0 w-full h-full mix-blend-luminosity"
+          draggable="false"
+          className=" select-none opacity-[15%] absolute left-0 top-0 w-full h-full mix-blend-luminosity"
         />
         {/* 名前 HP */}
         <div className="relative flex flex-row items-center">
@@ -89,11 +83,11 @@ export const MonsterCard: FC<MonsterCardProps> = ({ card }) => {
           </div>
         </div>
         {/* 画像 */}
-        <div className="aspect-[8/5]">
-          <img src={imageUrl} alt={name} />
+        <div className="aspect-[5/8] w-full overflow-hidden  border-4 border-slate-100">
+          <img src={imageUrl} alt={name} className=" object-cover" />
         </div>
         {/* 技、特性 */}
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full justify-center">
           {abilities.map((ability) => (
             <Ability key={`${id}-${ability.name}`} ability={ability} />
           ))}
@@ -128,7 +122,7 @@ export const MonsterCard: FC<MonsterCardProps> = ({ card }) => {
           ))}
         </div>
       </div>
-    </div>
+    </CardBase>
   );
 };
 
