@@ -5,7 +5,7 @@ import type { MonsterTypes } from "../../types";
 type Props = {
   type: MonsterTypes;
   className?: string;
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "huge";
 };
 
 const colorMap: Record<MonsterTypes, string> = {
@@ -29,10 +29,11 @@ const colorMap: Record<MonsterTypes, string> = {
   Fairy: "bg-pink-100 border-pink-300",
 } as const;
 
-const sizeMap: Record<"small" | "medium" | "large", string> = {
+const sizeMap: Record<"small" | "medium" | "large" | "huge", string> = {
   small: "w-3 h-3",
   medium: "w-4 h-4",
-  large: "w-6 h-6",
+  large: "w-8 h-8",
+  huge: "w-12 h-12",
 } as const;
 export const Energy: FC<Props> = ({ type, className, size = "medium" }) => {
   return (
