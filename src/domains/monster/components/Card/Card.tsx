@@ -12,7 +12,7 @@ export const CardBase: FC<CardProps> = ({ card, className, children }) => {
   return (
     <div
       className={clsx(
-        "w-64 aspect-card rounded-md p-2 ",
+        "w-64 aspect-card rounded-md p-2 relative",
         rarity === 3
           ? "bg-[url(/horogram.png)]"
           : rarity === 4

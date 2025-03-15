@@ -11,6 +11,7 @@ import { CardBase } from "./Card";
 type MonsterCardProps = {
   card: MonsterType;
   className?: string;
+  energy?: MonsterTypes[];
 };
 
 const typeColorMap: Record<MonsterTypes, string> = {
@@ -34,7 +35,11 @@ const typeColorMap: Record<MonsterTypes, string> = {
   Fairy: "bg-pink-200",
 } as const;
 
-export const MonsterCard: FC<MonsterCardProps> = ({ card, className = "" }) => {
+export const MonsterCard: FC<MonsterCardProps> = ({
+  card,
+  className = "",
+  energy,
+}) => {
   const {
     id,
     name,
@@ -121,6 +126,11 @@ export const MonsterCard: FC<MonsterCardProps> = ({ card, className = "" }) => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex flex-row gap-1 absolute -bottom-4 left-2">
+        {energy?.map((type, i) => (
+          <Energy key={`${id}-${type}-energy-${i}`} type={type} size="large" />
+        ))}
       </div>
     </CardBase>
   );
