@@ -5,13 +5,20 @@ type DraggableProps = {
   id: string;
   label: string;
   children: ReactNode;
+  disabled?: boolean;
 };
-export const Draggable: FC<DraggableProps> = ({ id, label, children }) => {
+export const Draggable: FC<DraggableProps> = ({
+  id,
+  label,
+  children,
+  disabled = false,
+}) => {
   const { setNodeRef, listeners, attributes, transform } = useDraggable({
     id,
     data: {
       label,
     },
+    disabled,
   });
 
   const transformStyle = transform
