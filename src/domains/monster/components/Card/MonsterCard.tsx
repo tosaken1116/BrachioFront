@@ -62,7 +62,7 @@ export const MonsterCard: FC<MonsterCardProps> = ({
     <CardBase card={card} className={className}>
       <div
         className={clsx(
-          "flex flex-col p-2 w-full h-full rounded-sm relative",
+          "flex flex-col p-1 w-full h-full rounded-xs relative",
           typeClass
         )}
       >
@@ -76,19 +76,19 @@ export const MonsterCard: FC<MonsterCardProps> = ({
         <div className="relative flex flex-row items-center">
           <EvolutionBatch
             subtype={subtype}
-            className="absolute -left-2 top-1 w-8 px-1 text-center tracking-widest"
+            className="absolute -left-1 top-0.5 w-4 px-0.5 text-center tracking-widest"
           />
-          <strong className="text-md pl-6 w-full"> {name}</strong>
+          <strong className="text-[8px] pl-3 w-full"> {name}</strong>
           <div className="flex flex-row items-end">
-            <p className="text-[10px] pb-1">HP</p>
-            <strong className="text-md">{hp}</strong>
+            <p className="text-[5px] pb-0.5">HP</p>
+            <strong className="text-[8px]">{hp}</strong>
           </div>
           <div>
-            <Energy type={type} />
+            <Energy type={type} size="small" />
           </div>
         </div>
         {/* 画像 */}
-        <div className="aspect-[5/8] w-full overflow-hidden  border-4 border-slate-100">
+        <div className="aspect-[5/8] w-full overflow-hidden  border-2 border-slate-100">
           <img src={imageUrl} alt={name} className=" object-cover" />
         </div>
         {/* 技、特性 */}
@@ -101,35 +101,35 @@ export const MonsterCard: FC<MonsterCardProps> = ({
           ))}
         </div>
         {/* 弱点 */}
-        <div className="flex flex-row gap-2 w-full">
-          <Plate className="flex flex-row w-full px-2 py-0 items-center justify-around">
+        <div className="flex flex-row gap-1 w-full">
+          <Plate className="flex flex-row w-full px-1 py-0 items-center justify-around">
             <p>弱点</p>
             <div className="flex flex-row items-center">
-              <Energy type={weaknesses.type} size="small" />
-              <strong className="text-xs">{weaknesses.value}</strong>
+              <Energy type={weaknesses.type} size="tiny" />
+              <strong className="text-[6px]">{weaknesses.value}</strong>
             </div>
           </Plate>
-          <Plate className="flex flex-row w-full px-2 py-0.5 items-center">
-            <p className="px-2">にげる</p>
+          <Plate className="flex flex-row w-full px-1 py-[1px] items-center">
+            <p className="px-1">にげる</p>
             <div className="flex flex-row items-center">
               {Array.from({ length: retreatCost }).map((_, i) => (
-                <Energy key={`${id}-retreat-${i}`} type="Normal" size="small" />
+                <Energy key={`${id}-retreat-${i}`} type="Normal" size="tiny" />
               ))}
             </div>
           </Plate>
         </div>
         {/* レア度 */}
-        <div className="flex flex-row gap-1 h-12 items-center">
+        <div className="flex flex-row gap-0.5 h-6 items-center">
           {Array.from({ length: rarity }).map((_, i) => (
             <div key={`${id}-rarity-${i}`} className=" scale-x-75">
-              <div className="h-3 w-3 border-[1.5px] border-black bg-gradient-to-r from-slate-200 via-slate-500 to-slate-200 rotate-45 rounded-xs" />
+              <div className="h-1.5 w-1.5 border-[0.75px] border-black bg-gradient-to-r from-slate-200 via-slate-500 to-slate-200 rotate-45 rounded-xs" />
             </div>
           ))}
         </div>
       </div>
-      <div className="flex flex-row gap-1 absolute -bottom-4 left-2">
+      <div className="flex flex-row gap-0.5 absolute -bottom-2 left-1">
         {energy?.map((type, i) => (
-          <Energy key={`${id}-${type}-energy-${i}`} type={type} size="large" />
+          <Energy key={`${id}-${type}-energy-${i}`} type={type} size="sm" />
         ))}
       </div>
     </CardBase>
@@ -151,7 +151,7 @@ const Plate: FC<PlateProps> = ({
   return (
     <div
       className={clsx(
-        "shadow rounded-sm text-[8px] text-center",
+        "shadow rounded-xs text-[4px] text-center",
         colorClass,
         className
       )}
@@ -181,15 +181,21 @@ const Attack: FC<{ attack: AttackType; id: string }> = ({ attack, id }) => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-center">
-        <div className="flex flex-row items-center w-16 shrink-0">
+        <div className="flex flex-row items-center w-8 shrink-0">
           {attack.cost.map((type, i) => {
-            return <Energy key={`${id}-${attack.name}-${i}`} type={type} />;
+            return (
+              <Energy
+                key={`${id}-${attack.name}-${i}`}
+                type={type}
+                size="tiny"
+              />
+            );
           })}
         </div>
-        <strong className="text-sm w-full">{attack.name}</strong>
-        <strong className="text-sm">{attack.damage}</strong>
+        <strong className="text-[7px] w-full">{attack.name}</strong>
+        <strong className="text-[7px]">{attack.damage}</strong>
       </div>
-      <p className="text-[8px]">{attack.text}</p>
+      <p className="text-[4px]">{attack.text}</p>
     </div>
   );
 };
@@ -197,15 +203,15 @@ const Attack: FC<{ attack: AttackType; id: string }> = ({ attack, id }) => {
 const Ability: FC<{ ability: AbilityType }> = ({ ability }) => {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-1">
         <div>
-          <Plate color="red" className="w-12">
+          <Plate color="red" className="w-6">
             特性
           </Plate>
         </div>
-        <strong className="text-sm">{ability.name}</strong>
+        <strong className="text-[7px]">{ability.name}</strong>
       </div>
-      <p className="text-[8px]">{ability.text}</p>
+      <p className="text-[4px]">{ability.text}</p>
     </div>
   );
 };
