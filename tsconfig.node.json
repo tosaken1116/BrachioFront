@@ -12,7 +12,8 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
