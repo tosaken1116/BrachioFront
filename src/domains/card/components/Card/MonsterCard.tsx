@@ -43,18 +43,18 @@ export const MonsterCard: FC<MonsterCardProps> = ({
   const {
     id,
     name,
-    subtype,
+    subType,
     type,
     hp,
-    attacks,
+    skills: attacks,
     abilities,
-    weaknesses,
+    weakness,
     retreatCost,
     imageUrl,
     rarity,
   } = card;
 
-  // subtype = "Basic", "Stage1", "Stage2" など
+  // subType = "Basic", "Stage1", "Stage2" など
   // 背景色と枠線色をtypeから決定
   const typeClass = typeColorMap[type] || "bg-gray-100 border-gray-300";
 
@@ -75,7 +75,7 @@ export const MonsterCard: FC<MonsterCardProps> = ({
         {/* 名前 HP */}
         <div className="relative flex flex-row items-center">
           <EvolutionBatch
-            subtype={subtype}
+            subType={subType}
             className="absolute -left-1 top-0.5 w-4 px-0.5 text-center tracking-widest"
           />
           <strong className="text-[8px] pl-3 w-full"> {name}</strong>
@@ -93,7 +93,7 @@ export const MonsterCard: FC<MonsterCardProps> = ({
         </div>
         {/* 技、特性 */}
         <div className="flex flex-col h-full justify-center">
-          {abilities.map((ability) => (
+          {abilities?.map((ability) => (
             <Ability key={`${id}-${ability.name}`} ability={ability} />
           ))}
           {attacks.map((attack) => (
@@ -105,8 +105,8 @@ export const MonsterCard: FC<MonsterCardProps> = ({
           <Plate className="flex flex-row w-full px-1 py-0 items-center justify-around">
             <p>弱点</p>
             <div className="flex flex-row items-center">
-              <Energy type={weaknesses.type} size="tiny" />
-              <strong className="text-[6px]">{weaknesses.value}</strong>
+              <Energy type={weakness} size="tiny" />
+              <strong className="text-[6px]">+20</strong>
             </div>
           </Plate>
           <Plate className="flex flex-row w-full px-1 py-[1px] items-center">
@@ -162,13 +162,13 @@ const Plate: FC<PlateProps> = ({
 };
 
 const EvolutionBatch: FC<
-  Pick<MonsterType, "subtype"> & { className?: string }
-> = ({ subtype, className = "" }) => {
+  Pick<MonsterType, "subType"> & { className?: string }
+> = ({ subType, className = "" }) => {
   return (
     <Plate className={clsx("italic", className)}>
-      {subtype === "Basic" ? (
+      {subType === "Basic" ? (
         <p>たね</p>
-      ) : subtype === "Stage1" ? (
+      ) : subType === "Stage1" ? (
         <p>1進化</p>
       ) : (
         <p>2進化</p>
@@ -182,7 +182,7 @@ const Attack: FC<{ attack: AttackType; id: string }> = ({ attack, id }) => {
     <div className="flex flex-col">
       <div className="flex flex-row items-center">
         <div className="flex flex-row items-center w-8 shrink-0">
-          {attack.cost.map((type, i) => {
+          {attack.cost?.map((type, i) => {
             return (
               <Energy
                 key={`${id}-${attack.name}-${i}`}

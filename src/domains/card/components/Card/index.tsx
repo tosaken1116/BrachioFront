@@ -31,7 +31,7 @@ export const Card: FC<CardProps> = (props) => {
       </div>
     );
   }
-  switch (props.card.supertype) {
+  switch (props.card.cardType) {
     case "Monster":
       return (
         <MonsterCard

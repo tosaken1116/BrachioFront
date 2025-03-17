@@ -79,19 +79,19 @@ export type AttackType = {
  */
 export type MonsterType = {
   /** カードのスーパーカテゴリーは常に "Monster" */
-  supertype: "Monster";
+  cardType: "Monster";
   /** カードの進化段階（Basic, Stage1, Stage2） */
-  subtype: "Basic" | "Stage1" | "Stage2";
+  subType: "Basic" | "Stage1" | "Stage2";
   /** モンスターの属性（タイプ） */
   type: MonsterTypes;
   /** モンスターの体力（HP） */
   hp: number;
   /** モンスターが持つ攻撃のリスト */
-  attacks: AttackType[];
+  skills: AttackType[];
   /** モンスターが持つ特殊能力のリスト */
   abilities: AbilityType[];
   /** モンスターの弱点情報 */
-  weaknesses: Weakness;
+  weakness: MonsterTypes;
   /** バトルから退くためのコスト（エネルギー数など） */
   retreatCost: number;
   /** 進化元のカード名（存在する場合のみ） */
@@ -106,7 +106,7 @@ export type MonsterType = {
  */
 export type SupporterType = {
   /** カードのスーパーカテゴリーは "Supporter" */
-  supertype: "Supporter";
+  cardType: "Supporter";
   /** サポーターカードの効果や説明文 */
   text: string;
 } & CardBaseType;
@@ -117,7 +117,7 @@ export type SupporterType = {
  */
 export type GoodsType = {
   /** カードのスーパーカテゴリーは "Goods" */
-  supertype: "Goods";
+  cardType: "Goods";
   /** グッズカードの効果や説明文 */
   text: string;
 } & CardBaseType;
