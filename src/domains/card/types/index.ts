@@ -14,8 +14,6 @@ export type CardBaseType = {
   expansion: string;
   /** カード画像のURL */
   imageUrl: string;
-  /** カードに記載されるルールや特殊な説明文のリスト */
-  rules: string[];
 };
 
 /**
