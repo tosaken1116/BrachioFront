@@ -22,24 +22,16 @@ export type CardBaseType = {
  * モンスターの属性（タイプ）を表す文字列リテラルのユニオン型。
  */
 export type MonsterTypes =
-  | "Normal"
-  | "Fire"
-  | "Water"
-  | "Electric"
-  | "Grass"
-  | "Ice"
-  | "Fighting"
-  | "Poison"
-  | "Ground"
-  | "Flying"
-  | "Psychic"
-  | "Bug"
-  | "Rock"
-  | "Ghost"
-  | "Dragon"
-  | "Darkness"
-  | "Metal"
-  | "Fairy";
+  | "grass"
+  | "fire"
+  | "water"
+  | "lightning"
+  | "psychic"
+  | "fighting"
+  | "darkness"
+  | "metal"
+  | "dragon"
+  | "normal";
 
 /**
  * モンスターやサポートカードなどに付随する能力の情報を表す型。
@@ -67,12 +59,14 @@ export type Weakness = {
 export type AttackType = {
   /** 攻撃名 */
   name: string;
-  /** 攻撃に必要なエネルギーの種類のリスト */
-  cost: MonsterTypes[];
-  /** 攻撃のダメージ値（数値だけでなく特殊な表記も含む） */
-  damage: string;
   /** 攻撃に関する追加の説明テキスト */
   text: string;
+  /** 攻撃に必要なエネルギーの種類のリスト */
+  cost: MonsterTypes[];
+  /** 攻撃のダメージ値 */
+  damage: number;
+  /** 攻撃の追加効果（例: "x" または "+"） */
+  damageOption?: "x" | "+";
 };
 
 /**
