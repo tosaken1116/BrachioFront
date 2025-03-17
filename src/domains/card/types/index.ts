@@ -2,6 +2,8 @@
  * カードの基本情報を表す型。
  */
 export type CardBaseType = {
+  /**  */
+  masterCardId: string;
   /** 一意な識別子 */
   id: string;
   /** カード名 */
@@ -79,7 +81,7 @@ export type AttackType = {
  */
 export type MonsterType = {
   /** カードのスーパーカテゴリーは常に "Monster" */
-  cardType: "Monster";
+  cardType: "monster";
   /** カードの進化段階（Basic, Stage1, Stage2） */
   subType: "Basic" | "Stage1" | "Stage2";
   /** モンスターの属性（タイプ） */
@@ -106,7 +108,7 @@ export type MonsterType = {
  */
 export type SupporterType = {
   /** カードのスーパーカテゴリーは "Supporter" */
-  cardType: "Supporter";
+  cardType: "supporter";
   /** サポーターカードの効果や説明文 */
   text: string;
 } & CardBaseType;
@@ -117,7 +119,7 @@ export type SupporterType = {
  */
 export type GoodsType = {
   /** カードのスーパーカテゴリーは "Goods" */
-  cardType: "Goods";
+  cardType: "goods";
   /** グッズカードの効果や説明文 */
   text: string;
 } & CardBaseType;
