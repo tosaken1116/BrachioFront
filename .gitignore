@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .history
+
+# React Router
+/.react-router/
+/build/
