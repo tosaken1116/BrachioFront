@@ -1,6 +1,8 @@
+import { getAccessToken } from "@/lib/auth";
 import { useSocketRefStore } from "@/lib/websocket/hooks";
 import { useState } from "react";
 import { useAuth } from "react-oidc-context";
+import ReconnectingWebSocket from "reconnecting-websocket";
 
 type FinishState = {
   winner: "me" | "opponent" | null;
@@ -22,22 +24,34 @@ export const useBattle = () => {
     result: [],
   });
   const { user } = useAuth();
-  const {
-    draw,
-    // confirmEnergy,
-    // confirmTarget,
-    // attackMonster,
-    // setSocketRef,
-    // ability,
-    // retreat,
-    // coinToss,
-    // surrender,
-    // takeGoods,
-    // takeSupport,
 
-    // summonMonster,
-    // supplyEnergy,
-    // evolutionMonster,
+  const {
+    eventState: {
+      selectEnergies,
+      selfBattle,
+      selfBench,
+      selfCard,
+      selfEnergy,
+      selfId,
+      selfPokemonEnergy,
+      currentTurnUser,
+    },
+
+    draw,
+    confirmEnergy,
+    confirmTarget,
+    attackMonster,
+    setSocketRef,
+    ability,
+    retreat,
+    coinToss,
+    surrender,
+    takeGoods,
+    takeSupport,
+
+    summonMonster,
+    supplyEnergy,
+    evolutionMonster,
   } = useSocketRefStore({
     userId: user?.profile.sub ?? "",
     onBattleLose: (data) => {
@@ -74,9 +88,21 @@ export const useBattle = () => {
       console.log("effects", effects);
     },
   });
+  const handleConnect = () => {
+    const token = getAccessToken();
+    if (!token) {
+      return;
+    }
+    const socket = new ReconnectingWebSocket(
+      `wss://brachio.kurichi.dev/ws?token=${token}`
+    );
+    socket.binaryType = "arraybuffer";
+    setSocketRef({ current: socket });
+  };
   return {
     isFinished,
     coin,
     draw,
+    handleConnect,
   };
 };

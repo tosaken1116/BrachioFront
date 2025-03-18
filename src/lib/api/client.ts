@@ -12,24 +12,11 @@ import {
   createQueryHook,
 } from "swr-openapi";
 import type { paths } from "./type";
-const END_POINT = import.meta.env.DEV
-  ? "http://localhost:8080"
-  : import.meta.env.VITE_API_URL;
+import { getAccessToken } from "../auth";
+const END_POINT = import.meta.env.VITE_API_URL;
 export const client = createClient<paths>({
   baseUrl: `${END_POINT}/`,
 });
-
-const getAccessToken = function getUser() {
-  const oidcStorage = localStorage.getItem(
-    `oidc.user:${import.meta.env.VITE_COGNITO_AUTHORITY_URL}:${import.meta.env.VITE_COGNITO_CLIENT_ID}`
-  );
-
-  if (!oidcStorage) {
-    return null;
-  }
-
-  return User.fromStorageString(oidcStorage).id_token;
-};
 
 const authMiddleware: Middleware = {
   async onRequest({ request }) {
