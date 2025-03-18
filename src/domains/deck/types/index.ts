@@ -1,8 +1,8 @@
-import type { MonsterCardType, MonsterTypes } from "../../card/types";
+import type { EnergyType, MonsterCardType } from "../../card/types";
 
 export type Deck = {
   id: string;
   name: string;
-  energies: MonsterTypes[];
+  energies: EnergyType[];
   cards: MonsterCardType[];
 };
