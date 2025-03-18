@@ -1,32 +1,28 @@
 import clsx from "clsx";
-import type { FC } from "react";
-import type { MonsterTypes } from "../../types";
+import {
+  AsteriskIcon,
+  BeerIcon,
+  BicepsFlexedIcon,
+  BookTextIcon,
+  DollarSignIcon,
+  SparklesIcon,
+} from "lucide-react";
+import type { FC, ReactNode } from "react";
+import type { EnergyType } from "../../types";
 
 type Props = {
-  type: MonsterTypes;
+  energy: EnergyType;
   className?: string;
   size?: "tiny" | "small" | "sm" | "medium" | "large" | "huge";
 };
 
-const colorMap: Record<MonsterTypes, string> = {
-  Normal: "bg-gray-100 border-gray-300",
-  Fire: "bg-red-100 border-red-300",
-  Water: "bg-blue-100 border-blue-300",
-  Electric: "bg-yellow-100 border-yellow-300",
-  Grass: "bg-green-100 border-green-300",
-  Ice: "bg-blue-200 border-blue-400",
-  Fighting: "bg-red-200 border-red-400",
-  Poison: "bg-purple-100 border-purple-300",
-  Ground: "bg-yellow-200 border-yellow-400",
-  Flying: "bg-blue-300 border-blue-500",
-  Psychic: "bg-purple-200 border-purple-400",
-  Bug: "bg-green-200 border-green-400",
-  Rock: "bg-gray-200 border-gray-400",
-  Ghost: "bg-indigo-100 border-indigo-300",
-  Dragon: "bg-red-300 border-red-500",
-  Darkness: "bg-indigo-200 border-indigo-400",
-  Metal: "bg-gray-300 border-gray-500",
-  Fairy: "bg-pink-100 border-pink-300",
+const colorMap: Record<EnergyType, string> = {
+  NULL: "bg-gray-100 border-gray-300",
+  MUSCLE: "bg-red-500 border-red-600",
+  KNOWLEDGE: "bg-blue-500 border-blue-600",
+  MONEY: "bg-yellow-500 border-yellow-600",
+  POPULARITY: "bg-green-500 border-green-600",
+  ALCOHOL: "bg-purple-500 border-purple-600",
 } as const;
 
 const sizeMap: Record<
@@ -40,15 +36,26 @@ const sizeMap: Record<
   large: "w-16 h-16",
   huge: "w-32 h-32",
 } as const;
-export const Energy: FC<Props> = ({ type, className, size = "medium" }) => {
+
+const iconMap: Record<EnergyType, ReactNode> = {
+  NULL: <AsteriskIcon />,
+  MUSCLE: <BicepsFlexedIcon />,
+  MONEY: <DollarSignIcon />,
+  KNOWLEDGE: <BookTextIcon />,
+  ALCOHOL: <BeerIcon />,
+  POPULARITY: <SparklesIcon />,
+};
+export const Energy: FC<Props> = ({ energy, className, size = "medium" }) => {
   return (
     <div
       className={clsx(
-        "rounded-full  border",
+        "rounded-full border flex items-center justify-center shadow-inner shadow-white drop-shadow-sm",
         sizeMap[size],
-        colorMap[type],
+        colorMap[energy],
         className
       )}
-    />
+    >
+      {iconMap[energy]}
+    </div>
   );
 };

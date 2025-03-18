@@ -1,16 +1,15 @@
 import clsx from "clsx";
 import type { FC } from "react";
 import { Draggable, Droppable } from "../../../../components/functional/dnd";
-import type { MonsterCardType, MonsterType, MonsterTypes } from "../../types";
+import type { EnergyType, MonsterCardType, MonsterType } from "../../types";
 import { Card } from "../Card";
-import { Energy } from "../Energy";
 import { HandCardsMe, HandCardsOpponent } from "../HandCards";
 
 type Props = {
   battle: MonsterType | null;
   bench: (MonsterType | null)[];
 
-  energies: Record<string, MonsterTypes[]>;
+  energies: Record<string, EnergyType[]>;
 } & (
   | { cardLength: number; isMe: false }
   | {
@@ -79,10 +78,10 @@ export const Field: FC<Props> = (props) => {
       <div className="rounded-full border-2 border-slate-500 p-4 flex items-center justify-center absolute bottom-48 right-48">
         <div className="relative">
           <Draggable id="Electric" label="energy">
-            <Energy size="large" type="Electric" />
+            <Energy size="large" type="lightning" />
           </Draggable>
           <div className="absolute -bottom-8 -right-8 p-2 border border-slate-500 rounded-full bg-slate-200">
-            <Energy size="medium" type="Electric" />
+            <Energy size="medium" type="lightning" />
           </div>
         </div>
       </div>
@@ -97,8 +96,8 @@ export const Field: FC<Props> = (props) => {
                 id={card.id}
                 label={"card"}
                 disabled={
-                  card.supertype === "Monster" &&
-                  card.subtype !== "Basic" &&
+                  card.cardType === "monster" &&
+                  card.subType !== "Basic" &&
                   !fieldCards.some(
                     (fieldCard) => fieldCard?.id === card.evolvesFrom
                   )
@@ -110,8 +109,8 @@ export const Field: FC<Props> = (props) => {
                     fieldCards.some(
                       (fieldCard) => fieldCard?.evolvesTo === card.id
                     ) ||
-                    (card.supertype === "Monster" &&
-                      card.subtype === "Basic" &&
+                    (card.cardType === "monster" &&
+                      card.subType === "Basic" &&
                       bench.includes(null))
                       ? putableClassName
                       : "relative"
