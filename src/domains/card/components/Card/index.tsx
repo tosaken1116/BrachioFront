@@ -1,7 +1,7 @@
 import clsx from "clsx";
 // MonsterCard.tsx
 import type { FC } from "react";
-import type { MonsterCardType, MonsterTypes } from "../../types";
+import type { EnergyType, MonsterCardType } from "../../types";
 import { GoodsCard } from "./GoodsCard";
 import { MonsterCard } from "./MonsterCard";
 import { SupporterCard } from "./SupporterCard";
@@ -9,12 +9,19 @@ import { SupporterCard } from "./SupporterCard";
 type CardProps =
   | {
       card: MonsterCardType;
-      energy?: MonsterTypes[];
+      energy?: EnergyType[];
       className?: string;
       isBack?: false;
+      isEmpty?: false;
     }
   | {
       isBack: true;
+      isEmpty: false;
+      className?: string;
+    }
+  | {
+      isEmpty: true;
+      isBack?: false;
       className?: string;
     };
 
@@ -23,7 +30,7 @@ export const Card: FC<CardProps> = (props) => {
     return (
       <div
         className={clsx(
-          "aspect-card w-64 rounded-md bg-blue-400 flex items-center justify-center border-2 border-slate-200",
+          "aspect-card w-32 rounded-md bg-blue-400 flex items-center justify-center border-2 border-slate-200",
           props.className
         )}
       >
@@ -31,8 +38,18 @@ export const Card: FC<CardProps> = (props) => {
       </div>
     );
   }
+  if (props.isEmpty) {
+    return (
+      <div
+        className={clsx(
+          "aspect-card w-32 rounded-md bg-slate-400 flex items-center justify-center border-2 border-slate-200 border-dotted",
+          props.className
+        )}
+      />
+    );
+  }
   switch (props.card.cardType) {
-    case "Monster":
+    case "monster":
       return (
         <MonsterCard
           card={props.card}
@@ -40,9 +57,9 @@ export const Card: FC<CardProps> = (props) => {
           energy={props.energy}
         />
       );
-    case "Supporter":
+    case "supporter":
       return <SupporterCard card={props.card} />;
-    case "Goods":
+    case "goods":
       return <GoodsCard card={props.card} />;
     default:
       return null;

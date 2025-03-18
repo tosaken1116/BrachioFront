@@ -3,18 +3,18 @@ import type { FC, ReactNode } from "react";
 import type {
   AbilityType,
   AttackType,
+  EnergyType,
   MonsterType,
-  MonsterTypes,
 } from "../../types";
-import { Energy } from "../Energy";
 import { CardBase } from "./Card";
+import { Energy } from "../Energy";
 type MonsterCardProps = {
   card: MonsterType;
   className?: string;
-  energy?: MonsterTypes[];
+  energy?: EnergyType[];
 };
 
-const typeColorMap: Record<MonsterTypes, string> = {
+const typeColorMap: Record<EnergyType, string> = {
   Normal: "bg-gray-200",
   Fire: "bg-red-200",
   Water: "bg-blue-200",
