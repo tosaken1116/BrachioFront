@@ -1,3 +1,4 @@
+import { client } from "@/lib/api/client";
 import { createFileRoute } from "@tanstack/react-router";
 import { useAuth } from "react-oidc-context";
 
@@ -29,6 +30,7 @@ function App() {
         <pre> Refresh Token: {auth.user?.refresh_token} </pre>
 
         <button onClick={() => auth.removeUser()}>Sign out</button>
+        <button onClick={() => client.GET("/")}>request </button>
       </div>
     );
   }
@@ -37,6 +39,7 @@ function App() {
     <div>
       <button onClick={() => auth.signinRedirect()}>Sign in</button>
       <button onClick={() => signOutRedirect()}>Sign out</button>
+      <button onClick={() => client.GET("/")}>request </button>
     </div>
   );
 }

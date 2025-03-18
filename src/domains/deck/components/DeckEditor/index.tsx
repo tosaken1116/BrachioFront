@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/drawer";
 import {} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/domains/card/components/Card";
+import { Card, ExpandableCard } from "@/domains/card/components/Card";
 import { Energy, energyMap } from "@/domains/card/components/Energy";
 import {
   type EnergyType,
@@ -32,6 +32,9 @@ import { useState } from "react";
 import { DeckCardsEditorView } from "../DeckCardsEditorView";
 import { DeckCase } from "../DeckCase";
 import { useDeckEdit } from "./hook";
+import { Container } from "@/components/ui/container";
+import { WithBackCard } from "@/components/ui/withBackCard";
+import { useNavigate } from "@tanstack/react-router";
 
 type Props = {
   id: string;
@@ -52,16 +55,39 @@ export const DeckEditor: FC<Props> = ({ id }) => {
 
   // 内側の Dialog（編成する）の表示を state で管理
   const [isEditorOpen, setEditorOpen] = useState(false);
-
+  const navigate = useNavigate();
   return (
-    <div className="max-w-md mx-auto items-center flex flex-col gap-4 h-screen">
+    <WithBackCard
+      color={deck.color}
+      className="max-w-xl mx-auto items-center relative px-12 flex flex-col gap-4 h-screen"
+    >
+      <div className="flex absolute bottom-1/10 gap-4 left-1/2 -translate-x-1/2 z-50 w-2/3">
+        <AlertDialog
+          onUnderStand={() => navigate({ to: "/decks" })}
+          title="保存せずに戻る"
+          message={`デッキを保存していません
+          デッキ編集が無効になり
+          編集前の状態に戻りますが
+          よろしいですか？`}
+          className="w-full bg-white text-gray-800 rounded-full text-xl py-2"
+        >
+          キャンセル
+        </AlertDialog>
+        <button
+          type="button"
+          onClick={handleComplete}
+          className="rounded-full animate-bg-coloring w-full text-xl text-white border border-white before:absolute relative before:w-full before:h-full before:contents-[''] before:scale-105 before:blur-3xl  before:backdrop-blur-sm before:-z-10 before:left-0 before:top-0 before:rounded-full "
+        >
+          保存する
+        </button>
+      </div>
       <div className="flex flex-row gap-2 w-full">
         {/* デッキ名編集用の Dialog */}
         <Dialog>
           <DialogTrigger asChild>
             <Button
               variant={"outline"}
-              className="rounded-full shadow-inner shadow-white flex flex-row w-full justify-center"
+              className="rounded-full shadow-inner bg-white/40 shadow-white z-20 flex flex-row w-full justify-center"
             >
               <p className="w-full">{deck.name}</p>
               <Pen />
@@ -83,8 +109,9 @@ export const DeckEditor: FC<Props> = ({ id }) => {
           onUnderStand={handleDeleteDeck}
           title="デッキを削除"
           message="デッキを削除しますか？この操作は取り消せません"
+          className="z-20"
         >
-          <Trash2 />
+          <Trash2 className="text-white" />
         </AlertDialog>
       </div>
 
@@ -137,7 +164,11 @@ export const DeckEditor: FC<Props> = ({ id }) => {
           <div className="grid grid-cols-3 gap-1">
             {deck?.cards.map((card, i) => {
               return (
-                <Card card={card} key={`viewer-${card.masterCardId}-${i}`} />
+                <ExpandableCard
+                  isMe
+                  card={card}
+                  key={`viewer-${card.masterCardId}-${i}`}
+                />
               );
             })}
           </div>
@@ -155,16 +186,9 @@ export const DeckEditor: FC<Props> = ({ id }) => {
               onAppendCard={handleAppendCard}
               onRemoveCard={handleRemoveCard}
               onClearCards={handleClearDeck}
-              onComplete={handleComplete}
-              completeButtonRender={(onComplete) => (
+              completeButtonRender={() => (
                 <DialogClose asChild>
-                  <Button
-                    onClick={() => {
-                      onComplete();
-                      setEditorOpen(false);
-                    }}
-                    className="absolute z-50 px-16 left-1/2 bottom-1/10 -translate-x-1/2 py-2 text-white rounded-full border border-white shadow-sm shadow-slate-500 animate-bg-coloring"
-                  >
+                  <Button className="absolute z-50 px-16 left-1/2 bottom-1/10 -translate-x-1/2 py-2 text-white rounded-full border border-white shadow-sm shadow-slate-500 animate-bg-coloring">
                     OK
                   </Button>
                 </DialogClose>
@@ -173,7 +197,7 @@ export const DeckEditor: FC<Props> = ({ id }) => {
           </DialogContent>
         </DialogPortal>
       </Dialog>
-    </div>
+    </WithBackCard>
   );
 };
 
@@ -352,20 +376,3 @@ const NamePlate = ({
     </div>
   );
 };
-
-const Container = ({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) => (
-  <div
-    className={clsx(
-      "border-8 drop-shadow-md flex items-center justify-center w-full h-full rounded-3xl border-slate-100 shadow-inner shadow-slate-400 bg-slate-100",
-      className
-    )}
-  >
-    {children}
-  </div>
-);

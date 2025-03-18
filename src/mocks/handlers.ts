@@ -80,7 +80,7 @@ export const handlers = [
   // GET /decks - ランダムなデッキ一覧を返す
   http.get("/decks", () => {
     // 例として 3 つのランダムなデッキを生成
-    const decks = Array.from({ length: 3 }).map((_, i) => ({
+    const decks = Array.from({ length: 10 }).map((_, i) => ({
       id: `deck-${i + 1}`,
       name: `ランダムデッキ ${i + 1}`,
       elements: getRandomElements(2),

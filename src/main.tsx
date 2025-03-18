@@ -6,6 +6,7 @@ import { routeTree } from "./routeTree.gen";
 
 import { AuthProvider } from "react-oidc-context";
 import "./index.css";
+import { WebStorageStateStore } from "oidc-client-ts";
 
 // Import the generated route tree
 
@@ -30,6 +31,7 @@ const cognitoAuthConfig = {
   redirect_uri: `${import.meta.env.VITE_REDIRECT_URI}`,
   response_type: "code",
   scope: "email openid phone profile aws.cognito.signin.user.admin",
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
 };
 // Render the app
 enableMocking().then(() => {

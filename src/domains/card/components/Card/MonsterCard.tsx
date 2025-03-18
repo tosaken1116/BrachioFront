@@ -243,9 +243,9 @@ type PlateProps = {
   children: ReactNode;
 };
 
-const Plate: FC<PlateProps> = ({
+export const Plate: FC<PlateProps> = ({
   color = "white",
-  className = "",
+  className,
   children,
 }) => {
   const colorClass = color === "white" ? "bg-white" : "bg-red-100";

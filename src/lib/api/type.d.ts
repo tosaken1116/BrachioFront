@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+    "/users/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get user by user ID
+         * @description Get user by user ID
+         */
+        get: operations["getUser"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/gachas": {
         parameters: {
             query?: never;
@@ -234,6 +254,16 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @example {
+         *       "imageUrl": "imageUrl",
+         *       "name": "name"
+         *     } */
+        user: {
+            /** @description ユーザー名 */
+            name: string;
+            /** @description 画像URL */
+            imageUrl: string;
+        };
         /** @example {
          *       "imageUrl": "imageUrl",
          *       "name": "name",
@@ -699,6 +729,29 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    getUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID of user to return */
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["user"];
+                };
+            };
+        };
+    };
     getGachaList: {
         parameters: {
             query?: never;

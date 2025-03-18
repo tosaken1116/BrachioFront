@@ -110,7 +110,7 @@ export const ExpandableCard: FC<Props & { isMe: boolean }> = (props) => {
           className={clsx(props.className, props.isMe ? "" : "rotate-180")}
         />
       </DialogTrigger>
-      <DialogContent className="h-4/5 mx-auto ">
+      <DialogContent className="aspect-card mx-auto ">
         <div className={clsx("scale-[365%] origin-top-left w-fit h-fit")}>
           <Card
             {...props}

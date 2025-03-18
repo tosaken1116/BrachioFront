@@ -3,26 +3,23 @@ import { Card } from "../../../card/components/Card";
 import type { MasterCardType } from "../../../card/types";
 
 type Props = {
-  onComplete: () => void;
   onAppendCard: (card: MasterCardType) => void;
   onRemoveCard: (card: MasterCardType) => void;
   onClearCards: () => void;
   deckCards: MasterCardType[];
   cards: { masterCard: MasterCardType; count: number }[];
-  completeButtonRender?: (onComplete: () => void) => JSX.Element;
+  completeButtonRender?: () => JSX.Element;
 };
 
 export const DeckCardsEditorView: FC<Props> = ({
   deckCards,
   cards,
-  onComplete,
   onRemoveCard,
   onAppendCard,
   onClearCards,
-  completeButtonRender = (onComplete) => (
+  completeButtonRender = () => (
     <button
       type="button"
-      onClick={onComplete}
       className="absolute z-50 px-16 left-1/2 bottom-1/10 -translate-x-1/2 py-2 text-white rounded-full border border-white shadow-sm shadow-slate-500 animate-bg-coloring"
     >
       OK
@@ -32,7 +29,7 @@ export const DeckCardsEditorView: FC<Props> = ({
   const selectedCardId = deckCards.flatMap((card) => card.masterCardId);
   return (
     <div className="h-screen flex flex-col relative  w-screen overflow-x-hidden">
-      {completeButtonRender(onComplete)}
+      {completeButtonRender()}
       <div className="z-50">
         <button
           type="reset"
