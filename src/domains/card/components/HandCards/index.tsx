@@ -20,7 +20,10 @@ export const HandCardsMe: FC<HandCardsMeProps> = ({
       {cards.map((card, i) => {
         return (
           <div
-            key={`hands-card-me-${i}`}
+            key={`hands-card-me-${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              i
+            }`}
             style={{
               rotate:
                 grabbingCardId === card.id ? "" : `${(i - middle) * 3}deg`,
@@ -53,7 +56,10 @@ export const HandCardsOpponent: FC<HandCardsOpponentProps> = ({
       {Array.from({ length: cardLength }).map((_, i) => {
         return (
           <div
-            key={`hands-card-opponent-${i}`}
+            key={`hands-card-opponent-${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              i
+            }`}
             style={{
               rotate: `${(i - middle) * 3}deg`,
               marginTop: `${Math.abs(i - middle) * 8}px`,

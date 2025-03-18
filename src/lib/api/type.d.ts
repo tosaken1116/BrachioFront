@@ -4,845 +4,887 @@
  */
 
 export interface paths {
-    "/gachas": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * ガチャ一覧取得
-         * @description ガチャ一覧を取得する
-         */
-        get: operations["getGachaList"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/gachas/power": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * ガチャの強さ取得
-         * @description ガチャの強さを取得する
-         */
-        get: operations["getGachaPower"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/gachas/{gachaId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * ガチャを引く
-         * @description ガチャを引く
-         */
-        post: operations["drawGacha"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/items": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 所持アイテム一覧取得
-         * @description 所持アイテム一覧を取得します。
-         */
-        get: operations["getMyItemList"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/decks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 自身のデッキリストを取得
-         * @description 自身のデッキリストを取得する
-         */
-        get: operations["getDeckList"];
-        put?: never;
-        /**
-         * 空のデッキを作成
-         * @description 空のデッキを作成する
-         */
-        post: operations["createNewDeck"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/decks/{deckId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * デッキを取得
-         * @description デッキを取得する
-         */
-        get: operations["getDeck"];
-        /**
-         * デッキを更新
-         * @description デッキを更新する
-         */
-        put: operations["updateDeck"];
-        post?: never;
-        /**
-         * デッキを削除
-         * @description デッキを削除する
-         */
-        delete: operations["deleteDeck"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/cards": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 取得済みカード一覧の取得
-         * @description 取得済みカード一覧を取得する
-         */
-        get: operations["getCards"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/ws": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Websocket接続 */
-        get: operations["ws"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** health check */
-        get: operations["healthCheck"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
+	"/gachas": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * ガチャ一覧取得
+		 * @description ガチャ一覧を取得する
+		 */
+		get: operations["getGachaList"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/gachas/power": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * ガチャの強さ取得
+		 * @description ガチャの強さを取得する
+		 */
+		get: operations["getGachaPower"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/gachas/{gachaId}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * ガチャを引く
+		 * @description ガチャを引く
+		 */
+		post: operations["drawGacha"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/items": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * 所持アイテム一覧取得
+		 * @description 所持アイテム一覧を取得します。
+		 */
+		get: operations["getMyItemList"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/decks": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * 自身のデッキリストを取得
+		 * @description 自身のデッキリストを取得する
+		 */
+		get: operations["getDeckList"];
+		put?: never;
+		/**
+		 * 空のデッキを作成
+		 * @description 空のデッキを作成する
+		 */
+		post: operations["createNewDeck"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/decks/{deckId}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * デッキを取得
+		 * @description デッキを取得する
+		 */
+		get: operations["getDeck"];
+		/**
+		 * デッキを更新
+		 * @description デッキを更新する
+		 */
+		put: operations["updateDeck"];
+		post?: never;
+		/**
+		 * デッキを削除
+		 * @description デッキを削除する
+		 */
+		delete: operations["deleteDeck"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/cards": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * 取得済みカード一覧の取得
+		 * @description 取得済みカード一覧を取得する
+		 */
+		get: operations["getCards"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/ws": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Websocket接続 */
+		get: operations["ws"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** health check */
+		get: operations["healthCheck"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        /** @example {
-         *       "imageUrl": "imageUrl",
-         *       "name": "name",
-         *       "id": "id"
-         *     } */
-        gacha: {
-            /** @description ガチャID */
-            readonly id: string;
-            /** @description ガチャ名 */
-            name: string;
-            /** @description ガチャ画像URL */
-            imageUrl: string;
-        };
-        /** @example {
-         *       "next": 0,
-         *       "charged": 6
-         *     } */
-        gachaPower: {
-            /** @description 次のガチャパワーが貯まるまでの秒数 */
-            next: number;
-            /** @description 現在のガチャパワー */
-            charged: number;
-        };
-        drawGachaRequest: {
-            /**
-             * @description 10連ガチャかどうか
-             * @default false
-             */
-            isTenDraw: boolean;
-        };
-        /** @example {
-         *       "cards": [
-         *         {
-         *           "retreatCost": 1,
-         *           "masterCardId": "masterCardId",
-         *           "cardType": "monster",
-         *           "hp": 60,
-         *           "evolvesTo": "フシギバナ",
-         *           "evolvesFrom": "フシギダネ",
-         *           "expansion": "expansion",
-         *           "skills": [
-         *             {
-         *               "damage": 6,
-         *               "cost": [
-         *                 null,
-         *                 null
-         *               ],
-         *               "name": "name",
-         *               "damageOption": "x",
-         *               "text": "text"
-         *             },
-         *             {
-         *               "damage": 6,
-         *               "cost": [
-         *                 null,
-         *                 null
-         *               ],
-         *               "name": "name",
-         *               "damageOption": "x",
-         *               "text": "text"
-         *             }
-         *           ],
-         *           "weakness": null,
-         *           "imageUrl": "imageUrl",
-         *           "name": "name",
-         *           "ability": {
-         *             "name": "name",
-         *             "text": "text"
-         *           },
-         *           "rarity": 0,
-         *           "element": "null"
-         *         },
-         *         {
-         *           "retreatCost": 1,
-         *           "masterCardId": "masterCardId",
-         *           "cardType": "monster",
-         *           "hp": 60,
-         *           "evolvesTo": "フシギバナ",
-         *           "evolvesFrom": "フシギダネ",
-         *           "expansion": "expansion",
-         *           "skills": [
-         *             {
-         *               "damage": 6,
-         *               "cost": [
-         *                 null,
-         *                 null
-         *               ],
-         *               "name": "name",
-         *               "damageOption": "x",
-         *               "text": "text"
-         *             },
-         *             {
-         *               "damage": 6,
-         *               "cost": [
-         *                 null,
-         *                 null
-         *               ],
-         *               "name": "name",
-         *               "damageOption": "x",
-         *               "text": "text"
-         *             }
-         *           ],
-         *           "weakness": null,
-         *           "imageUrl": "imageUrl",
-         *           "name": "name",
-         *           "ability": {
-         *             "name": "name",
-         *             "text": "text"
-         *           },
-         *           "rarity": 0,
-         *           "element": "null"
-         *         }
-         *       ]
-         *     } */
-        pack: {
-            cards?: components["schemas"]["masterCard"][];
-        };
-        /** @example {
-         *       "name": "name",
-         *       "count": 0,
-         *       "id": "id"
-         *     } */
-        item: {
-            /** @description アイテムID（アイテムごとに一意） */
-            id: string;
-            /** @description アイテム名 */
-            name: string;
-            /** @description 所持数 */
-            count: number;
-        };
-        /** @example {
-         *       "color": "null",
-         *       "name": "name",
-         *       "id": "id",
-         *       "thumbnailCard": {
-         *         "id": "id"
-         *       }
-         *     } */
-        deckBaseWithId: components["schemas"]["deckBase"] & {
-            /** @description デッキID */
-            readonly id: string;
-        };
-        /** @description デッキ */
-        deckBase: {
-            /** @description デッキID */
-            readonly id?: string;
-            /** @description デッキ名 */
-            name: string;
-            thumbnailCard: components["schemas"]["card"];
-            color: components["schemas"]["element"];
-        };
-        /** @example {
-         *       "energies": [
-         *         null,
-         *         null
-         *       ],
-         *       "cards": [
-         *         {
-         *           "id": "id"
-         *         },
-         *         {
-         *           "id": "id"
-         *         }
-         *       ],
-         *       "color": "null",
-         *       "name": "name",
-         *       "id": "id",
-         *       "thumbnailCard": {
-         *         "id": "id"
-         *       }
-         *     } */
-        deckWithId: components["schemas"]["deck"] & {
-            /** @description デッキID */
-            readonly id: string;
-        };
-        deck: components["schemas"]["deckBase"] & {
-            cards: components["schemas"]["card"][];
-            energies: components["schemas"]["element"][];
-        };
-        /** @description デッキ更新リクエスト */
-        updateDeck: {
-            /** @description デッキ名 */
-            name: string;
-            /** @description マスターカードID */
-            masterCardIds: string[];
-            /** @description サムネイルカードID */
-            thumbnailCardId: string;
-            energies: components["schemas"]["element"][];
-            color: components["schemas"]["element"];
-        };
-        myCardList: components["schemas"]["masterCardWithCount"][];
-        /** @example {
-         *       "count": 0,
-         *       "masterCard": {
-         *         "retreatCost": 1,
-         *         "masterCardId": "masterCardId",
-         *         "cardType": "monster",
-         *         "hp": 60,
-         *         "evolvesTo": "フシギバナ",
-         *         "evolvesFrom": "フシギダネ",
-         *         "expansion": "expansion",
-         *         "skills": [
-         *           {
-         *             "damage": 6,
-         *             "cost": [
-         *               null,
-         *               null
-         *             ],
-         *             "name": "name",
-         *             "damageOption": "x",
-         *             "text": "text"
-         *           },
-         *           {
-         *             "damage": 6,
-         *             "cost": [
-         *               null,
-         *               null
-         *             ],
-         *             "name": "name",
-         *             "damageOption": "x",
-         *             "text": "text"
-         *           }
-         *         ],
-         *         "weakness": null,
-         *         "imageUrl": "imageUrl",
-         *         "name": "name",
-         *         "ability": {
-         *           "name": "name",
-         *           "text": "text"
-         *         },
-         *         "rarity": 0,
-         *         "element": "null"
-         *       }
-         *     } */
-        masterCardWithCount: {
-            masterCard: components["schemas"]["masterCard"];
-            /** @description カード枚数 */
-            count: number;
-        };
-        masterCard: components["schemas"]["masterMonsterCard"] | components["schemas"]["masterSupporterCard"] | components["schemas"]["masterGoodsCard"];
-        /** @example {
-         *       "retreatCost": 1,
-         *       "masterCardId": "masterCardId",
-         *       "cardType": "monster",
-         *       "hp": 60,
-         *       "evolvesTo": "フシギバナ",
-         *       "evolvesFrom": "フシギダネ",
-         *       "expansion": "expansion",
-         *       "skills": [
-         *         {
-         *           "damage": 6,
-         *           "cost": [
-         *             null,
-         *             null
-         *           ],
-         *           "name": "name",
-         *           "damageOption": "x",
-         *           "text": "text"
-         *         },
-         *         {
-         *           "damage": 6,
-         *           "cost": [
-         *             null,
-         *             null
-         *           ],
-         *           "name": "name",
-         *           "damageOption": "x",
-         *           "text": "text"
-         *         }
-         *       ],
-         *       "weakness": null,
-         *       "imageUrl": "imageUrl",
-         *       "name": "name",
-         *       "ability": {
-         *         "name": "name",
-         *         "text": "text"
-         *       },
-         *       "rarity": 0,
-         *       "element": "null"
-         *     } */
-        masterMonsterCard: components["schemas"]["masterCardBase"] & {
-            /**
-             * @description HP
-             * @example 60
-             */
-            hp: number;
-            element: components["schemas"]["element"];
-            weakness: components["schemas"]["element"];
-            /** @description ワザ */
-            skills: components["schemas"]["skill"][];
-            ability?: components["schemas"]["ability"];
-            /**
-             * @description 逃げるコスト
-             * @example 1
-             */
-            retreatCost?: number;
-            /**
-             * @description 進化元
-             * @example フシギダネ
-             */
-            evolvesFrom?: string;
-            /**
-             * @description 進化先
-             * @example フシギバナ
-             */
-            evolvesTo?: string;
-        };
-        /** @description 全カード共通のプロパティ */
-        masterCardBase: {
-            /** @description カードID */
-            readonly masterCardId: string;
-            /** @description カード名 */
-            name: string;
-            cardType: components["schemas"]["masterCardType"];
-            /** @description レアリティ */
-            rarity?: number;
-            /** @description カード画像URL */
-            imageUrl: string;
-            /** @description カードセット名 */
-            expansion?: string;
-        };
-        /** @enum {string} */
-        masterCardType: "monster" | "supporter" | "goods";
-        /** @enum {string} */
-        element: "null" | "money" | "knowledge" | "muscle" | "alchohol" | "popularity";
-        /**
-         * @description ワザ
-         * @example {
-         *       "damage": 6,
-         *       "cost": [
-         *         null,
-         *         null
-         *       ],
-         *       "name": "name",
-         *       "damageOption": "x",
-         *       "text": "text"
-         *     }
-         */
-        skill: {
-            /** @description ワザ名 */
-            name: string;
-            /** @description 説明文 */
-            text: string;
-            /** @description ダメージ */
-            damage: number;
-            /**
-             * @description x or +
-             * @enum {string}
-             */
-            damageOption?: "x" | "+";
-            /** @description コスト */
-            cost: components["schemas"]["element"][];
-        };
-        /**
-         * @description 特性
-         * @example {
-         *       "name": "name",
-         *       "text": "text"
-         *     }
-         */
-        ability: {
-            /** @description 特性名 */
-            name: string;
-            /** @description 説明文 */
-            text: string;
-        };
-        masterSupporterCard: components["schemas"]["masterCardBase"] & {
-            /** @description 説明文 */
-            text: string;
-        };
-        masterGoodsCard: components["schemas"]["masterCardBase"] & {
-            /** @description 説明文 */
-            text: string;
-        };
-        /** @example {
-         *       "id": "id"
-         *     } */
-        card: components["schemas"]["masterCard"] & {
-            /** @description カードID */
-            readonly id: string;
-        };
-        /** @example {
-         *       "id": "id"
-         *     } */
-        createNewDeck_201_response: {
-            /** @description デッキID */
-            id: string;
-        };
-    };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+	schemas: {
+		/** @example {
+		 *       "imageUrl": "imageUrl",
+		 *       "name": "name",
+		 *       "id": "id"
+		 *     } */
+		gacha: {
+			/** @description ガチャID */
+			readonly id: string;
+			/** @description ガチャ名 */
+			name: string;
+			/** @description ガチャ画像URL */
+			imageUrl: string;
+		};
+		/** @example {
+		 *       "next": 0,
+		 *       "charged": 6
+		 *     } */
+		gachaPower: {
+			/** @description 次のガチャパワーが貯まるまでの秒数 */
+			next: number;
+			/** @description 現在のガチャパワー */
+			charged: number;
+		};
+		drawGachaRequest: {
+			/**
+			 * @description 10連ガチャかどうか
+			 * @default false
+			 */
+			isTenDraw: boolean;
+		};
+		/** @example {
+		 *       "cards": [
+		 *         {
+		 *           "retreatCost": 1,
+		 *           "masterCardId": "masterCardId",
+		 *           "cardType": "monster",
+		 *           "hp": 60,
+		 *           "evolvesTo": [
+		 *             "kizuku",
+		 *             "kizuku"
+		 *           ],
+		 *           "isEx": false,
+		 *           "evolvesFrom": [
+		 *             "kizuku",
+		 *             "kizuku"
+		 *           ],
+		 *           "expansion": "expansion",
+		 *           "skills": [
+		 *             {
+		 *               "damage": 6,
+		 *               "cost": [
+		 *                 null,
+		 *                 null
+		 *               ],
+		 *               "name": "name",
+		 *               "damageOption": "x",
+		 *               "text": "text"
+		 *             },
+		 *             {
+		 *               "damage": 6,
+		 *               "cost": [
+		 *                 null,
+		 *                 null
+		 *               ],
+		 *               "name": "name",
+		 *               "damageOption": "x",
+		 *               "text": "text"
+		 *             }
+		 *           ],
+		 *           "weakness": null,
+		 *           "imageUrl": "imageUrl",
+		 *           "name": "name",
+		 *           "subType": "basic",
+		 *           "ability": {
+		 *             "name": "name",
+		 *             "text": "text"
+		 *           },
+		 *           "rarity": 0,
+		 *           "element": "null"
+		 *         },
+		 *         {
+		 *           "retreatCost": 1,
+		 *           "masterCardId": "masterCardId",
+		 *           "cardType": "monster",
+		 *           "hp": 60,
+		 *           "evolvesTo": [
+		 *             "kizuku",
+		 *             "kizuku"
+		 *           ],
+		 *           "isEx": false,
+		 *           "evolvesFrom": [
+		 *             "kizuku",
+		 *             "kizuku"
+		 *           ],
+		 *           "expansion": "expansion",
+		 *           "skills": [
+		 *             {
+		 *               "damage": 6,
+		 *               "cost": [
+		 *                 null,
+		 *                 null
+		 *               ],
+		 *               "name": "name",
+		 *               "damageOption": "x",
+		 *               "text": "text"
+		 *             },
+		 *             {
+		 *               "damage": 6,
+		 *               "cost": [
+		 *                 null,
+		 *                 null
+		 *               ],
+		 *               "name": "name",
+		 *               "damageOption": "x",
+		 *               "text": "text"
+		 *             }
+		 *           ],
+		 *           "weakness": null,
+		 *           "imageUrl": "imageUrl",
+		 *           "name": "name",
+		 *           "subType": "basic",
+		 *           "ability": {
+		 *             "name": "name",
+		 *             "text": "text"
+		 *           },
+		 *           "rarity": 0,
+		 *           "element": "null"
+		 *         }
+		 *       ]
+		 *     } */
+		pack: {
+			cards?: components["schemas"]["masterCard"][];
+		};
+		/** @example {
+		 *       "name": "name",
+		 *       "count": 0,
+		 *       "id": "id"
+		 *     } */
+		item: {
+			/** @description アイテムID（アイテムごとに一意） */
+			id: string;
+			/** @description アイテム名 */
+			name: string;
+			/** @description 所持数 */
+			count: number;
+		};
+		/** @example {
+		 *       "color": "null",
+		 *       "name": "name",
+		 *       "id": "id",
+		 *       "thumbnailCard": {
+		 *         "id": "id"
+		 *       }
+		 *     } */
+		deckBaseWithId: components["schemas"]["deckBase"] & {
+			/** @description デッキID */
+			readonly id: string;
+		};
+		/** @description デッキ */
+		deckBase: {
+			/** @description デッキID */
+			readonly id?: string;
+			/** @description デッキ名 */
+			name: string;
+			thumbnailCard: components["schemas"]["card"];
+			color: components["schemas"]["element"];
+		};
+		/** @example {
+		 *       "energies": [
+		 *         null,
+		 *         null
+		 *       ],
+		 *       "cards": [
+		 *         {
+		 *           "id": "id"
+		 *         },
+		 *         {
+		 *           "id": "id"
+		 *         }
+		 *       ],
+		 *       "color": "null",
+		 *       "name": "name",
+		 *       "id": "id",
+		 *       "thumbnailCard": {
+		 *         "id": "id"
+		 *       }
+		 *     } */
+		deckWithId: components["schemas"]["deck"] & {
+			/** @description デッキID */
+			readonly id: string;
+		};
+		deck: components["schemas"]["deckBase"] & {
+			cards: components["schemas"]["card"][];
+			energies: components["schemas"]["element"][];
+		};
+		/** @description デッキ更新リクエスト */
+		updateDeck: {
+			/** @description デッキ名 */
+			name: string;
+			/** @description マスターカードID */
+			masterCardIds: string[];
+			/** @description サムネイルカードID */
+			thumbnailCardId: string;
+			energies: components["schemas"]["element"][];
+			color: components["schemas"]["element"];
+		};
+		myCardList: components["schemas"]["masterCardWithCount"][];
+		/** @example {
+		 *       "count": 0,
+		 *       "masterCard": {
+		 *         "retreatCost": 1,
+		 *         "masterCardId": "masterCardId",
+		 *         "cardType": "monster",
+		 *         "hp": 60,
+		 *         "evolvesTo": [
+		 *           "kizuku",
+		 *           "kizuku"
+		 *         ],
+		 *         "isEx": false,
+		 *         "evolvesFrom": [
+		 *           "kizuku",
+		 *           "kizuku"
+		 *         ],
+		 *         "expansion": "expansion",
+		 *         "skills": [
+		 *           {
+		 *             "damage": 6,
+		 *             "cost": [
+		 *               null,
+		 *               null
+		 *             ],
+		 *             "name": "name",
+		 *             "damageOption": "x",
+		 *             "text": "text"
+		 *           },
+		 *           {
+		 *             "damage": 6,
+		 *             "cost": [
+		 *               null,
+		 *               null
+		 *             ],
+		 *             "name": "name",
+		 *             "damageOption": "x",
+		 *             "text": "text"
+		 *           }
+		 *         ],
+		 *         "weakness": null,
+		 *         "imageUrl": "imageUrl",
+		 *         "name": "name",
+		 *         "subType": "basic",
+		 *         "ability": {
+		 *           "name": "name",
+		 *           "text": "text"
+		 *         },
+		 *         "rarity": 0,
+		 *         "element": "null"
+		 *       }
+		 *     } */
+		masterCardWithCount: {
+			masterCard: components["schemas"]["masterCard"];
+			/** @description カード枚数 */
+			count: number;
+		};
+		masterCard:
+			| components["schemas"]["masterMonsterCard"]
+			| components["schemas"]["masterSupporterCard"]
+			| components["schemas"]["masterGoodsCard"];
+		/** @example {
+		 *       "retreatCost": 1,
+		 *       "masterCardId": "masterCardId",
+		 *       "cardType": "monster",
+		 *       "hp": 60,
+		 *       "evolvesTo": [
+		 *         "kizuku",
+		 *         "kizuku"
+		 *       ],
+		 *       "isEx": false,
+		 *       "evolvesFrom": [
+		 *         "kizuku",
+		 *         "kizuku"
+		 *       ],
+		 *       "expansion": "expansion",
+		 *       "skills": [
+		 *         {
+		 *           "damage": 6,
+		 *           "cost": [
+		 *             null,
+		 *             null
+		 *           ],
+		 *           "name": "name",
+		 *           "damageOption": "x",
+		 *           "text": "text"
+		 *         },
+		 *         {
+		 *           "damage": 6,
+		 *           "cost": [
+		 *             null,
+		 *             null
+		 *           ],
+		 *           "name": "name",
+		 *           "damageOption": "x",
+		 *           "text": "text"
+		 *         }
+		 *       ],
+		 *       "weakness": null,
+		 *       "imageUrl": "imageUrl",
+		 *       "name": "name",
+		 *       "subType": "basic",
+		 *       "ability": {
+		 *         "name": "name",
+		 *         "text": "text"
+		 *       },
+		 *       "rarity": 0,
+		 *       "element": "null"
+		 *     } */
+		masterMonsterCard: components["schemas"]["masterCardBase"] & {
+			/**
+			 * @description HP
+			 * @example 60
+			 */
+			hp: number;
+			element: components["schemas"]["element"];
+			weakness: components["schemas"]["element"];
+			/** @description ワザ */
+			skills: components["schemas"]["skill"][];
+			ability?: components["schemas"]["ability"];
+			/**
+			 * @description 逃げるコスト
+			 * @example 1
+			 */
+			retreatCost?: number;
+			/** @description 進化元 */
+			evolvesFrom?: string[];
+			/** @description 進化先 */
+			evolvesTo?: string[];
+			/**
+			 * @description EXカードかどうか
+			 * @example false
+			 */
+			isEx?: boolean;
+			/** @enum {string} */
+			subType?: "basic" | "stage1" | "stage2";
+		};
+		/** @description 全カード共通のプロパティ */
+		masterCardBase: {
+			/** @description カードID */
+			readonly masterCardId: string;
+			/** @description カード名 */
+			name: string;
+			cardType: components["schemas"]["masterCardType"];
+			/** @description レアリティ */
+			rarity?: number;
+			/** @description カード画像URL */
+			imageUrl: string;
+			/** @description カードセット名 */
+			expansion?: string;
+		};
+		/** @enum {string} */
+		masterCardType: "monster" | "supporter" | "goods";
+		/** @enum {string} */
+		element:
+			| "null"
+			| "money"
+			| "knowledge"
+			| "muscle"
+			| "alchohol"
+			| "popularity";
+		/**
+		 * @description ワザ
+		 * @example {
+		 *       "damage": 6,
+		 *       "cost": [
+		 *         null,
+		 *         null
+		 *       ],
+		 *       "name": "name",
+		 *       "damageOption": "x",
+		 *       "text": "text"
+		 *     }
+		 */
+		skill: {
+			/** @description ワザ名 */
+			name: string;
+			/** @description 説明文 */
+			text: string;
+			/** @description ダメージ */
+			damage: number;
+			/**
+			 * @description x or +
+			 * @enum {string}
+			 */
+			damageOption?: "x" | "+";
+			/** @description コスト */
+			cost: components["schemas"]["element"][];
+		};
+		/**
+		 * @description 特性
+		 * @example {
+		 *       "name": "name",
+		 *       "text": "text"
+		 *     }
+		 */
+		ability: {
+			/** @description 特性名 */
+			name: string;
+			/** @description 説明文 */
+			text: string;
+		};
+		masterSupporterCard: components["schemas"]["masterCardBase"] & {
+			/** @description 説明文 */
+			text: string;
+		};
+		masterGoodsCard: components["schemas"]["masterCardBase"] & {
+			/** @description 説明文 */
+			text: string;
+		};
+		/** @example {
+		 *       "id": "id"
+		 *     } */
+		card: components["schemas"]["masterCard"] & {
+			/** @description カードID */
+			readonly id: string;
+		};
+		/** @example {
+		 *       "id": "id"
+		 *     } */
+		createNewDeck_201_response: {
+			/** @description デッキID */
+			id: string;
+		};
+	};
+	responses: never;
+	parameters: never;
+	requestBodies: never;
+	headers: never;
+	pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    getGachaList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["gacha"][];
-                };
-            };
-        };
-    };
-    getGachaPower: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["gachaPower"];
-                };
-            };
-        };
-    };
-    drawGacha: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description ガチャID */
-                gachaId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["drawGachaRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["pack"][];
-                };
-            };
-        };
-    };
-    getMyItemList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description アイテム一覧 */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["item"][];
-                };
-            };
-        };
-    };
-    getDeckList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["deckBaseWithId"][];
-                };
-            };
-        };
-    };
-    createNewDeck: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["createNewDeck_201_response"];
-                };
-            };
-        };
-    };
-    getDeck: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description デッキID */
-                deckId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["deckWithId"];
-                };
-            };
-        };
-    };
-    updateDeck: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description デッキID */
-                deckId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["updateDeck"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["deckWithId"];
-                };
-            };
-        };
-    };
-    deleteDeck: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description デッキID */
-                deckId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getCards: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["myCardList"];
-                };
-            };
-        };
-    };
-    ws: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    healthCheck: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
+	getGachaList: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["gacha"][];
+				};
+			};
+		};
+	};
+	getGachaPower: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["gachaPower"];
+				};
+			};
+		};
+	};
+	drawGacha: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description ガチャID */
+				gachaId: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["drawGachaRequest"];
+			};
+		};
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["pack"][];
+				};
+			};
+		};
+	};
+	getMyItemList: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description アイテム一覧 */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["item"][];
+				};
+			};
+		};
+	};
+	getDeckList: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["deckBaseWithId"][];
+				};
+			};
+		};
+	};
+	createNewDeck: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Created */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["createNewDeck_201_response"];
+				};
+			};
+		};
+	};
+	getDeck: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description デッキID */
+				deckId: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["deckWithId"];
+				};
+			};
+		};
+	};
+	updateDeck: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description デッキID */
+				deckId: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["updateDeck"];
+			};
+		};
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["deckWithId"];
+				};
+			};
+		};
+	};
+	deleteDeck: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description デッキID */
+				deckId: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description No Content */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+		};
+	};
+	getCards: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["myCardList"];
+				};
+			};
+		};
+	};
+	ws: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+		};
+	};
+	healthCheck: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description OK */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+		};
+	};
 }

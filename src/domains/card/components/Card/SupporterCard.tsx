@@ -1,13 +1,13 @@
 import type { FC } from "react";
-import type { SupporterType } from "../../types";
+import type { SupporterMasterType } from "../../types";
 import { CardBase } from "./Card";
 
 type Props = {
-  card: SupporterType;
+  card: SupporterMasterType;
 };
 
 export const SupporterCard: FC<Props> = ({ card }) => {
-  const { id, name, text, imageUrl, rarity } = card;
+  const { masterCardId, name, text, imageUrl, rarity } = card;
   return (
     <CardBase card={card}>
       <div className="flex flex-col h-full bg-gradient-to-r from-orange-200 rounded-xs via-white  to-orange-200">
@@ -31,7 +31,13 @@ export const SupporterCard: FC<Props> = ({ card }) => {
         <div className="flex flex-row  h-6 items-center relative">
           <div className="flex flex-row gap-0.5 items-center">
             {Array.from({ length: rarity }).map((_, i) => (
-              <div key={`${id}-rarity-${i}`} className=" scale-x-75">
+              <div
+                key={`${masterCardId}-rarity-${
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                  i
+                }`}
+                className=" scale-x-75"
+              >
                 <div className="h-1.5 w-1.5 border-[0.75px] border-black bg-gradient-to-r from-slate-200 via-slate-500 to-slate-200 rotate-45 rounded-[1px]" />
               </div>
             ))}

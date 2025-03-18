@@ -1,14 +1,14 @@
-import type { FC } from "react";
+import type { FC, JSX } from "react";
 import { Card } from "../../../card/components/Card";
-import type { MonsterCardType } from "../../../card/types";
+import type { MasterCardType } from "../../../card/types";
 
 type Props = {
   onComplete: () => void;
-  onAppendCard: (card: MonsterCardType) => void;
-  onRemoveCard: (card: MonsterCardType) => void;
+  onAppendCard: (card: MasterCardType) => void;
+  onRemoveCard: (card: MasterCardType) => void;
   onClearCards: () => void;
-  deckCards: MonsterCardType[];
-  cards: { masterCard: MonsterCardType; count: number }[];
+  deckCards: MasterCardType[];
+  cards: { masterCard: MasterCardType; count: number }[];
   completeButtonRender?: (onComplete: () => void) => JSX.Element;
 };
 
@@ -29,7 +29,7 @@ export const DeckCardsEditorView: FC<Props> = ({
     </button>
   ),
 }) => {
-  const selectedCardId = deckCards.map((card) => card.id);
+  const selectedCardId = deckCards.flatMap((card) => card.masterCardId);
   return (
     <div className="h-screen flex flex-col relative  w-screen overflow-x-hidden">
       {completeButtonRender(onComplete)}
@@ -51,7 +51,7 @@ export const DeckCardsEditorView: FC<Props> = ({
             const card = deckCards[i];
             return (
               <button
-                key={`${card.id}-${i}`}
+                key={`${card.masterCardId}-${i}`}
                 onClick={() => onRemoveCard(card)}
                 type="button"
                 className=" animate-small-expand"
@@ -74,12 +74,17 @@ export const DeckCardsEditorView: FC<Props> = ({
           <div className="grid grid-cols-3 gap-2 w-fit relative">
             {cards.map(({ masterCard: card, count }, i) => {
               const disabledPlusButton =
-                deckCards.filter((c) => c.id === card.id).length >= count ||
+                deckCards.filter((c) => c.masterCardId === card.masterCardId)
+                  .length >= count ||
                 deckCards.length >= 30 ||
-                selectedCardId.filter((id) => id === card.id).length >= 2;
+                selectedCardId.filter((id) => id === card.masterCardId)
+                  .length >= 2;
 
               return (
-                <div key={`${card.id}-${i}`} className="relative w-fit h-fit">
+                <div
+                  key={`${card.masterCardId}-${i}`}
+                  className="relative w-fit h-fit"
+                >
                   <Card card={card} />
                   <button
                     type="button"
@@ -87,12 +92,16 @@ export const DeckCardsEditorView: FC<Props> = ({
                     disabled={disabledPlusButton}
                     className="z-20 w-full h-full absolute top-0 left-0"
                   />
-                  {selectedCardId.includes(card.id) ? (
+                  {selectedCardId.includes(card.masterCardId) ? (
                     <>
                       <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-slate-500/60 flex justify-center items-center">
                         <strong className="text-xl text-white">
-                          {deckCards.filter((c) => c.id === card.id).length}/
-                          {count}
+                          {
+                            deckCards.filter(
+                              (c) => c.masterCardId === card.masterCardId
+                            ).length
+                          }
+                          /{count}
                         </strong>
                       </div>
                       <div className="absolute z-30 top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-600 text-white w-2/3 flex justify-between px-4 rounded-full items-center">

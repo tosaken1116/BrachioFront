@@ -16,13 +16,21 @@ type Props = {
   size?: "tiny" | "small" | "sm" | "medium" | "large" | "huge";
 };
 
+export const energyMap: Record<EnergyType, string> = {
+  null: "NULL",
+  muscle: "筋肉",
+  money: "金",
+  knowledge: "知識",
+  alchohol: "酒",
+  popularity: "人気",
+};
 const colorMap: Record<EnergyType, string> = {
-  NULL: "bg-gray-100 border-gray-300",
-  MUSCLE: "bg-red-500 border-red-600",
-  KNOWLEDGE: "bg-blue-500 border-blue-600",
-  MONEY: "bg-yellow-500 border-yellow-600",
-  POPULARITY: "bg-green-500 border-green-600",
-  ALCOHOL: "bg-purple-500 border-purple-600",
+  null: "bg-gray-100 border-gray-300",
+  muscle: "bg-red-500 border-red-600",
+  knowledge: "bg-blue-500 border-blue-600",
+  money: "bg-yellow-500 border-yellow-600",
+  popularity: "bg-green-500 border-green-600",
+  alchohol: "bg-purple-500 border-purple-600",
 } as const;
 
 const sizeMap: Record<
@@ -38,12 +46,12 @@ const sizeMap: Record<
 } as const;
 
 const iconMap: Record<EnergyType, ReactNode> = {
-  NULL: <AsteriskIcon />,
-  MUSCLE: <BicepsFlexedIcon />,
-  MONEY: <DollarSignIcon />,
-  KNOWLEDGE: <BookTextIcon />,
-  ALCOHOL: <BeerIcon />,
-  POPULARITY: <SparklesIcon />,
+  null: <AsteriskIcon />,
+  muscle: <BicepsFlexedIcon />,
+  money: <DollarSignIcon />,
+  knowledge: <BookTextIcon />,
+  alchohol: <BeerIcon />,
+  popularity: <SparklesIcon />,
 };
 export const Energy: FC<Props> = ({ energy, className, size = "medium" }) => {
   return (

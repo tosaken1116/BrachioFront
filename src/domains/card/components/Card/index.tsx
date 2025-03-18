@@ -1,14 +1,14 @@
 import clsx from "clsx";
 // MonsterCard.tsx
 import type { FC } from "react";
-import type { EnergyType, MonsterCardType } from "../../types";
+import type { EnergyType, MasterCardType } from "../../types";
 import { GoodsCard } from "./GoodsCard";
 import { MonsterCard } from "./MonsterCard";
 import { SupporterCard } from "./SupporterCard";
 
 type CardProps =
   | {
-      card: MonsterCardType;
+      card: MasterCardType;
       energy?: EnergyType[];
       className?: string;
       isBack?: false;
@@ -16,7 +16,7 @@ type CardProps =
     }
   | {
       isBack: true;
-      isEmpty: false;
+      isEmpty?: false;
       className?: string;
     }
   | {
@@ -30,7 +30,7 @@ export const Card: FC<CardProps> = (props) => {
     return (
       <div
         className={clsx(
-          "aspect-card w-32 rounded-md bg-blue-400 flex items-center justify-center border-2 border-slate-200",
+          "aspect-card select-none w-32 rounded-md bg-blue-400 flex items-center justify-center border-2 border-slate-200",
           props.className
         )}
       >
@@ -42,7 +42,7 @@ export const Card: FC<CardProps> = (props) => {
     return (
       <div
         className={clsx(
-          "aspect-card w-32 rounded-md bg-slate-400 flex items-center justify-center border-2 border-slate-200 border-dotted",
+          "aspect-card select-none w-32 rounded-md bg-slate-400 flex items-center justify-center border-2 border-slate-200 border-dotted",
           props.className
         )}
       />
