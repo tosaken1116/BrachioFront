@@ -26,13 +26,13 @@ jobs:
           version: 9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c
 
       - name: Create Env File
-        run: | 
+        run: |
           touch .env
           echo ${{ secrets.VITE_API_URL }} >> .env
           echo ${{ secrets.VITE_COGNITO_CLIENT_ID }} >> .env
           echo ${{ secrets.VITE_COGNITO_AUTHORITY_URL }} >> .env
           echo ${{ secrets.VITE_COGNITO_AUTH_DOMAIN }} >> .env
-          
+
       - name: Install Dependencies
         run: pnpm install
 
@@ -47,4 +47,4 @@ jobs:
 
       - name: Sync S3 Bucket
         run: |
-          aws s3 sync build/client s3://${{ env.S3_BUCKET_NAME }}/ --delete
+          aws s3 sync dist s3://${{ env.S3_BUCKET_NAME }}/ --delete
