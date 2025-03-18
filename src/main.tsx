@@ -29,7 +29,7 @@ const cognitoAuthConfig = {
   client_id: `${import.meta.env.VITE_COGNITO_CLIENT_ID}`,
   redirect_uri: `${import.meta.env.VITE_REDIRECT_URI}`,
   response_type: "code",
-  scope: "email openid phone",
+  scope: "email openid phone profile aws.cognito.signin.user.admin",
 };
 // Render the app
 enableMocking().then(() => {
