@@ -9,68 +9,40 @@ import { file_websocket_payload_gm } from "../payload/gm_pb";
  * Describes the file websocket/event/gm.proto.
  */
 export const file_websocket_event_gm = /*@__PURE__*/
-  fileDesc("Chh3ZWJzb2NrZXQvZXZlbnQvZ20ucHJvdG8SEndlYnNvY2tldC5ldmVudC5nbSJcChlFeGNoYW5nZURlY2tFdmVudFRvU2VydmVyEj8KB3BheWxvYWQYASABKAsyLi53ZWJzb2NrZXQucGF5bG9hZC5nbS5FeGNoYW5nZURlY2tFdmVudFBheWxvYWQiawoYRXhjaGFuZ2VEZWNrRXZlbnRUb0FjdG9yEj8KB3BheWxvYWQYASABKAsyLi53ZWJzb2NrZXQucGF5bG9hZC5nbS5FeGNoYW5nZURlY2tFdmVudFBheWxvYWQSDgoGdXNlcklkGAIgASgJIm8KHEV4Y2hhbmdlRGVja0V2ZW50VG9SZWNpcGllbnQSPwoHcGF5bG9hZBgBIAEoCzIuLndlYnNvY2tldC5wYXlsb2FkLmdtLkV4Y2hhbmdlRGVja0V2ZW50UGF5bG9hZBIOCgZ1c2VySWQYAiABKAkiWAoXQ3JlYXRlUm9vbUV2ZW50VG9TZXJ2ZXISPQoHcGF5bG9hZBgBIAEoCzIsLndlYnNvY2tldC5wYXlsb2FkLmdtLkNyZWF0ZVJvb21FdmVudFBheWxvYWQiVgoWRW50ZXJSb29tRXZlbnRUb1NlcnZlchI8CgdwYXlsb2FkGAEgASgLMisud2Vic29ja2V0LnBheWxvYWQuZ20uRW50ZXJSb29tRXZlbnRQYXlsb2FkImMKHE1hdGNoaW5nQ29tcGxldGVFdmVudFRvQWN0b3ISQwoHcGF5bG9hZBgBIAEoCzIyLndlYnNvY2tldC5wYXlsb2FkLmdtLk1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQiZwogTWF0Y2hpbmdDb21wbGV0ZUV2ZW50VG9SZWNpcGllbnQSQwoHcGF5bG9hZBgBIAEoCzIyLndlYnNvY2tldC5wYXlsb2FkLmdtLk1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQiWQoXRGVjaWRlT3JkZXJFdmVudFRvQWN0b3ISPgoHcGF5bG9hZBgBIAEoCzItLndlYnNvY2tldC5wYXlsb2FkLmdtLkRlY2lkZU9yZGVyRXZlbnRQYXlsb2FkIl0KG0RlY2lkZU9yZGVyRXZlbnRUb1JlY2lwaWVudBI+CgdwYXlsb2FkGAEgASgLMi0ud2Vic29ja2V0LnBheWxvYWQuZ20uRGVjaWRlT3JkZXJFdmVudFBheWxvYWRCwgEKFmNvbS53ZWJzb2NrZXQuZXZlbnQuZ21CB0dtUHJvdG9QAVo1Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvZXZlbnSiAgNXRUeqAhJXZWJzb2NrZXQuRXZlbnQuR23KAhJXZWJzb2NrZXRcRXZlbnRcR23iAh5XZWJzb2NrZXRcRXZlbnRcR21cR1BCTWV0YWRhdGHqAhRXZWJzb2NrZXQ6OkV2ZW50OjpHbWIGcHJvdG8z", [file_websocket_payload_gm]);
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToServer.
- * Use `create(ExchangeDeckEventToServerSchema)` to create a new message.
- */
-export const ExchangeDeckEventToServerSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 0);
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToActor.
- * Use `create(ExchangeDeckEventToActorSchema)` to create a new message.
- */
-export const ExchangeDeckEventToActorSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 1);
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToRecipient.
- * Use `create(ExchangeDeckEventToRecipientSchema)` to create a new message.
- */
-export const ExchangeDeckEventToRecipientSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 2);
-
-/**
- * Describes the message websocket.event.gm.CreateRoomEventToServer.
- * Use `create(CreateRoomEventToServerSchema)` to create a new message.
- */
-export const CreateRoomEventToServerSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 3);
+  fileDesc("Chh3ZWJzb2NrZXQvZXZlbnQvZ20ucHJvdG8SEndlYnNvY2tldC5ldmVudC5nbSJmChZFbnRlclJvb21FdmVudFRvU2VydmVyEjwKB3BheWxvYWQYASABKAsyKy53ZWJzb2NrZXQucGF5bG9hZC5nbS5FbnRlclJvb21FdmVudFBheWxvYWQSDgoGZGVja0lkGAIgASgJImMKHE1hdGNoaW5nQ29tcGxldGVFdmVudFRvQWN0b3ISQwoHcGF5bG9hZBgBIAEoCzIyLndlYnNvY2tldC5wYXlsb2FkLmdtLk1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQiZwogTWF0Y2hpbmdDb21wbGV0ZUV2ZW50VG9SZWNpcGllbnQSQwoHcGF5bG9hZBgBIAEoCzIyLndlYnNvY2tldC5wYXlsb2FkLmdtLk1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQiWQoXRGVjaWRlT3JkZXJFdmVudFRvQWN0b3ISPgoHcGF5bG9hZBgBIAEoCzItLndlYnNvY2tldC5wYXlsb2FkLmdtLkRlY2lkZU9yZGVyRXZlbnRQYXlsb2FkIl0KG0RlY2lkZU9yZGVyRXZlbnRUb1JlY2lwaWVudBI+CgdwYXlsb2FkGAEgASgLMi0ud2Vic29ja2V0LnBheWxvYWQuZ20uRGVjaWRlT3JkZXJFdmVudFBheWxvYWRCwgEKFmNvbS53ZWJzb2NrZXQuZXZlbnQuZ21CB0dtUHJvdG9QAVo1Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvZXZlbnSiAgNXRUeqAhJXZWJzb2NrZXQuRXZlbnQuR23KAhJXZWJzb2NrZXRcRXZlbnRcR23iAh5XZWJzb2NrZXRcRXZlbnRcR21cR1BCTWV0YWRhdGHqAhRXZWJzb2NrZXQ6OkV2ZW50OjpHbWIGcHJvdG8z", [file_websocket_payload_gm]);
 
 /**
  * Describes the message websocket.event.gm.EnterRoomEventToServer.
  * Use `create(EnterRoomEventToServerSchema)` to create a new message.
  */
 export const EnterRoomEventToServerSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 4);
+  messageDesc(file_websocket_event_gm, 0);
 
 /**
  * Describes the message websocket.event.gm.MatchingCompleteEventToActor.
  * Use `create(MatchingCompleteEventToActorSchema)` to create a new message.
  */
 export const MatchingCompleteEventToActorSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 5);
+  messageDesc(file_websocket_event_gm, 1);
 
 /**
  * Describes the message websocket.event.gm.MatchingCompleteEventToRecipient.
  * Use `create(MatchingCompleteEventToRecipientSchema)` to create a new message.
  */
 export const MatchingCompleteEventToRecipientSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 6);
+  messageDesc(file_websocket_event_gm, 2);
 
 /**
  * Describes the message websocket.event.gm.DecideOrderEventToActor.
  * Use `create(DecideOrderEventToActorSchema)` to create a new message.
  */
 export const DecideOrderEventToActorSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 7);
+  messageDesc(file_websocket_event_gm, 3);
 
 /**
  * Describes the message websocket.event.gm.DecideOrderEventToRecipient.
  * Use `create(DecideOrderEventToRecipientSchema)` to create a new message.
  */
 export const DecideOrderEventToRecipientSchema = /*@__PURE__*/
-  messageDesc(file_websocket_event_gm, 8);
+  messageDesc(file_websocket_event_gm, 4);
 

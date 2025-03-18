@@ -49,6 +49,7 @@ function getRandomItems(n: number) {
       id: `ITEM-${i + 1}`,
       name: `アイテム ${i + 1}`,
       count: Math.floor(Math.random() * 5) + 1,
+      imageUrl: "https://example.com",
     });
   }
   return items;

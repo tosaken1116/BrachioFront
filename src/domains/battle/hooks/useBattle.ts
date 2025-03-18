@@ -1,5 +1,6 @@
 import { useSocketRefStore } from "@/lib/websocket/hooks";
 import { useState } from "react";
+import { useAuth } from "react-oidc-context";
 
 type FinishState = {
   winner: "me" | "opponent" | null;
@@ -15,10 +16,12 @@ export const useBattle = () => {
     winner: null,
     cause: null,
   });
+
   const [coin, setCoin] = useState<CoinToss>({
     player: null,
     result: [],
   });
+  const { user } = useAuth();
   const {
     draw,
     // confirmEnergy,
@@ -36,6 +39,7 @@ export const useBattle = () => {
     // supplyEnergy,
     // evolutionMonster,
   } = useSocketRefStore({
+    userId: user?.profile.sub ?? "",
     onBattleLose: (data) => {
       setIsFinished({
         winner: "opponent",
@@ -65,6 +69,9 @@ export const useBattle = () => {
         player: "me",
         result: coinToss,
       });
+    },
+    onEffects: (effects) => {
+      console.log("effects", effects);
     },
   });
   return {

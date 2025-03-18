@@ -3,47 +3,39 @@
 /* eslint-disable */
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { file_messages_card } from "../../messages/card_pb";
 import { file_messages_user } from "../../messages/user_pb";
 
 /**
  * Describes the file websocket/payload/gm.proto.
  */
 export const file_websocket_payload_gm = /*@__PURE__*/
-  fileDesc("Chp3ZWJzb2NrZXQvcGF5bG9hZC9nbS5wcm90bxIUd2Vic29ja2V0LnBheWxvYWQuZ20iTQoYRXhjaGFuZ2VEZWNrRXZlbnRQYXlsb2FkEg4KBnVzZXJJZBgBIAEoCRIhCgRkZWNrGAIgAygLMhMubWVzc2FnZXMuY2FyZC5DYXJkIioKFkNyZWF0ZVJvb21FdmVudFBheWxvYWQSEAoIcGFzc3dvcmQYAiABKAkiKQoVRW50ZXJSb29tRXZlbnRQYXlsb2FkEhAKCHBhc3N3b3JkGAEgASgJIlQKHE1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQSIgoFdXNlcnMYASADKAsyEy5tZXNzYWdlcy51c2VyLlVzZXISEAoIYmF0dGxlSWQYAiABKAkiRAoXRGVjaWRlT3JkZXJFdmVudFBheWxvYWQSEwoLZmlyc3RVc2VySWQYASABKAkSFAoMc2Vjb25kVXNlcklkGAIgASgJQs4BChhjb20ud2Vic29ja2V0LnBheWxvYWQuZ21CB0dtUHJvdG9QAVo3Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvcGF5bG9hZKICA1dQR6oCFFdlYnNvY2tldC5QYXlsb2FkLkdtygIUV2Vic29ja2V0XFBheWxvYWRcR23iAiBXZWJzb2NrZXRcUGF5bG9hZFxHbVxHUEJNZXRhZGF0YeoCFldlYnNvY2tldDo6UGF5bG9hZDo6R21iBnByb3RvMw", [file_messages_card, file_messages_user]);
-
-/**
- * Describes the message websocket.payload.gm.ExchangeDeckEventPayload.
- * Use `create(ExchangeDeckEventPayloadSchema)` to create a new message.
- */
-export const ExchangeDeckEventPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_gm, 0);
+  fileDesc("Chp3ZWJzb2NrZXQvcGF5bG9hZC9nbS5wcm90bxIUd2Vic29ja2V0LnBheWxvYWQuZ20iKgoWQ3JlYXRlUm9vbUV2ZW50UGF5bG9hZBIQCghwYXNzd29yZBgBIAEoCSI5ChVFbnRlclJvb21FdmVudFBheWxvYWQSEAoIcGFzc3dvcmQYASABKAkSDgoGZGVja0lkGAIgASgJIlQKHE1hdGNoaW5nQ29tcGxldGVFdmVudFBheWxvYWQSIgoFdXNlcnMYASADKAsyEy5tZXNzYWdlcy51c2VyLlVzZXISEAoIYmF0dGxlSWQYAiABKAkiRAoXRGVjaWRlT3JkZXJFdmVudFBheWxvYWQSEwoLZmlyc3RVc2VySWQYASABKAkSFAoMc2Vjb25kVXNlcklkGAIgASgJQs4BChhjb20ud2Vic29ja2V0LnBheWxvYWQuZ21CB0dtUHJvdG9QAVo3Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvcGF5bG9hZKICA1dQR6oCFFdlYnNvY2tldC5QYXlsb2FkLkdtygIUV2Vic29ja2V0XFBheWxvYWRcR23iAiBXZWJzb2NrZXRcUGF5bG9hZFxHbVxHUEJNZXRhZGF0YeoCFldlYnNvY2tldDo6UGF5bG9hZDo6R21iBnByb3RvMw", [file_messages_user]);
 
 /**
  * Describes the message websocket.payload.gm.CreateRoomEventPayload.
  * Use `create(CreateRoomEventPayloadSchema)` to create a new message.
  */
 export const CreateRoomEventPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_gm, 1);
+  messageDesc(file_websocket_payload_gm, 0);
 
 /**
  * Describes the message websocket.payload.gm.EnterRoomEventPayload.
  * Use `create(EnterRoomEventPayloadSchema)` to create a new message.
  */
 export const EnterRoomEventPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_gm, 2);
+  messageDesc(file_websocket_payload_gm, 1);
 
 /**
  * Describes the message websocket.payload.gm.MatchingCompleteEventPayload.
  * Use `create(MatchingCompleteEventPayloadSchema)` to create a new message.
  */
 export const MatchingCompleteEventPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_gm, 3);
+  messageDesc(file_websocket_payload_gm, 2);
 
 /**
  * Describes the message websocket.payload.gm.DecideOrderEventPayload.
  * Use `create(DecideOrderEventPayloadSchema)` to create a new message.
  */
 export const DecideOrderEventPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_gm, 4);
+  messageDesc(file_websocket_payload_gm, 3);
 

@@ -156,6 +156,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/presents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * プレゼント一覧取得
+         * @description プレゼント一覧を取得する
+         */
+        get: operations["getMyPresents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/presents/{presentId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * プレゼント受け取り
+         * @description プレゼントを受け取る
+         */
+        post: operations["receivePresent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ws": {
         parameters: {
             query?: never;
@@ -328,6 +368,7 @@ export interface components {
             cards?: components["schemas"]["masterCard"][];
         };
         /** @example {
+         *       "imageUrl": "imageUrl",
          *       "name": "name",
          *       "count": 0,
          *       "id": "id"
@@ -339,6 +380,8 @@ export interface components {
             name: string;
             /** @description 所持数 */
             count: number;
+            /** @description 画像URL */
+            imageUrl: string;
         };
         /** @example {
          *       "color": "null",
@@ -602,11 +645,43 @@ export interface components {
             text: string;
         };
         /** @example {
+         *       "item": {
+         *         "imageUrl": "imageUrl",
+         *         "name": "name",
+         *         "id": "id"
+         *       },
+         *       "id": "id",
+         *       "message": "message",
+         *       "itemCount": 0
+         *     } */
+        present: {
+            /** @description プレゼントID */
+            id: string;
+            /** @description メッセージ */
+            message: string;
+            /** @description アイテム数 */
+            itemCount: number;
+            item: components["schemas"]["itemBase"];
+        };
+        /** @example {
          *       "id": "id"
          *     } */
         card: components["schemas"]["masterCard"] & {
             /** @description カードID */
             readonly id: string;
+        };
+        /** @example {
+         *       "imageUrl": "imageUrl",
+         *       "name": "name",
+         *       "id": "id"
+         *     } */
+        itemBase: {
+            /** @description アイテムID（アイテムごとに一意） */
+            id: string;
+            /** @description アイテム名 */
+            name: string;
+            /** @description 画像URL */
+            imageUrl: string;
         };
         /** @example {
          *       "id": "id"
@@ -824,7 +899,10 @@ export interface operations {
     };
     getCards: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description 全件取得フラグ（0: 非全件, 1: 全件) */
+                is_all?: 0 | 1;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -839,6 +917,47 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["myCardList"];
                 };
+            };
+        };
+    };
+    getMyPresents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description プレゼント一覧 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["present"][];
+                };
+            };
+        };
+    };
+    receivePresent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description プレゼントID */
+                presentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 受け取り成功 */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

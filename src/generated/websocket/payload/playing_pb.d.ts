@@ -8,6 +8,7 @@ import type { Card } from "../../messages/card_pb";
 import type { Element } from "../../messages/common_pb";
 import type { Ability } from "../../messages/ability_pb";
 import type { Empty } from "@bufbuild/protobuf/wkt";
+import type { Effect, EffectWithSecret } from "../../messages/effect_pb";
 
 /**
  * Describes the file websocket/payload/playing.proto.
@@ -21,9 +22,9 @@ export declare type AttackMonsterPayload = Message<"websocket.payload.playing.At
   /**
    * 攻撃者のモンスター
    *
-   * @generated from field: messages.card.Card attacker = 1;
+   * @generated from field: int32 attacker_position = 1;
    */
-  attacker?: Card;
+  attackerPosition: number;
 
   /**
    * 技のインデックス
@@ -31,6 +32,11 @@ export declare type AttackMonsterPayload = Message<"websocket.payload.playing.At
    * @generated from field: int32 skill = 2;
    */
   skill: number;
+
+  /**
+   * @generated from field: repeated int32 targetsDamages = 3;
+   */
+  targetsDamages: number[];
 };
 
 /**
@@ -103,9 +109,9 @@ export declare type TakeSupportPayload = Message<"websocket.payload.playing.Take
   /**
    * サポートの対象のカードのID
    *
-   * @generated from field: messages.card.Card target = 2;
+   * @generated from field: repeated int32 positions = 2;
    */
-  target?: Card;
+  positions: number[];
 };
 
 /**
@@ -128,9 +134,9 @@ export declare type TakeGoodsPayload = Message<"websocket.payload.playing.TakeGo
   /**
    * グッズ効果の対象のカード
    *
-   * @generated from field: repeated messages.card.Card targets = 2;
+   * @generated from field: repeated int32 positions = 2;
    */
-  targets: Card[];
+  positions: number[];
 };
 
 /**
@@ -165,22 +171,31 @@ export declare type RetreatPayload = Message<"websocket.payload.playing.RetreatP
 export declare const RetreatPayloadSchema: GenMessage<RetreatPayload>;
 
 /**
+ * @generated from message websocket.payload.playing.SupplyEnergys
+ */
+export declare type SupplyEnergys = Message<"websocket.payload.playing.SupplyEnergys"> & {
+  /**
+   * @generated from field: repeated messages.common.Element energies = 1;
+   */
+  energies: Element[];
+};
+
+/**
+ * Describes the message websocket.payload.playing.SupplyEnergys.
+ * Use `create(SupplyEnergysSchema)` to create a new message.
+ */
+export declare const SupplyEnergysSchema: GenMessage<SupplyEnergys>;
+
+/**
  * @generated from message websocket.payload.playing.SupplyEnergyPayload
  */
 export declare type SupplyEnergyPayload = Message<"websocket.payload.playing.SupplyEnergyPayload"> & {
   /**
-   * エネルギーを供給するモンスター
+   * 供給するエネルギー(ポジションベース length4)
    *
-   * @generated from field: messages.card.Card card = 1;
+   * @generated from field: repeated websocket.payload.playing.SupplyEnergys supplys = 1;
    */
-  card?: Card;
-
-  /**
-   * 供給するエネルギー
-   *
-   * @generated from field: repeated messages.common.Element energies = 2;
-   */
-  energies: Element[];
+  supplys: SupplyEnergys[];
 };
 
 /**
@@ -214,9 +229,9 @@ export declare type AbilityPayload = Message<"websocket.payload.playing.AbilityP
   /**
    * 発動するラムモン
    *
-   * @generated from field: messages.card.Card card = 1;
+   * @generated from field: int32 position = 1;
    */
-  card?: Card;
+  position: number;
 
   /**
    * 発動する特性
@@ -242,6 +257,13 @@ export declare type DrawCardPayload = Message<"websocket.payload.playing.DrawCar
    * @generated from field: int32 count = 1;
    */
   count: number;
+
+  /**
+   * 山札の残り枚数
+   *
+   * @generated from field: int32 remain = 2;
+   */
+  remain: number;
 };
 
 /**
@@ -267,6 +289,13 @@ export declare type DrawCardIndividualPayload = Message<"websocket.payload.playi
    * @generated from field: repeated messages.card.Card cards = 2;
    */
   cards: Card[];
+
+  /**
+   * 山札の残り枚数
+   *
+   * @generated from field: int32 remain = 3;
+   */
+  remain: number;
 };
 
 /**
@@ -303,9 +332,9 @@ export declare type Action = Message<"websocket.payload.playing.Action"> & {
   /**
    * 行動するラムモンorアイテム
    *
-   * @generated from field: optional messages.card.Card target = 2;
+   * @generated from field: optional int32 position = 2;
    */
-  target?: Card;
+  position?: number;
 };
 
 /**
@@ -499,16 +528,16 @@ export declare type ConfirmTargetResponsePayload = Message<"websocket.payload.pl
   /**
    * 対象となるカード
    *
-   * @generated from field: messages.card.Card card = 1;
+   * @generated from field: int32 position = 1;
    */
-  card?: Card;
+  position: number;
 
   /**
    * ターゲットとなるカード
    *
-   * @generated from field: repeated messages.card.Card targets = 2;
+   * @generated from field: repeated int32 target_positions = 2;
    */
-  targets: Card[];
+  targetPositions: number[];
 };
 
 /**
@@ -524,9 +553,9 @@ export declare type ConfirmTargetRequestPayload = Message<"websocket.payload.pla
   /**
    * 対象となるカード
    *
-   * @generated from field: messages.card.Card card = 1;
+   * @generated from field: int32 position = 1;
    */
-  card?: Card;
+  position: number;
 
   /**
    * 必要なターゲット数
@@ -559,6 +588,54 @@ export declare type NextEnergyPayload = Message<"websocket.payload.playing.NextE
  * Use `create(NextEnergyPayloadSchema)` to create a new message.
  */
 export declare const NextEnergyPayloadSchema: GenMessage<NextEnergyPayload>;
+
+/**
+ * @generated from message websocket.payload.playing.DrawEffectPayloadToRecipient
+ */
+export declare type DrawEffectPayloadToRecipient = Message<"websocket.payload.playing.DrawEffectPayloadToRecipient"> & {
+  /**
+   * @generated from field: repeated messages.effect.Effect effects = 1;
+   */
+  effects: Effect[];
+};
+
+/**
+ * Describes the message websocket.payload.playing.DrawEffectPayloadToRecipient.
+ * Use `create(DrawEffectPayloadToRecipientSchema)` to create a new message.
+ */
+export declare const DrawEffectPayloadToRecipientSchema: GenMessage<DrawEffectPayloadToRecipient>;
+
+/**
+ * @generated from message websocket.payload.playing.DrawEffectPayloadToActor
+ */
+export declare type DrawEffectPayloadToActor = Message<"websocket.payload.playing.DrawEffectPayloadToActor"> & {
+  /**
+   * @generated from field: repeated messages.effect.EffectWithSecret effects = 1;
+   */
+  effects: EffectWithSecret[];
+};
+
+/**
+ * Describes the message websocket.payload.playing.DrawEffectPayloadToActor.
+ * Use `create(DrawEffectPayloadToActorSchema)` to create a new message.
+ */
+export declare const DrawEffectPayloadToActorSchema: GenMessage<DrawEffectPayloadToActor>;
+
+/**
+ * @generated from message websocket.payload.playing.SelectBattlePositionPayload
+ */
+export declare type SelectBattlePositionPayload = Message<"websocket.payload.playing.SelectBattlePositionPayload"> & {
+  /**
+   * @generated from field: int32 position = 1;
+   */
+  position: number;
+};
+
+/**
+ * Describes the message websocket.payload.playing.SelectBattlePositionPayload.
+ * Use `create(SelectBattlePositionPayloadSchema)` to create a new message.
+ */
+export declare const SelectBattlePositionPayloadSchema: GenMessage<SelectBattlePositionPayload>;
 
 /**
  * @generated from enum websocket.payload.playing.ActionType

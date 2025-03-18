@@ -4,40 +4,12 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { Card } from "../../messages/card_pb";
 import type { User } from "../../messages/user_pb";
 
 /**
  * Describes the file websocket/payload/gm.proto.
  */
 export declare const file_websocket_payload_gm: GenFile;
-
-/**
- * デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
- *
- * @generated from message websocket.payload.gm.ExchangeDeckEventPayload
- */
-export declare type ExchangeDeckEventPayload = Message<"websocket.payload.gm.ExchangeDeckEventPayload"> & {
-  /**
-   * 交換するデッキのユーザーID
-   *
-   * @generated from field: string userId = 1;
-   */
-  userId: string;
-
-  /**
-   * 交換するデッキのデータ
-   *
-   * @generated from field: repeated messages.card.Card deck = 2;
-   */
-  deck: Card[];
-};
-
-/**
- * Describes the message websocket.payload.gm.ExchangeDeckEventPayload.
- * Use `create(ExchangeDeckEventPayloadSchema)` to create a new message.
- */
-export declare const ExchangeDeckEventPayloadSchema: GenMessage<ExchangeDeckEventPayload>;
 
 /**
  * ルーム作成イベント
@@ -48,7 +20,7 @@ export declare type CreateRoomEventPayload = Message<"websocket.payload.gm.Creat
   /**
    * ルームの合言葉
    *
-   * @generated from field: string password = 2;
+   * @generated from field: string password = 1;
    */
   password: string;
 };
@@ -71,6 +43,11 @@ export declare type EnterRoomEventPayload = Message<"websocket.payload.gm.EnterR
    * @generated from field: string password = 1;
    */
   password: string;
+
+  /**
+   * @generated from field: string deckId = 2;
+   */
+  deckId: string;
 };
 
 /**

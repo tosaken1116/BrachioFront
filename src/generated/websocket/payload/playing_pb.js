@@ -5,6 +5,7 @@
 import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
 import { file_messages_card } from "../../messages/card_pb";
 import { file_messages_ability } from "../../messages/ability_pb";
+import { file_messages_effect } from "../../messages/effect_pb";
 import { file_messages_common } from "../../messages/common_pb";
 import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 
@@ -12,7 +13,7 @@ import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
  * Describes the file websocket/payload/playing.proto.
  */
 export const file_websocket_payload_playing = /*@__PURE__*/
-  fileDesc("Ch93ZWJzb2NrZXQvcGF5bG9hZC9wbGF5aW5nLnByb3RvEhl3ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nIkwKFEF0dGFja01vbnN0ZXJQYXlsb2FkEiUKCGF0dGFja2VyGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEg0KBXNraWxsGAIgASgFIksKFFN1bW1vbk1vbnN0ZXJQYXlsb2FkEiEKBGNhcmQYASABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSEAoIcG9zaXRpb24YAiABKAUiTgoXRXZvbHV0aW9uTW9uc3RlclBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIQCghwb3NpdGlvbhgCIAEoBSJcChJUYWtlU3VwcG9ydFBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIjCgZ0YXJnZXQYAiABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQiWwoQVGFrZUdvb2RzUGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEiQKB3RhcmdldHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQiRQoOUmV0cmVhdFBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIQCghwb3NpdGlvbhgCIAEoBSJkChNTdXBwbHlFbmVyZ3lQYXlsb2FkEiEKBGNhcmQYASABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSKgoIZW5lcmdpZXMYAiADKA4yGC5tZXNzYWdlcy5jb21tb24uRWxlbWVudCIiChBTdXJyZW5kZXJQYXlsb2FkEg4KBnVzZXJJZBgBIAEoCSJfCg5BYmlsaXR5UGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEioKB2FiaWxpdHkYAiABKAsyGS5tZXNzYWdlcy5hYmlsaXR5LkFiaWxpdHkiIAoPRHJhd0NhcmRQYXlsb2FkEg0KBWNvdW50GAEgASgFIk4KGURyYXdDYXJkSW5kaXZpZHVhbFBheWxvYWQSDQoFY291bnQYASABKAUSIgoFY2FyZHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQiSgoUQ29uZmlybUFjdGlvblBheWxvYWQSMgoHYWN0aW9ucxgBIAMoCzIhLndlYnNvY2tldC5wYXlsb2FkLnBsYXlpbmcuQWN0aW9uInIKBkFjdGlvbhIzCgR0eXBlGAEgASgOMiUud2Vic29ja2V0LnBheWxvYWQucGxheWluZy5BY3Rpb25UeXBlEigKBnRhcmdldBgCIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZEgAiAEBQgkKB190YXJnZXQiIgoPQ29pblRvc3NQYXlsb2FkEg8KB3Jlc3VsdHMYASADKAgiPQoUQ29pblRvc3NFbXB0eVBheWxvYWQSJQoFZW1wdHkYASABKAsyFi5nb29nbGUucHJvdG9idWYuRW1wdHkiOQoQU3RhcnRHYW1lUGF5bG9hZBIlCgVlbXB0eRgBIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSJICh9Jbml0aWFsUGxhY2VtZW50Q29tcGxldGVQYXlsb2FkEiUKBWVtcHR5GAEgASgLMhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5InQKEFR1cm5TdGFydFBheWxvYWQSDgoGdXNlcklkGAEgASgJEiIKBWNhcmRzGAIgAygLMhMubWVzc2FnZXMuY2FyZC5DYXJkEiwKCWFiaWxpdGllcxgDIAMoCzIZLm1lc3NhZ2VzLmFiaWxpdHkuQWJpbGl0eSJyCg5UdXJuRW5kUGF5bG9hZBIOCgZ1c2VySWQYASABKAkSIgoFY2FyZHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSLAoJYWJpbGl0aWVzGAMgAygLMhkubWVzc2FnZXMuYWJpbGl0eS5BYmlsaXR5Im0KHENvbmZpcm1FbmVyZ3lSZXNwb25zZVBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIqCghlbmVyZ2llcxgCIAMoDjIYLm1lc3NhZ2VzLmNvbW1vbi5FbGVtZW50ImwKG0NvbmZpcm1FbmVyZ3lSZXF1ZXN0UGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEioKCGVuZXJnaWVzGAIgAygOMhgubWVzc2FnZXMuY29tbW9uLkVsZW1lbnQiZwocQ29uZmlybVRhcmdldFJlc3BvbnNlUGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEiQKB3RhcmdldHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQiTwobQ29uZmlybVRhcmdldFJlcXVlc3RQYXlsb2FkEiEKBGNhcmQYASABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSDQoFY291bnQYAiABKAUiPQoRTmV4dEVuZXJneVBheWxvYWQSKAoGZW5lcmd5GAEgASgOMhgubWVzc2FnZXMuY29tbW9uLkVsZW1lbnQqwAEKCkFjdGlvblR5cGUSCwoHVU5LTk9XThAAEhIKDkFUVEFDS19NT05TVEVSEAESEgoOU1VNTU9OX01PTlNURVIQAhIVChFFVk9MVVRJT05fTU9OU1RFUhADEhAKDFRBS0VfU1VQUE9SVBAEEg4KClRBS0VfR09PRFMQBRILCgdSRVRSRUFUEAYSEQoNU1VQUExZX0VORVJHWRAHEg0KCVNVUlJFTkRFUhAIEgsKB0FCSUxJVFkQCRIICgREUkFXEApC7AEKHWNvbS53ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nQgxQbGF5aW5nUHJvdG9QAVo3Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvcGF5bG9hZKICA1dQUKoCGVdlYnNvY2tldC5QYXlsb2FkLlBsYXlpbmfKAhlXZWJzb2NrZXRcUGF5bG9hZFxQbGF5aW5n4gIlV2Vic29ja2V0XFBheWxvYWRcUGxheWluZ1xHUEJNZXRhZGF0YeoCG1dlYnNvY2tldDo6UGF5bG9hZDo6UGxheWluZ2IGcHJvdG8z", [file_messages_card, file_messages_ability, file_messages_common, file_google_protobuf_empty]);
+  fileDesc("Ch93ZWJzb2NrZXQvcGF5bG9hZC9wbGF5aW5nLnByb3RvEhl3ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nIlgKFEF0dGFja01vbnN0ZXJQYXlsb2FkEhkKEWF0dGFja2VyX3Bvc2l0aW9uGAEgASgFEg0KBXNraWxsGAIgASgFEhYKDnRhcmdldHNEYW1hZ2VzGAMgAygFIksKFFN1bW1vbk1vbnN0ZXJQYXlsb2FkEiEKBGNhcmQYASABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSEAoIcG9zaXRpb24YAiABKAUiTgoXRXZvbHV0aW9uTW9uc3RlclBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIQCghwb3NpdGlvbhgCIAEoBSJKChJUYWtlU3VwcG9ydFBheWxvYWQSIQoEY2FyZBgBIAEoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIRCglwb3NpdGlvbnMYAiADKAUiSAoQVGFrZUdvb2RzUGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEhEKCXBvc2l0aW9ucxgCIAMoBSJFCg5SZXRyZWF0UGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEhAKCHBvc2l0aW9uGAIgASgFIjsKDVN1cHBseUVuZXJneXMSKgoIZW5lcmdpZXMYASADKA4yGC5tZXNzYWdlcy5jb21tb24uRWxlbWVudCJQChNTdXBwbHlFbmVyZ3lQYXlsb2FkEjkKB3N1cHBseXMYASADKAsyKC53ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nLlN1cHBseUVuZXJneXMiIgoQU3VycmVuZGVyUGF5bG9hZBIOCgZ1c2VySWQYASABKAkiTgoOQWJpbGl0eVBheWxvYWQSEAoIcG9zaXRpb24YASABKAUSKgoHYWJpbGl0eRgCIAEoCzIZLm1lc3NhZ2VzLmFiaWxpdHkuQWJpbGl0eSIwCg9EcmF3Q2FyZFBheWxvYWQSDQoFY291bnQYASABKAUSDgoGcmVtYWluGAIgASgFIl4KGURyYXdDYXJkSW5kaXZpZHVhbFBheWxvYWQSDQoFY291bnQYASABKAUSIgoFY2FyZHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSDgoGcmVtYWluGAMgASgFIkoKFENvbmZpcm1BY3Rpb25QYXlsb2FkEjIKB2FjdGlvbnMYASADKAsyIS53ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nLkFjdGlvbiJhCgZBY3Rpb24SMwoEdHlwZRgBIAEoDjIlLndlYnNvY2tldC5wYXlsb2FkLnBsYXlpbmcuQWN0aW9uVHlwZRIVCghwb3NpdGlvbhgCIAEoBUgAiAEBQgsKCV9wb3NpdGlvbiIiCg9Db2luVG9zc1BheWxvYWQSDwoHcmVzdWx0cxgBIAMoCCI9ChRDb2luVG9zc0VtcHR5UGF5bG9hZBIlCgVlbXB0eRgBIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSI5ChBTdGFydEdhbWVQYXlsb2FkEiUKBWVtcHR5GAEgASgLMhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IkgKH0luaXRpYWxQbGFjZW1lbnRDb21wbGV0ZVBheWxvYWQSJQoFZW1wdHkYASABKAsyFi5nb29nbGUucHJvdG9idWYuRW1wdHkidAoQVHVyblN0YXJ0UGF5bG9hZBIOCgZ1c2VySWQYASABKAkSIgoFY2FyZHMYAiADKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSLAoJYWJpbGl0aWVzGAMgAygLMhkubWVzc2FnZXMuYWJpbGl0eS5BYmlsaXR5InIKDlR1cm5FbmRQYXlsb2FkEg4KBnVzZXJJZBgBIAEoCRIiCgVjYXJkcxgCIAMoCzITLm1lc3NhZ2VzLmNhcmQuQ2FyZBIsCglhYmlsaXRpZXMYAyADKAsyGS5tZXNzYWdlcy5hYmlsaXR5LkFiaWxpdHkibQocQ29uZmlybUVuZXJneVJlc3BvbnNlUGF5bG9hZBIhCgRjYXJkGAEgASgLMhMubWVzc2FnZXMuY2FyZC5DYXJkEioKCGVuZXJnaWVzGAIgAygOMhgubWVzc2FnZXMuY29tbW9uLkVsZW1lbnQibAobQ29uZmlybUVuZXJneVJlcXVlc3RQYXlsb2FkEiEKBGNhcmQYASABKAsyEy5tZXNzYWdlcy5jYXJkLkNhcmQSKgoIZW5lcmdpZXMYAiADKA4yGC5tZXNzYWdlcy5jb21tb24uRWxlbWVudCJKChxDb25maXJtVGFyZ2V0UmVzcG9uc2VQYXlsb2FkEhAKCHBvc2l0aW9uGAEgASgFEhgKEHRhcmdldF9wb3NpdGlvbnMYAiADKAUiPgobQ29uZmlybVRhcmdldFJlcXVlc3RQYXlsb2FkEhAKCHBvc2l0aW9uGAEgASgFEg0KBWNvdW50GAIgASgFIj0KEU5leHRFbmVyZ3lQYXlsb2FkEigKBmVuZXJneRgBIAEoDjIYLm1lc3NhZ2VzLmNvbW1vbi5FbGVtZW50IkgKHERyYXdFZmZlY3RQYXlsb2FkVG9SZWNpcGllbnQSKAoHZWZmZWN0cxgBIAMoCzIXLm1lc3NhZ2VzLmVmZmVjdC5FZmZlY3QiTgoYRHJhd0VmZmVjdFBheWxvYWRUb0FjdG9yEjIKB2VmZmVjdHMYASADKAsyIS5tZXNzYWdlcy5lZmZlY3QuRWZmZWN0V2l0aFNlY3JldCIvChtTZWxlY3RCYXR0bGVQb3NpdGlvblBheWxvYWQSEAoIcG9zaXRpb24YASABKAUqwAEKCkFjdGlvblR5cGUSCwoHVU5LTk9XThAAEhIKDkFUVEFDS19NT05TVEVSEAESEgoOU1VNTU9OX01PTlNURVIQAhIVChFFVk9MVVRJT05fTU9OU1RFUhADEhAKDFRBS0VfU1VQUE9SVBAEEg4KClRBS0VfR09PRFMQBRILCgdSRVRSRUFUEAYSEQoNU1VQUExZX0VORVJHWRAHEg0KCVNVUlJFTkRFUhAIEgsKB0FCSUxJVFkQCRIICgREUkFXEApC7AEKHWNvbS53ZWJzb2NrZXQucGF5bG9hZC5wbGF5aW5nQgxQbGF5aW5nUHJvdG9QAVo3Z2l0aHViLmNvbS95YW1hdG8wMjExL2JyYWNoaW8tYmFja2VuZC93ZWJzb2NrZXQvcGF5bG9hZKICA1dQUKoCGVdlYnNvY2tldC5QYXlsb2FkLlBsYXlpbmfKAhlXZWJzb2NrZXRcUGF5bG9hZFxQbGF5aW5n4gIlV2Vic29ja2V0XFBheWxvYWRcUGxheWluZ1xHUEJNZXRhZGF0YeoCG1dlYnNvY2tldDo6UGF5bG9hZDo6UGxheWluZ2IGcHJvdG8z", [file_messages_card, file_messages_ability, file_messages_effect, file_messages_common, file_google_protobuf_empty]);
 
 /**
  * Describes the message websocket.payload.playing.AttackMonsterPayload.
@@ -57,130 +58,158 @@ export const RetreatPayloadSchema = /*@__PURE__*/
   messageDesc(file_websocket_payload_playing, 5);
 
 /**
+ * Describes the message websocket.payload.playing.SupplyEnergys.
+ * Use `create(SupplyEnergysSchema)` to create a new message.
+ */
+export const SupplyEnergysSchema = /*@__PURE__*/
+  messageDesc(file_websocket_payload_playing, 6);
+
+/**
  * Describes the message websocket.payload.playing.SupplyEnergyPayload.
  * Use `create(SupplyEnergyPayloadSchema)` to create a new message.
  */
 export const SupplyEnergyPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 6);
+  messageDesc(file_websocket_payload_playing, 7);
 
 /**
  * Describes the message websocket.payload.playing.SurrenderPayload.
  * Use `create(SurrenderPayloadSchema)` to create a new message.
  */
 export const SurrenderPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 7);
+  messageDesc(file_websocket_payload_playing, 8);
 
 /**
  * Describes the message websocket.payload.playing.AbilityPayload.
  * Use `create(AbilityPayloadSchema)` to create a new message.
  */
 export const AbilityPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 8);
+  messageDesc(file_websocket_payload_playing, 9);
 
 /**
  * Describes the message websocket.payload.playing.DrawCardPayload.
  * Use `create(DrawCardPayloadSchema)` to create a new message.
  */
 export const DrawCardPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 9);
+  messageDesc(file_websocket_payload_playing, 10);
 
 /**
  * Describes the message websocket.payload.playing.DrawCardIndividualPayload.
  * Use `create(DrawCardIndividualPayloadSchema)` to create a new message.
  */
 export const DrawCardIndividualPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 10);
+  messageDesc(file_websocket_payload_playing, 11);
 
 /**
  * Describes the message websocket.payload.playing.ConfirmActionPayload.
  * Use `create(ConfirmActionPayloadSchema)` to create a new message.
  */
 export const ConfirmActionPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 11);
+  messageDesc(file_websocket_payload_playing, 12);
 
 /**
  * Describes the message websocket.payload.playing.Action.
  * Use `create(ActionSchema)` to create a new message.
  */
 export const ActionSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 12);
+  messageDesc(file_websocket_payload_playing, 13);
 
 /**
  * Describes the message websocket.payload.playing.CoinTossPayload.
  * Use `create(CoinTossPayloadSchema)` to create a new message.
  */
 export const CoinTossPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 13);
+  messageDesc(file_websocket_payload_playing, 14);
 
 /**
  * Describes the message websocket.payload.playing.CoinTossEmptyPayload.
  * Use `create(CoinTossEmptyPayloadSchema)` to create a new message.
  */
 export const CoinTossEmptyPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 14);
+  messageDesc(file_websocket_payload_playing, 15);
 
 /**
  * Describes the message websocket.payload.playing.StartGamePayload.
  * Use `create(StartGamePayloadSchema)` to create a new message.
  */
 export const StartGamePayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 15);
+  messageDesc(file_websocket_payload_playing, 16);
 
 /**
  * Describes the message websocket.payload.playing.InitialPlacementCompletePayload.
  * Use `create(InitialPlacementCompletePayloadSchema)` to create a new message.
  */
 export const InitialPlacementCompletePayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 16);
+  messageDesc(file_websocket_payload_playing, 17);
 
 /**
  * Describes the message websocket.payload.playing.TurnStartPayload.
  * Use `create(TurnStartPayloadSchema)` to create a new message.
  */
 export const TurnStartPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 17);
+  messageDesc(file_websocket_payload_playing, 18);
 
 /**
  * Describes the message websocket.payload.playing.TurnEndPayload.
  * Use `create(TurnEndPayloadSchema)` to create a new message.
  */
 export const TurnEndPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 18);
+  messageDesc(file_websocket_payload_playing, 19);
 
 /**
  * Describes the message websocket.payload.playing.ConfirmEnergyResponsePayload.
  * Use `create(ConfirmEnergyResponsePayloadSchema)` to create a new message.
  */
 export const ConfirmEnergyResponsePayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 19);
+  messageDesc(file_websocket_payload_playing, 20);
 
 /**
  * Describes the message websocket.payload.playing.ConfirmEnergyRequestPayload.
  * Use `create(ConfirmEnergyRequestPayloadSchema)` to create a new message.
  */
 export const ConfirmEnergyRequestPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 20);
+  messageDesc(file_websocket_payload_playing, 21);
 
 /**
  * Describes the message websocket.payload.playing.ConfirmTargetResponsePayload.
  * Use `create(ConfirmTargetResponsePayloadSchema)` to create a new message.
  */
 export const ConfirmTargetResponsePayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 21);
+  messageDesc(file_websocket_payload_playing, 22);
 
 /**
  * Describes the message websocket.payload.playing.ConfirmTargetRequestPayload.
  * Use `create(ConfirmTargetRequestPayloadSchema)` to create a new message.
  */
 export const ConfirmTargetRequestPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 22);
+  messageDesc(file_websocket_payload_playing, 23);
 
 /**
  * Describes the message websocket.payload.playing.NextEnergyPayload.
  * Use `create(NextEnergyPayloadSchema)` to create a new message.
  */
 export const NextEnergyPayloadSchema = /*@__PURE__*/
-  messageDesc(file_websocket_payload_playing, 23);
+  messageDesc(file_websocket_payload_playing, 24);
+
+/**
+ * Describes the message websocket.payload.playing.DrawEffectPayloadToRecipient.
+ * Use `create(DrawEffectPayloadToRecipientSchema)` to create a new message.
+ */
+export const DrawEffectPayloadToRecipientSchema = /*@__PURE__*/
+  messageDesc(file_websocket_payload_playing, 25);
+
+/**
+ * Describes the message websocket.payload.playing.DrawEffectPayloadToActor.
+ * Use `create(DrawEffectPayloadToActorSchema)` to create a new message.
+ */
+export const DrawEffectPayloadToActorSchema = /*@__PURE__*/
+  messageDesc(file_websocket_payload_playing, 26);
+
+/**
+ * Describes the message websocket.payload.playing.SelectBattlePositionPayload.
+ * Use `create(SelectBattlePositionPayloadSchema)` to create a new message.
+ */
+export const SelectBattlePositionPayloadSchema = /*@__PURE__*/
+  messageDesc(file_websocket_payload_playing, 27);
 
 /**
  * Describes the enum websocket.payload.playing.ActionType.

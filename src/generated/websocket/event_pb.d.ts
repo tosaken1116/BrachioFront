@@ -5,8 +5,8 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, NextEnergyEventToActor, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
-import type { CreateRoomEventToServer, DecideOrderEventToActor, DecideOrderEventToRecipient, EnterRoomEventToServer, ExchangeDeckEventToActor, ExchangeDeckEventToRecipient, ExchangeDeckEventToServer, MatchingCompleteEventToActor, MatchingCompleteEventToRecipient } from "./event/gm_pb";
+import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEffectEventToActor, DrawEffectEventToRecipient, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, NextEnergyEventToActor, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, SelectBattlePositionEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
+import type { DecideOrderEventToActor, DecideOrderEventToRecipient, EnterRoomEventToServer, MatchingCompleteEventToActor, MatchingCompleteEventToRecipient } from "./event/gm_pb";
 
 /**
  * Describes the file websocket/event.proto.
@@ -316,30 +316,6 @@ export declare type EventEnvelope = Message<"event.EventEnvelope"> & {
     case: "nextEnergyEventToActor";
   } | {
     /**
-     * @generated from field: websocket.event.gm.ExchangeDeckEventToServer exchange_deck_event_to_server = 45;
-     */
-    value: ExchangeDeckEventToServer;
-    case: "exchangeDeckEventToServer";
-  } | {
-    /**
-     * @generated from field: websocket.event.gm.ExchangeDeckEventToActor exchange_deck_event_to_actor = 46;
-     */
-    value: ExchangeDeckEventToActor;
-    case: "exchangeDeckEventToActor";
-  } | {
-    /**
-     * @generated from field: websocket.event.gm.ExchangeDeckEventToRecipient exchange_deck_event_to_recipient = 47;
-     */
-    value: ExchangeDeckEventToRecipient;
-    case: "exchangeDeckEventToRecipient";
-  } | {
-    /**
-     * @generated from field: websocket.event.gm.CreateRoomEventToServer create_room_event_to_server = 48;
-     */
-    value: CreateRoomEventToServer;
-    case: "createRoomEventToServer";
-  } | {
-    /**
      * @generated from field: websocket.event.gm.EnterRoomEventToServer enter_room_event_to_server = 49;
      */
     value: EnterRoomEventToServer;
@@ -368,6 +344,24 @@ export declare type EventEnvelope = Message<"event.EventEnvelope"> & {
      */
     value: DecideOrderEventToRecipient;
     case: "decideOrderEventToRecipient";
+  } | {
+    /**
+     * @generated from field: websocket.event.playing.DrawEffectEventToActor draw_effect_event_to_actor = 54;
+     */
+    value: DrawEffectEventToActor;
+    case: "drawEffectEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.playing.DrawEffectEventToRecipient draw_effect_event_to_recipient = 55;
+     */
+    value: DrawEffectEventToRecipient;
+    case: "drawEffectEventToRecipient";
+  } | {
+    /**
+     * @generated from field: websocket.event.playing.SelectBattlePositionEventToServer select_battle_position_event_to_server = 56;
+     */
+    value: SelectBattlePositionEventToServer;
+    case: "selectBattlePositionEventToServer";
   } | { case: undefined; value?: undefined };
 };
 

@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { AbilityPayload, AttackMonsterPayload, CoinTossEmptyPayload, CoinTossPayload, ConfirmActionPayload, ConfirmEnergyRequestPayload, ConfirmEnergyResponsePayload, ConfirmTargetRequestPayload, ConfirmTargetResponsePayload, DrawCardIndividualPayload, DrawCardPayload, EvolutionMonsterPayload, InitialPlacementCompletePayload, NextEnergyPayload, RetreatPayload, StartGamePayload, SummonMonsterPayload, SupplyEnergyPayload, SurrenderPayload, TakeGoodsPayload, TakeSupportPayload, TurnEndPayload, TurnStartPayload } from "../payload/playing_pb";
+import type { AbilityPayload, AttackMonsterPayload, CoinTossEmptyPayload, CoinTossPayload, ConfirmActionPayload, ConfirmEnergyRequestPayload, ConfirmEnergyResponsePayload, ConfirmTargetRequestPayload, ConfirmTargetResponsePayload, DrawCardIndividualPayload, DrawCardPayload, DrawEffectPayloadToActor, DrawEffectPayloadToRecipient, EvolutionMonsterPayload, InitialPlacementCompletePayload, NextEnergyPayload, RetreatPayload, SelectBattlePositionPayload, StartGamePayload, SummonMonsterPayload, SupplyEnergyPayload, SurrenderPayload, TakeGoodsPayload, TakeSupportPayload, TurnEndPayload, TurnStartPayload } from "../payload/playing_pb";
 
 /**
  * Describes the file websocket/event/playing.proto.
@@ -920,4 +920,60 @@ export declare type NextEnergyEventToActor = Message<"websocket.event.playing.Ne
  * Use `create(NextEnergyEventToActorSchema)` to create a new message.
  */
 export declare const NextEnergyEventToActorSchema: GenMessage<NextEnergyEventToActor>;
+
+/**
+ * //
+ * 描画する必要のあるイベント通知イベント
+ * //
+ *
+ * @generated from message websocket.event.playing.DrawEffectEventToActor
+ */
+export declare type DrawEffectEventToActor = Message<"websocket.event.playing.DrawEffectEventToActor"> & {
+  /**
+   * @generated from field: websocket.payload.playing.DrawEffectPayloadToActor payload = 1;
+   */
+  payload?: DrawEffectPayloadToActor;
+};
+
+/**
+ * Describes the message websocket.event.playing.DrawEffectEventToActor.
+ * Use `create(DrawEffectEventToActorSchema)` to create a new message.
+ */
+export declare const DrawEffectEventToActorSchema: GenMessage<DrawEffectEventToActor>;
+
+/**
+ * @generated from message websocket.event.playing.DrawEffectEventToRecipient
+ */
+export declare type DrawEffectEventToRecipient = Message<"websocket.event.playing.DrawEffectEventToRecipient"> & {
+  /**
+   * @generated from field: websocket.payload.playing.DrawEffectPayloadToRecipient payload = 1;
+   */
+  payload?: DrawEffectPayloadToRecipient;
+};
+
+/**
+ * Describes the message websocket.event.playing.DrawEffectEventToRecipient.
+ * Use `create(DrawEffectEventToRecipientSchema)` to create a new message.
+ */
+export declare const DrawEffectEventToRecipientSchema: GenMessage<DrawEffectEventToRecipient>;
+
+/**
+ * //
+ * バトル場が空いた時にバトル場に置くカードを選択するイベント(クライアントへの通知はDrawEffectEventを用いる)
+ * //
+ *
+ * @generated from message websocket.event.playing.SelectBattlePositionEventToServer
+ */
+export declare type SelectBattlePositionEventToServer = Message<"websocket.event.playing.SelectBattlePositionEventToServer"> & {
+  /**
+   * @generated from field: websocket.payload.playing.SelectBattlePositionPayload payload = 1;
+   */
+  payload?: SelectBattlePositionPayload;
+};
+
+/**
+ * Describes the message websocket.event.playing.SelectBattlePositionEventToServer.
+ * Use `create(SelectBattlePositionEventToServerSchema)` to create a new message.
+ */
+export declare const SelectBattlePositionEventToServerSchema: GenMessage<SelectBattlePositionEventToServer>;
 

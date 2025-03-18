@@ -4,98 +4,12 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { CreateRoomEventPayload, DecideOrderEventPayload, EnterRoomEventPayload, ExchangeDeckEventPayload, MatchingCompleteEventPayload } from "../payload/gm_pb";
+import type { DecideOrderEventPayload, EnterRoomEventPayload, MatchingCompleteEventPayload } from "../payload/gm_pb";
 
 /**
  * Describes the file websocket/event/gm.proto.
  */
 export declare const file_websocket_event_gm: GenFile;
-
-/**
- * //
- * デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
- * //
- *
- * @generated from message websocket.event.gm.ExchangeDeckEventToServer
- */
-export declare type ExchangeDeckEventToServer = Message<"websocket.event.gm.ExchangeDeckEventToServer"> & {
-  /**
-   * @generated from field: websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-   */
-  payload?: ExchangeDeckEventPayload;
-};
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToServer.
- * Use `create(ExchangeDeckEventToServerSchema)` to create a new message.
- */
-export declare const ExchangeDeckEventToServerSchema: GenMessage<ExchangeDeckEventToServer>;
-
-/**
- * @generated from message websocket.event.gm.ExchangeDeckEventToActor
- */
-export declare type ExchangeDeckEventToActor = Message<"websocket.event.gm.ExchangeDeckEventToActor"> & {
-  /**
-   * @generated from field: websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-   */
-  payload?: ExchangeDeckEventPayload;
-
-  /**
-   * 交換するユーザーのID
-   *
-   * @generated from field: string userId = 2;
-   */
-  userId: string;
-};
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToActor.
- * Use `create(ExchangeDeckEventToActorSchema)` to create a new message.
- */
-export declare const ExchangeDeckEventToActorSchema: GenMessage<ExchangeDeckEventToActor>;
-
-/**
- * @generated from message websocket.event.gm.ExchangeDeckEventToRecipient
- */
-export declare type ExchangeDeckEventToRecipient = Message<"websocket.event.gm.ExchangeDeckEventToRecipient"> & {
-  /**
-   * @generated from field: websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-   */
-  payload?: ExchangeDeckEventPayload;
-
-  /**
-   * 交換するユーザーのID
-   *
-   * @generated from field: string userId = 2;
-   */
-  userId: string;
-};
-
-/**
- * Describes the message websocket.event.gm.ExchangeDeckEventToRecipient.
- * Use `create(ExchangeDeckEventToRecipientSchema)` to create a new message.
- */
-export declare const ExchangeDeckEventToRecipientSchema: GenMessage<ExchangeDeckEventToRecipient>;
-
-/**
- * //
- * ルーム作成イベント
- * //
- *
- * @generated from message websocket.event.gm.CreateRoomEventToServer
- */
-export declare type CreateRoomEventToServer = Message<"websocket.event.gm.CreateRoomEventToServer"> & {
-  /**
-   * @generated from field: websocket.payload.gm.CreateRoomEventPayload payload = 1;
-   */
-  payload?: CreateRoomEventPayload;
-};
-
-/**
- * Describes the message websocket.event.gm.CreateRoomEventToServer.
- * Use `create(CreateRoomEventToServerSchema)` to create a new message.
- */
-export declare const CreateRoomEventToServerSchema: GenMessage<CreateRoomEventToServer>;
 
 /**
  * //
@@ -109,6 +23,11 @@ export declare type EnterRoomEventToServer = Message<"websocket.event.gm.EnterRo
    * @generated from field: websocket.payload.gm.EnterRoomEventPayload payload = 1;
    */
   payload?: EnterRoomEventPayload;
+
+  /**
+   * @generated from field: string deckId = 2;
+   */
+  deckId: string;
 };
 
 /**

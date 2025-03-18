@@ -8,6 +8,7 @@ import type {
 } from "@/domains/card/types";
 import type { Card } from "@/generated/messages/card_pb";
 import { Element } from "@/generated/messages/common_pb";
+import type { Effect, EffectWithSecret } from "@/generated/messages/effect_pb";
 import type { Skill } from "@/generated/messages/skill_pb";
 import {
   AbilityEventToServerSchema,
@@ -52,6 +53,10 @@ type EventState = {
   otherEnergy: [EnergyType | null, EnergyType | null];
 
   selectEnergies: EnergyType[];
+
+  selfId: string;
+  otherId: string | null;
+  currentTurnUser: "self" | "other" | null;
 };
 
 type Metadata = {
@@ -140,6 +145,179 @@ const skillConverter = (skill: Skill): AttackType => {
     cost: skill.cost.map(typeConverter),
   };
 };
+
+export type EffectType = ReturnType<typeof effectConverter>;
+const effectConverter = (effect: Effect["effect"]) => {
+  const c = effect.case;
+  if (c === "attachEnergy") {
+    const energies = effect.value.energies.map(typeConverter);
+    const pos = effect.value.position;
+    return {
+      type: "attachEnergy",
+      energies,
+      position: pos,
+    };
+  }
+  if (c === "coinToss") {
+    const coinToss = effect.value.result;
+    return {
+      type: "coinToss",
+      coinToss,
+    };
+  }
+  if (c === "damage") {
+    const damages = effect.value.amount;
+    const attackerPosition = effect.value.position;
+    return {
+      type: "damage",
+      damages,
+      attackerPosition,
+    };
+  }
+  if (c === "decideFirstOrSecond") {
+    const userId = effect.value.userId;
+    return {
+      type: "decideFirstOrSecond",
+      firstUserId: userId,
+    };
+  }
+  if (c === "decideWinOrLose") {
+    const userId = effect.value.userId;
+    return {
+      type: "decideWinOrLose",
+      winnerId: userId,
+    };
+  }
+  if (c === "energyTrash") {
+    const energies = effect.value.energy.map(typeConverter);
+    const position = effect.value.position;
+    return {
+      type: "energyTrash",
+      currentEnergies: energies,
+      position,
+    };
+  }
+  if (c === "evolution") {
+    const card = effect.value.card;
+    const position = effect.value.position;
+    return {
+      type: "evolution",
+      card,
+      position,
+    };
+  }
+  if (c === "faint") {
+    const position = effect.value.position;
+    return {
+      type: "faint",
+      position,
+    };
+  }
+  if (c === "getPoint") {
+    const point = effect.value.point;
+    return {
+      type: "getPoint",
+      point,
+    };
+  }
+  if (c === "putBattleFromBench") {
+    const position = effect.value.position;
+    return {
+      type: "putBattleFromBench",
+      position,
+    };
+  }
+  if (c === "recover") {
+    const amount = effect.value.amount;
+    const position = effect.value.position;
+    return {
+      type: "recover",
+      recovererPosition: position,
+      amount,
+    };
+  }
+  if (c === "returnHand") {
+    const position = effect.value.position;
+    return {
+      type: "returnHand",
+      position,
+    };
+  }
+  if (c === "shuffle") {
+    return {
+      type: "shuffle",
+    };
+  }
+  if (c === "summon") {
+    const card = effect.value.card;
+    const position = effect.value.position;
+    return {
+      type: "summon",
+      card,
+      position,
+    };
+  }
+  if (c === "surrender") {
+    const userId = effect.value.userId;
+    return {
+      type: "surrender",
+      userId,
+    };
+  }
+  if (c === "swapBattleAndBench") {
+    const benchPosition = effect.value.position;
+    return {
+      type: "swapBattleAndBench",
+      benchPosition,
+    };
+  }
+  if (c === "trashDeck") {
+    const count = effect.value.count;
+    const remain = effect.value.remain;
+    return {
+      type: "trashDeck",
+      count,
+      remain,
+    };
+  }
+  if (c === "trashHand") {
+    const count = effect.value.count;
+    return {
+      type: "trashHand",
+      count,
+    };
+  }
+  if (c === "useCard") {
+    const card = effect.value.card;
+    return {
+      type: "useCard",
+      card,
+    };
+  }
+  if (c === "useSkillOrAbility") {
+    const skill = effect.value.name;
+    return {
+      type: "useSkillOrAbility",
+      skill,
+    };
+  }
+
+  return {};
+};
+
+const effectWithSecretConverter = (
+  effectWithSecret: EffectWithSecret["effect"]
+) => {
+  const c = effectWithSecret.case;
+  if (c === "trashHandSecret") {
+    const count = effectWithSecret.value.count;
+    return {
+      type: "trashHandSecret",
+      count,
+    };
+  }
+  return effectConverter(effectWithSecret);
+};
 const cardConverter = (card: Card): MonsterCardType | undefined => {
   if (card.masterCard?.cardVariant.case === "masterGoodsCard") {
     const goods: GoodsType = {
@@ -206,16 +384,20 @@ const cardConverter = (card: Card): MonsterCardType | undefined => {
   return;
 };
 type Props = {
+  userId: string;
   onCoinTossResult: (coinToss: boolean[]) => void;
   onBattleWin: (cause: "knockout" | "surrender") => void;
   onBattleLose: (cause: "knockout" | "surrender") => void;
   onOtherCoinToss: (coinToss: boolean[]) => void;
+  onEffects: (props: { effects: EffectType[]; isSelf: boolean }) => void;
 };
 export const useSocketRefStore = ({
+  userId,
   onCoinTossResult,
   onBattleWin,
   onBattleLose,
   onOtherCoinToss,
+  onEffects,
 }: Props) =>
   create<State & Action>()((set, get) => ({
     socketRef: null,
@@ -223,6 +405,9 @@ export const useSocketRefStore = ({
       actorId: null,
     },
     eventState: {
+      selfId: userId,
+      otherId: null,
+      currentTurnUser: null,
       selfCard: [],
       otherCardLength: 0,
       selfBattle: null,
@@ -559,24 +744,54 @@ export const useSocketRefStore = ({
 
           case "supplyEnergyEventToRecipient": {
             // biome-ignore lint/style/noNonNullAssertion: <explanation>
-            const card = cardConverter(e.value.payload!.card!);
-            // biome-ignore lint/style/noNonNullAssertion: <explanation>
-            const energies = e.value.payload!.energies.map(typeConverter);
+            const energies = e.value.payload!.supplys.map((e) =>
+              e.energies.map(typeConverter)
+            );
 
-            if (!card) {
-              return;
-            }
+            const battleEnergy = energies[0];
+            const benchEnergies = energies.slice(1);
             set((state) => {
+              const battleMonster = state.eventState.otherBattle;
+              if (!battleMonster) {
+                return state;
+              }
+              const benchMonsters = state.eventState.otherBench;
+              const newBattleMonsterEnergy = [
+                ...(state.eventState.otherPokemonEnergy[battleMonster.id] ??
+                  []),
+                ...battleEnergy,
+              ];
+              const newBenchMonstersEnergy = benchMonsters.map(
+                (monster, index) => {
+                  if (!monster) {
+                    return [];
+                  }
+                  return [
+                    ...(state.eventState.otherPokemonEnergy[monster.id] ?? []),
+                    ...(benchEnergies[index] ?? []),
+                  ];
+                }
+              );
+              const assertBenchMonstersEnergy = newBenchMonstersEnergy
+                .map((energy, index) => {
+                  const monster = benchMonsters[index];
+                  if (!monster) {
+                    return null;
+                  }
+                  return {
+                    [monster.id]: energy,
+                  };
+                })
+                .filter((energy) => energy !== null);
+
               return {
                 ...state,
                 eventState: {
                   ...state.eventState,
                   otherPokemonEnergy: {
                     ...state.eventState.otherPokemonEnergy,
-                    [card.id]: [
-                      ...(state.eventState.otherPokemonEnergy[card.id] ?? []),
-                      ...energies,
-                    ],
+                    [battleMonster.id]: newBattleMonsterEnergy,
+                    ...Object.assign({}, ...assertBenchMonstersEnergy),
                   },
                 },
               };
@@ -586,6 +801,26 @@ export const useSocketRefStore = ({
 
           case "attackMonsterEventToRecipient": {
             // TODO: あとでどうにかする
+            break;
+          }
+
+          case "drawEffectEventToRecipient": {
+            // biome-ignore lint/style/noNonNullAssertion: <explanation>
+            const effects = e.value.payload!.effects.map((effect) => {
+              return effectConverter(effect.effect);
+            });
+            onEffects({ effects, isSelf: false });
+
+            break;
+          }
+
+          case "drawEffectEventToActor": {
+            // biome-ignore lint/style/noNonNullAssertion: <explanation>
+            const effects = e.value.payload!.effects.map((effect) => {
+              return effectWithSecretConverter(effect.effect);
+            });
+            onEffects({ effects, isSelf: true });
+
             break;
           }
 
@@ -615,6 +850,63 @@ export const useSocketRefStore = ({
             // biome-ignore lint/style/noNonNullAssertion: <explanation>
             const res = e.value.payload!.results!;
             onOtherCoinToss(res);
+            break;
+          }
+          case "turnEndEventToClients": {
+            // biome-ignore lint/style/noNonNullAssertion: <explanation>
+            const res = e.value.payload!.userId;
+            const selfUserId = get().eventState.selfId;
+            set((state) => ({
+              ...state,
+              eventState: {
+                ...state.eventState,
+                currentTurnUser: res === selfUserId ? "other" : "self",
+              },
+            }));
+            break;
+          }
+          case "startGameEventToClients": {
+            // TODO: ゲーム開始
+            break;
+          }
+          case "decideOrderEventToActor": {
+            const starter = e.value.payload?.firstUserId;
+            const selfUserId = get().eventState.selfId;
+            set((state) => ({
+              ...state,
+              eventState: {
+                ...state.eventState,
+                currentTurnUser: starter === selfUserId ? "self" : "other",
+              },
+            }));
+            break;
+          }
+          case "matchingCompleteEventToActor": {
+            // TODO:あとでなおす
+            // biome-ignore lint/style/noNonNullAssertion: <explanation>
+            const otherUserId = e.value.payload!.users as unknown as string;
+
+            set((state) => ({
+              ...state,
+              eventState: {
+                ...state.eventState,
+                otherId: otherUserId,
+              },
+            }));
+
+            break;
+          }
+          case "turnStartEventToClients": {
+            // biome-ignore lint/style/noNonNullAssertion: <explanation>
+            const res = e.value.payload!.userId;
+            const selfUserId = get().eventState.selfId;
+            set((state) => ({
+              ...state,
+              eventState: {
+                ...state.eventState,
+                currentTurnUser: res === selfUserId ? "self" : "other",
+              },
+            }));
             break;
           }
 
