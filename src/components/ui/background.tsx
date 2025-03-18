@@ -248,7 +248,7 @@ const cards: MasterCardType[] = [
 export const Background: FC<Props> = ({ children }) => {
   return (
     <div>
-      <div className="w-full absolute left-0 top-0 overflow-hidden h-screen">
+      <div className="w-full absolute left-0 top-0 overflow-hidden h-screen z-0">
         {cards.map((card, i) => {
           return (
             <div
@@ -271,7 +271,7 @@ export const Background: FC<Props> = ({ children }) => {
           );
         })}
       </div>
-      {children}
+      <div className="z-[1] relative">{children}</div>
     </div>
   );
 };
