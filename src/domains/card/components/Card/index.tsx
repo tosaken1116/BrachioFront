@@ -1,15 +1,15 @@
-import clsx from "clsx";
-import type { FC, ReactNode } from "react";
-import type { EnergyType, MasterCardType } from "../../types";
-import { GoodsCard } from "./GoodsCard";
-import { MonsterCard, type Skill } from "./MonsterCard";
-import { SupporterCard } from "./SupporterCard";
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import clsx from "clsx";
+import type { FC, ReactNode } from "react";
+import type { EnergyType, MasterCardType } from "../../types";
+import { GoodsCard } from "./GoodsCard";
+import { MonsterCard, type Skill } from "./MonsterCard";
+import { SupporterCard } from "./SupporterCard";
 
 type UsualCard = {
   card: MasterCardType;
@@ -117,16 +117,21 @@ export const ExpandableCard: FC<
           <Card
             {...props}
             skillWrapper={({ skill, children }) => {
-              const isUsable =
-                isUsableSkill(skill, props.energy ?? []) && props.enabledUsable;
-              const Elm = isUsable ? DialogClose : "div";
+              const isUsable = isUsableSkill(skill, props.energy ?? []);
+              const Elm = !props.enabledUsable
+                ? "div"
+                : isUsable
+                  ? DialogClose
+                  : "div";
               return (
                 <Elm
                   className={clsx(
                     "relative w-full before:absolute before:top-0 before:opacity-20 before:left-0 before:w-full before:h-full  before:rounded-sm px-2 py-1",
-                    isUsable
-                      ? "before:bg-slate-50 before:animate-pulse"
-                      : "before:bg-black",
+                    !props.enabledUsable
+                      ? ""
+                      : isUsable
+                        ? "before:bg-slate-50 before:animate-pulse"
+                        : "before:bg-black",
                     props.isMe ? "" : " rotate-0",
                     props.className
                   )}
