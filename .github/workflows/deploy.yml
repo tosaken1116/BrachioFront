@@ -28,10 +28,10 @@ jobs:
       - name: Create Env File
         run: |
           touch .env
-          echo ${{ secrets.VITE_API_URL }} >> .env
-          echo ${{ secrets.VITE_COGNITO_CLIENT_ID }} >> .env
-          echo ${{ secrets.VITE_COGNITO_AUTHORITY_URL }} >> .env
-          echo ${{ secrets.VITE_COGNITO_AUTH_DOMAIN }} >> .env
+          echo VITE_API_URL=${{ secrets.VITE_API_URL }} >> .env
+          echo VITE_COGNITO_CLIENT_ID=${{ secrets.VITE_COGNITO_CLIENT_ID }} >> .env
+          echo VITE_COGNITO_AUTHORITY_URL=${{ secrets.VITE_COGNITO_AUTHORITY_URL }} >> .env
+          echo VITE_COGNITO_AUTH_DOMAIN=${{ secrets.VITE_COGNITO_AUTH_DOMAIN }} >> .env
 
       - name: Install Dependencies
         run: pnpm install
