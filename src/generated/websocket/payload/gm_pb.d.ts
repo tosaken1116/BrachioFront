@@ -4,7 +4,6 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { User } from "../../messages/user_pb";
 
 /**
  * Describes the file websocket/payload/gm.proto.
@@ -63,9 +62,9 @@ export declare const EnterRoomEventPayloadSchema: GenMessage<EnterRoomEventPaylo
  */
 export declare type MatchingCompleteEventPayload = Message<"websocket.payload.gm.MatchingCompleteEventPayload"> & {
   /**
-   * @generated from field: repeated messages.user.User users = 1;
+   * @generated from field: string opponentId = 1;
    */
-  users: User[];
+  opponentId: string;
 
   /**
    * @generated from field: string battleId = 2;

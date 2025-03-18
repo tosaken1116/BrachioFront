@@ -884,7 +884,7 @@ export const useSocketRefStore = ({
           case "matchingCompleteEventToActor": {
             // TODO:あとでなおす
             // biome-ignore lint/style/noNonNullAssertion: <explanation>
-            const otherUserId = e.value.payload!.users as unknown as string;
+            const otherUserId = e.value.payload!.opponentId;
 
             set((state) => ({
               ...state,
