@@ -114,9 +114,9 @@ export const handlers = [
     const deck = {
       id: params.deckId,
       name: `ランダムデッキ ${params.deckId}`,
-      cards: getRandomCards(20).map((card) => ({
+      cards: getRandomCards(20).map((card, i) => ({
         ...card,
-        id: `${card.masterCardId}-i`,
+        id: `${card.masterCardId}-${i}`,
       })),
       energies: e,
       thumbnailCard: { ...getRandomCards(1)[0], id: "1" },

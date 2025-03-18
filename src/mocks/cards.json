@@ -1,6 +1,6 @@
 [
   {
-    "masterCardID": "kizuku",
+    "masterCardId": "kizuku",
     "name": "Kizuku",
     "description": "",
     "cardType": "monster",
@@ -31,7 +31,7 @@
     "text": ""
   },
   {
-    "masterCardID": "kurichi",
+    "masterCardId": "kurichi",
     "name": "くりち",
     "description": "",
     "cardType": "monster",
@@ -66,7 +66,7 @@
     "text": ""
   },
   {
-    "masterCardID": "yamato",
+    "masterCardId": "yamato",
     "name": "ヤマト",
     "description": "筋肉.\n生息地はジム.",
     "cardType": "monster",
@@ -105,7 +105,7 @@
     "text": ""
   },
   {
-    "masterCardID": "tosaken-ex",
+    "masterCardId": "tosaken-ex",
     "name": "土佐犬",
     "description": "金と女に目がない.",
     "cardType": "monster",
@@ -136,7 +136,7 @@
     "text": ""
   },
   {
-    "masterCardID": "tosaken",
+    "masterCardId": "tosaken",
     "name": "土佐犬",
     "description": "",
     "cardType": "monster",
@@ -164,7 +164,7 @@
     "text": ""
   },
   {
-    "masterCardID": "dolly",
+    "masterCardId": "dolly",
     "name": "ドリー",
     "description": "",
     "cardType": "monster",
@@ -199,7 +199,7 @@
     "text": ""
   },
   {
-    "masterCardID": "newbie-engineer",
+    "masterCardId": "newbie-engineer",
     "name": "駆け出しエンジニア",
     "description": "駆け出しのエンジニア.\n何者にでもなれる.",
     "cardType": "monster",
@@ -235,7 +235,7 @@
     "text": ""
   },
   {
-    "masterCardID": "security-engineer",
+    "masterCardId": "security-engineer",
     "name": "セキュリティエンジニア",
     "description": "滅多に現れない\n",
     "cardType": "monster",
@@ -270,7 +270,7 @@
     "text": ""
   },
   {
-    "masterCardID": "frontend-engineer",
+    "masterCardId": "frontend-engineer",
     "name": "フロントエンドエンジニア",
     "description": "Safariが嫌い\n",
     "cardType": "monster",
@@ -305,7 +305,7 @@
     "text": ""
   },
   {
-    "masterCardID": "designer",
+    "masterCardId": "designer",
     "name": "デザイナー",
     "description": "CSSはフロントエンドの仕事\n",
     "cardType": "monster",
@@ -340,7 +340,7 @@
     "text": ""
   },
   {
-    "masterCardID": "backend-engineer",
+    "masterCardId": "backend-engineer",
     "name": "バックエンドエンジニア",
     "description": "動的型付け言語が嫌い\n",
     "cardType": "monster",
@@ -375,7 +375,7 @@
     "text": ""
   },
   {
-    "masterCardID": "sre",
+    "masterCardId": "sre",
     "name": "SRE",
     "description": "チームメンバーの開発体験向上\nのことだけを考えている。",
     "cardType": "monster",
@@ -410,7 +410,7 @@
     "text": ""
   },
   {
-    "masterCardID": "full-stack-engineer",
+    "masterCardId": "full-stack-engineer",
     "name": "フルスタックエンジニア",
     "description": "全ての領域を知る天才。",
     "cardType": "monster",
@@ -441,7 +441,7 @@
     "text": ""
   },
   {
-    "masterCardID": "neet",
+    "masterCardId": "neet",
     "name": "ニート",
     "description": "全てを諦めたひと。",
     "cardType": "monster",
@@ -469,7 +469,7 @@
     "text": ""
   },
   {
-    "masterCardID": "pachikasu",
+    "masterCardId": "pachikasu",
     "name": "パチカス",
     "description": "",
     "cardType": "monster",
@@ -497,7 +497,7 @@
     "text": ""
   },
   {
-    "masterCardID": "yanikasu",
+    "masterCardId": "yanikasu",
     "name": "ヤニカス",
     "description": "",
     "cardType": "monster",
@@ -528,7 +528,7 @@
     "text": ""
   },
   {
-    "masterCardID": "sakekasu",
+    "masterCardId": "sakekasu",
     "name": "酒カスエンジニア",
     "description": "",
     "cardType": "monster",
@@ -559,7 +559,7 @@
     "text": ""
   },
   {
-    "masterCardID": "student",
+    "masterCardId": "student",
     "name": "勤勉学生",
     "description": "",
     "cardType": "monster",
@@ -587,7 +587,7 @@
     "text": ""
   },
   {
-    "masterCardID": "jtc",
+    "masterCardId": "jtc",
     "name": "JTC中堅社員",
     "description": "",
     "cardType": "monster",
@@ -615,7 +615,7 @@
     "text": ""
   },
   {
-    "masterCardID": "venture-president",
+    "masterCardId": "venture-president",
     "name": "ベンチャー社長",
     "description": "これまで真面目に働いてきたが、後悔したくないという思いから大きく挑戦した。",
     "cardType": "monster",
@@ -643,7 +643,7 @@
     "text": ""
   },
   {
-    "masterCardID": "garigari",
+    "masterCardId": "garigari",
     "name": "ガリガリエンジニア",
     "description": "",
     "cardType": "monster",
@@ -671,7 +671,7 @@
     "text": ""
   },
   {
-    "masterCardID": "muchimuchi",
+    "masterCardId": "muchimuchi",
     "name": "ムチムチエンジニア",
     "description": "",
     "cardType": "monster",
@@ -699,7 +699,7 @@
     "text": ""
   },
   {
-    "masterCardID": "mukimuki",
+    "masterCardId": "mukimuki",
     "name": "ムキムキエンジニア",
     "description": "",
     "cardType": "monster",
@@ -730,7 +730,7 @@
     "text": ""
   },
   {
-    "masterCardID": "multi-business",
+    "masterCardId": "multi-business",
     "name": "マルチ商法",
     "description": "",
     "cardType": "monster",
@@ -758,7 +758,7 @@
     "text": ""
   },
   {
-    "masterCardID": "info-product",
+    "masterCardId": "info-product",
     "name": "情報商材屋",
     "description": "",
     "cardType": "monster",
@@ -789,7 +789,7 @@
     "text": ""
   },
   {
-    "masterCardID": "high-tax-payer",
+    "masterCardId": "high-tax-payer",
     "name": "高額納税者",
     "description": "",
     "cardType": "monster",
@@ -824,7 +824,7 @@
     "text": ""
   },
   {
-    "masterCardID": "startup-cto",
+    "masterCardId": "startup-cto",
     "name": "スタートアップCTO",
     "description": "",
     "cardType": "monster",
@@ -852,7 +852,7 @@
     "text": ""
   },
   {
-    "masterCardID": "venture-cto",
+    "masterCardId": "venture-cto",
     "name": "ベンチャーCTO",
     "description": "",
     "cardType": "monster",
@@ -883,7 +883,7 @@
     "text": ""
   },
   {
-    "masterCardID": "big-company-cto",
+    "masterCardId": "big-company-cto",
     "name": "大企業CTO",
     "description": "",
     "cardType": "monster",
@@ -914,7 +914,7 @@
     "text": ""
   },
   {
-    "masterCardID": "freelance-engineer",
+    "masterCardId": "freelance-engineer",
     "name": "フリーランスエンジニア",
     "description": "",
     "cardType": "monster",
@@ -942,7 +942,7 @@
     "text": ""
   },
   {
-    "masterCardID": "liberal-arts-engineer",
+    "masterCardId": "liberal-arts-engineer",
     "name": "文系エンジニア",
     "description": "",
     "cardType": "monster",
@@ -970,7 +970,7 @@
     "text": ""
   },
   {
-    "masterCardID": "ses-engineer",
+    "masterCardId": "ses-engineer",
     "name": "SESエンジニア",
     "description": "",
     "cardType": "monster",
@@ -998,7 +998,7 @@
     "text": ""
   },
   {
-    "masterCardID": "zinzinia",
+    "masterCardId": "zinzinia",
     "name": "ジンジニア",
     "description": "",
     "cardType": "monster",
@@ -1026,7 +1026,7 @@
     "text": ""
   },
   {
-    "masterCardID": "gopher",
+    "masterCardId": "gopher",
     "name": "Gopher",
     "description": "",
     "cardType": "monster",
@@ -1057,7 +1057,7 @@
     "text": ""
   },
   {
-    "masterCardID": "rustacean",
+    "masterCardId": "rustacean",
     "name": "Rustacean",
     "description": "",
     "cardType": "monster",
@@ -1088,7 +1088,7 @@
     "text": ""
   },
   {
-    "masterCardID": "typescripter",
+    "masterCardId": "typescripter",
     "name": "TypeScripter",
     "description": "",
     "cardType": "monster",
@@ -1119,7 +1119,7 @@
     "text": ""
   },
   {
-    "masterCardID": "swifter",
+    "masterCardId": "swifter",
     "name": "Swifter",
     "description": "",
     "cardType": "monster",
@@ -1150,7 +1150,7 @@
     "text": ""
   },
   {
-    "masterCardID": "pythonista",
+    "masterCardId": "pythonista",
     "name": "Pythonista",
     "description": "",
     "cardType": "monster",
@@ -1181,7 +1181,7 @@
     "text": ""
   },
   {
-    "masterCardID": "oreilly-book",
+    "masterCardId": "oreilly-book",
     "name": "オライリー本",
     "description": "",
     "cardType": "goods",
@@ -1201,7 +1201,7 @@
     "text": "この番、自分の[知識]ラムモンが使うワザの、相手のバトルポケモンへのダメージを+40する"
   },
   {
-    "masterCardID": "protein",
+    "masterCardId": "protein",
     "name": "プロテイン",
     "description": "",
     "cardType": "goods",
@@ -1221,7 +1221,7 @@
     "text": "自分のエネルギーゾーンから[筋肉]エネルギーを2つ出し、自分の[筋肉]ラムモン1匹につける"
   },
   {
-    "masterCardID": "credit-card",
+    "masterCardId": "credit-card",
     "name": "クレカ",
     "description": "",
     "cardType": "goods",
@@ -1241,7 +1241,7 @@
     "text": "自分の[金]ラムモン1匹に[金]エネルギーを5つつける。"
   },
   {
-    "masterCardID": "hackz-parker",
+    "masterCardId": "hackz-parker",
     "name": "ハックツパーカー",
     "description": "",
     "cardType": "goods",
@@ -1261,7 +1261,7 @@
     "text": "この番と次の相手の番、自分の[人気]ラムモン1匹は、ワザの追加効果や特性によるダメージを受けない。"
   },
   {
-    "masterCardID": "sake-bottle",
+    "masterCardId": "sake-bottle",
     "name": "一升瓶",
     "description": "",
     "cardType": "goods",
@@ -1281,7 +1281,7 @@
     "text": "自分の[酒]ラムモンを1匹選び、コイントスをする。表が出た場合そのラムモンに好きなエネルギーを1つつける。裏が出た場合そのラムモンのランダムなエネルギーを1つトラッシュする。"
   },
   {
-    "masterCardID": "energy-drink",
+    "masterCardId": "energy-drink",
     "name": "エナジードリンク",
     "description": "",
     "cardType": "goods",
@@ -1301,7 +1301,7 @@
     "text": "次の相手のターンに受けるダメージを全て無効にし、その分のダメージを次の自分の番の終わりに受ける。"
   },
   {
-    "masterCardID": "starbucks",
+    "masterCardId": "starbucks",
     "name": "スタバ",
     "description": "",
     "cardType": "goods",
@@ -1321,7 +1321,7 @@
     "text": "自分のラムモン1匹のhpを20回復"
   },
   {
-    "masterCardID": "gopher-doll",
+    "masterCardId": "gopher-doll",
     "name": "Gopherくん人形",
     "description": "",
     "cardType": "goods",
@@ -1341,7 +1341,7 @@
     "text": "この番、自分のバトルラムモンのにげるためのエネルギーを、1個少なくする。"
   },
   {
-    "masterCardID": "hot-reload",
+    "masterCardId": "hot-reload",
     "name": "ホットリロード",
     "description": "",
     "cardType": "goods",
@@ -1361,7 +1361,7 @@
     "text": "自分の手札をすべて山札に戻し、山札から同じ枚数のカードを引く。"
   },
   {
-    "masterCardID": "recruitment-agency",
+    "masterCardId": "recruitment-agency",
     "name": "転職エージェント",
     "description": "",
     "cardType": "goods",
@@ -1381,7 +1381,7 @@
     "text": "自分の山札からたねラムモン以外のラムモンをランダムに1枚、手札に加える。"
   },
   {
-    "masterCardID": "programming-school",
+    "masterCardId": "programming-school",
     "name": "プログラミングスクール",
     "description": "",
     "cardType": "goods",
@@ -1401,7 +1401,7 @@
     "text": "自分の山札からたねラムモンをランダムに1枚、手札に加える。"
   },
   {
-    "masterCardID": "lan-cable",
+    "masterCardId": "lan-cable",
     "name": "LANケーブル",
     "description": "",
     "cardType": "goods",
@@ -1421,7 +1421,7 @@
     "text": "自分のベンチラムモン1匹を選び、そのラムモンについているエネルギーを1つバトルラムモンに付け替える。"
   },
   {
-    "masterCardID": "hhkb",
+    "masterCardId": "hhkb",
     "name": "HHKB",
     "description": "",
     "cardType": "goods",
@@ -1441,7 +1441,7 @@
     "text": "自分の山札から「駆け出しエンジニア」の進化先のラムモンをランダムに1枚、手札に加える。"
   },
   {
-    "masterCardID": "macbook",
+    "masterCardId": "macbook",
     "name": "MacBook",
     "description": "",
     "cardType": "goods",
@@ -1461,7 +1461,7 @@
     "text": "「駆け出しエンジニア」とその進化先のラムモンが使うワザの、相手のバトルポケモンへのダメージを+20する"
   },
   {
-    "masterCardID": "refactoring",
+    "masterCardId": "refactoring",
     "name": "リファクタリング",
     "description": "",
     "cardType": "supporter",
@@ -1481,7 +1481,7 @@
     "text": "相手のベンチラムモン1体を選び、バトル場のラムモンと入れ替える。"
   },
   {
-    "masterCardID": "chat-gpt",
+    "masterCardId": "chat-gpt",
     "name": "ChatGPT",
     "description": "",
     "cardType": "supporter",
@@ -1501,7 +1501,7 @@
     "text": "この番、自分のバトルラムモンのにげるためのエネルギーを、2個少なくする。"
   },
   {
-    "masterCardID": "spaghetti-code",
+    "masterCardId": "spaghetti-code",
     "name": "スパゲッティコード",
     "description": "",
     "cardType": "supporter",
@@ -1521,7 +1521,7 @@
     "text": "相手のバトルラムモンのランダムなエネルギー1個を、ランダムなエネルギーに変える。"
   },
   {
-    "masterCardID": "flaming-project",
+    "masterCardId": "flaming-project",
     "name": "炎上プロジェクト",
     "description": "",
     "cardType": "supporter",
@@ -1541,7 +1541,7 @@
     "text": "お互いのバトルラムモンについているエネルギーを1つずつトラッシュする。"
   },
   {
-    "masterCardID": "security-soft",
+    "masterCardId": "security-soft",
     "name": "セキュリティソフト",
     "description": "",
     "cardType": "supporter",
@@ -1561,7 +1561,7 @@
     "text": "相手の手札を全て山札に戻す。相手は相手自身の勝つために必要なポイントの数分山札を引く。"
   },
   {
-    "masterCardID": "strict-mode",
+    "masterCardId": "strict-mode",
     "name": "React.StrictMode",
     "description": "",
     "cardType": "supporter",
@@ -1581,7 +1581,7 @@
     "text": "自分の山札を2枚引く。"
   },
   {
-    "masterCardID": "firewall",
+    "masterCardId": "firewall",
     "name": "ファイヤーウォール",
     "description": "",
     "cardType": "supporter",
@@ -1601,7 +1601,7 @@
     "text": "次の相手の番、自分のラムモン全員が、相手のラムモンから受けるダメージを-20する。"
   },
   {
-    "masterCardID": "bartender",
+    "masterCardId": "bartender",
     "name": "バーテンダー",
     "description": "",
     "cardType": "supporter",
@@ -1621,7 +1621,7 @@
     "text": "自分の[酒]ラムモンを1匹選ぶ。5回コインを投げ、オモテの数ぶんの好きなエネルギーを自分のエネルギーゾーンから出し、そのラムモンにつける。ウラの数1つにつき、そのラムモンに20ダメージ与える。"
   },
   {
-    "masterCardID": "izakaya-taisyo",
+    "masterCardId": "izakaya-taisyo",
     "name": "居酒屋大将",
     "description": "",
     "cardType": "supporter",
@@ -1641,7 +1641,7 @@
     "text": "自分のラムモンを1匹選ぶ。コイントスを裏が出るまで行い、表の数分自分についていないエネルギーの種類の中からランダムで1種類を選び、そのラムモンにつける。"
   },
   {
-    "masterCardID": "personal-trainer",
+    "masterCardId": "personal-trainer",
     "name": "パーソナルトレーナー",
     "description": "",
     "cardType": "supporter",
@@ -1661,7 +1661,7 @@
     "text": "自分のバトルラムモンに[筋肉]エネルギーを2つつける。"
   },
   {
-    "masterCardID": "yamikin-gyosya",
+    "masterCardId": "yamikin-gyosya",
     "name": "ヤミ金業者",
     "description": "",
     "cardType": "supporter",
@@ -1681,7 +1681,7 @@
     "text": "自分の[金]ラムモンを1匹選ぶ。そのラムモンに[金]エネルギーを10個つける。2ターン後に[金]エネルギーを20個トラッシュ。できない場合はそのラムモンをきぜつさせる。"
   },
   {
-    "masterCardID": "librarian",
+    "masterCardId": "librarian",
     "name": "図書館司書",
     "description": "",
     "cardType": "supporter",
@@ -1701,7 +1701,7 @@
     "text": "自分の山札から本のグッズカードを2枚まで手札に加える。"
   },
   {
-    "masterCardID": "ci-cd-pipeline",
+    "masterCardId": "ci-cd-pipeline",
     "name": "CI/CDパイプライン",
     "description": "",
     "cardType": "supporter",
@@ -1721,7 +1721,7 @@
     "text": "自分の手札全てを山札に戻し、同じ枚数のカードを引く。同時に、バトル場にいる自分の[知識]ラムモン1体は、次のターンまで受けるダメージが-20される。"
   },
   {
-    "masterCardID": "release-party",
+    "masterCardId": "release-party",
     "name": "リリースパーティ",
     "description": "",
     "cardType": "supporter",
@@ -1741,7 +1741,7 @@
     "text": "自分のバトルラムモン全体のhpを20回復し、次の自分のターンまで相手のワザによるダメージを20減少させる。"
   },
   {
-    "masterCardID": "wall",
+    "masterCardId": "wall",
     "name": "壁",
     "description": "",
     "cardType": "monster",

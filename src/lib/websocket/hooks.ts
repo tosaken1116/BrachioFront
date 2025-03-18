@@ -651,4 +651,4 @@ export const useSocketRefStore = ({
         }
       };
     },
-  }));
+  }))();
