@@ -5,7 +5,8 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
+import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, NextEnergyEventToActor, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
+import type { CreateRoomEventToServer, DecideOrderEventToActor, DecideOrderEventToRecipient, EnterRoomEventToServer, ExchangeDeckEventToActor, ExchangeDeckEventToRecipient, ExchangeDeckEventToServer, MatchingCompleteEventToActor, MatchingCompleteEventToRecipient } from "./event/gm_pb";
 
 /**
  * Describes the file websocket/event.proto.
@@ -307,6 +308,66 @@ export declare type EventEnvelope = Message<"event.EventEnvelope"> & {
      */
     value: ConfirmTargetEventToActor;
     case: "confirmTargetEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.playing.NextEnergyEventToActor next_energy_event_to_actor = 44;
+     */
+    value: NextEnergyEventToActor;
+    case: "nextEnergyEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.ExchangeDeckEventToServer exchange_deck_event_to_server = 45;
+     */
+    value: ExchangeDeckEventToServer;
+    case: "exchangeDeckEventToServer";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.ExchangeDeckEventToActor exchange_deck_event_to_actor = 46;
+     */
+    value: ExchangeDeckEventToActor;
+    case: "exchangeDeckEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.ExchangeDeckEventToRecipient exchange_deck_event_to_recipient = 47;
+     */
+    value: ExchangeDeckEventToRecipient;
+    case: "exchangeDeckEventToRecipient";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.CreateRoomEventToServer create_room_event_to_server = 48;
+     */
+    value: CreateRoomEventToServer;
+    case: "createRoomEventToServer";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.EnterRoomEventToServer enter_room_event_to_server = 49;
+     */
+    value: EnterRoomEventToServer;
+    case: "enterRoomEventToServer";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.MatchingCompleteEventToActor matching_complete_event_to_actor = 50;
+     */
+    value: MatchingCompleteEventToActor;
+    case: "matchingCompleteEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.MatchingCompleteEventToRecipient matching_complete_event_to_recipient = 51;
+     */
+    value: MatchingCompleteEventToRecipient;
+    case: "matchingCompleteEventToRecipient";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.DecideOrderEventToActor decide_order_event_to_actor = 52;
+     */
+    value: DecideOrderEventToActor;
+    case: "decideOrderEventToActor";
+  } | {
+    /**
+     * @generated from field: websocket.event.gm.DecideOrderEventToRecipient decide_order_event_to_recipient = 53;
+     */
+    value: DecideOrderEventToRecipient;
+    case: "decideOrderEventToRecipient";
   } | { case: undefined; value?: undefined };
 };
 

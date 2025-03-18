@@ -4,8 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { AbilityPayload, AttackMonsterPayload, CoinTossEmptyPayload, CoinTossPayload, ConfirmActionPayload, ConfirmEnergyRequestPayload, ConfirmEnergyResponsePayload, ConfirmTargetRequestPayload, ConfirmTargetResponsePayload, DrawCardIndividualPayload, DrawCardPayload, EvolutionMonsterPayload, InitialPlacementCompletePayload, RetreatPayload, StartGamePayload, SummonMonsterPayload, SupplyEnergyPayload, SurrenderPayload, TakeGoodsPayload, TakeSupportPayload, TurnEndPayload, TurnStartPayload } from "../payload/playing_pb";
-import type { SideEffect } from "../../messages/side_effect_pb";
+import type { AbilityPayload, AttackMonsterPayload, CoinTossEmptyPayload, CoinTossPayload, ConfirmActionPayload, ConfirmEnergyRequestPayload, ConfirmEnergyResponsePayload, ConfirmTargetRequestPayload, ConfirmTargetResponsePayload, DrawCardIndividualPayload, DrawCardPayload, EvolutionMonsterPayload, InitialPlacementCompletePayload, NextEnergyPayload, RetreatPayload, StartGamePayload, SummonMonsterPayload, SupplyEnergyPayload, SurrenderPayload, TakeGoodsPayload, TakeSupportPayload, TurnEndPayload, TurnStartPayload } from "../payload/playing_pb";
 
 /**
  * Describes the file websocket/event/playing.proto.
@@ -24,13 +23,6 @@ export declare type AttackMonsterEventToServer = Message<"websocket.event.playin
    * @generated from field: websocket.payload.playing.AttackMonsterPayload payload = 1;
    */
   payload?: AttackMonsterPayload;
-
-  /**
-   * 技の副作用に対する選択結果
-   *
-   * @generated from field: repeated messages.side_effect.SideEffect sideEffect = 2;
-   */
-  sideEffect: SideEffect[];
 };
 
 /**
@@ -908,4 +900,24 @@ export declare type ConfirmTargetEventToActor = Message<"websocket.event.playing
  * Use `create(ConfirmTargetEventToActorSchema)` to create a new message.
  */
 export declare const ConfirmTargetEventToActorSchema: GenMessage<ConfirmTargetEventToActor>;
+
+/**
+ * //
+ * 次のエネルギーの取得イベント
+ * //
+ *
+ * @generated from message websocket.event.playing.NextEnergyEventToActor
+ */
+export declare type NextEnergyEventToActor = Message<"websocket.event.playing.NextEnergyEventToActor"> & {
+  /**
+   * @generated from field: websocket.payload.playing.NextEnergyPayload payload = 1;
+   */
+  payload?: NextEnergyPayload;
+};
+
+/**
+ * Describes the message websocket.event.playing.NextEnergyEventToActor.
+ * Use `create(NextEnergyEventToActorSchema)` to create a new message.
+ */
+export declare const NextEnergyEventToActorSchema: GenMessage<NextEnergyEventToActor>;
 

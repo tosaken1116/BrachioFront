@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { Element, MasterCardType } from "./common_pb";
+import type { Element, MasterCardType, SubType } from "./common_pb";
 import type { Skill } from "./skill_pb";
 import type { Ability } from "./ability_pb";
 
@@ -173,16 +173,23 @@ export declare type MasterMonsterCard = Message<"messages.card.MasterMonsterCard
   /**
    * 進化元
    *
-   * @generated from field: string evolves_from = 8;
+   * @generated from field: repeated string evolves_from = 8;
    */
-  evolvesFrom: string;
+  evolvesFrom: string[];
 
   /**
    * 進化先
    *
-   * @generated from field: string evolves_to = 9;
+   * @generated from field: repeated string evolves_to = 9;
    */
-  evolvesTo: string;
+  evolvesTo: string[];
+
+  /**
+   * サブタイプ
+   *
+   * @generated from field: messages.common.SubType sub_type = 10;
+   */
+  subType: SubType;
 };
 
 /**

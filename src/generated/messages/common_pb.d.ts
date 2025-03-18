@@ -115,3 +115,33 @@ export enum DamageOption {
  */
 export declare const DamageOptionSchema: GenEnum<DamageOption>;
 
+/**
+ * @generated from enum messages.common.SubType
+ */
+export enum SubType {
+  /**
+   * @generated from enum value: SUB_TYPE_UNSPECIFIED = 0;
+   */
+  SUB_TYPE_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: BASIC = 1;
+   */
+  BASIC = 1,
+
+  /**
+   * @generated from enum value: STAGE1 = 2;
+   */
+  STAGE1 = 2,
+
+  /**
+   * @generated from enum value: STAGE2 = 3;
+   */
+  STAGE2 = 3,
+}
+
+/**
+ * Describes the enum messages.common.SubType.
+ */
+export declare const SubTypeSchema: GenEnum<SubType>;
+

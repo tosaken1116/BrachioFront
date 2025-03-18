@@ -543,6 +543,24 @@ export declare type ConfirmTargetRequestPayload = Message<"websocket.payload.pla
 export declare const ConfirmTargetRequestPayloadSchema: GenMessage<ConfirmTargetRequestPayload>;
 
 /**
+ * @generated from message websocket.payload.playing.NextEnergyPayload
+ */
+export declare type NextEnergyPayload = Message<"websocket.payload.playing.NextEnergyPayload"> & {
+  /**
+   * 次のエネルギー
+   *
+   * @generated from field: messages.common.Element energy = 1;
+   */
+  energy: Element;
+};
+
+/**
+ * Describes the message websocket.payload.playing.NextEnergyPayload.
+ * Use `create(NextEnergyPayloadSchema)` to create a new message.
+ */
+export declare const NextEnergyPayloadSchema: GenMessage<NextEnergyPayload>;
+
+/**
  * @generated from enum websocket.payload.playing.ActionType
  */
 export enum ActionType {

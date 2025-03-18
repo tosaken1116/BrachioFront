@@ -41,9 +41,9 @@ export declare type Skill = Message<"messages.skill.Skill"> & {
   /**
    * ダメージオプション（"x" または "+"）
    *
-   * @generated from field: messages.common.DamageOption damage_option = 4;
+   * @generated from field: optional messages.common.DamageOption damage_option = 4;
    */
-  damageOption: DamageOption;
+  damageOption?: DamageOption;
 
   /**
    * コスト（Element の配列）
