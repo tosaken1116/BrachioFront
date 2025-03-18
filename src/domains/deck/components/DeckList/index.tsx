@@ -16,7 +16,12 @@ const Internal = () => {
       </div>
       {decks.map((deck, index) => {
         return (
-          <Link key={deck.id} to={"/decks/$id"} params={{ id: deck.id }}>
+          <Link
+            key={deck.id}
+            to={"/decks/$id"}
+            params={{ id: deck.id }}
+            className="w-56 aspect-card"
+          >
             <Deck deck={deck} index={index} />
           </Link>
         );
