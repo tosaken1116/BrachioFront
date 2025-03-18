@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Crown } from "lucide-react";
 
-import type { FC, ReactNode } from "react";
+import { type FC, Fragment, type ReactNode } from "react";
 import type {
   AbilityType,
   AttackType,
@@ -9,7 +9,7 @@ import type {
   MonsterMasterType,
   MonsterType,
 } from "../../types";
-import { Energy } from "../Energy";
+import { Energy, reverseEnergyMap } from "../Energy";
 import { CardBase } from "./Card";
 type MonsterCardProps = {
   card: MonsterMasterType;
@@ -278,6 +278,54 @@ const EvolutionBatch: FC<
   );
 };
 
+const parseStringToReactNodes = (input: string): React.ReactNode => {
+  // 角かっこに囲まれた部分を抽出する正規表現
+  const regex = /(\[[^\]]+\])/g;
+  // 文字列を角かっこ部分で分割
+  const parts = input.split(regex);
+
+  return (
+    <div className="flex flex-row text-nowrap flex-wrap">
+      {parts.map((part, index) => {
+        // 角かっこで囲まれている場合、ReactNode に変換
+        if (part.startsWith("[") && part.endsWith("]")) {
+          // 角かっこを除いた内容
+          const content = reverseEnergyMap[part.slice(1, -1)];
+          return (
+            <span>
+              <Energy
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                key={index}
+                energy={content}
+                size="tiny"
+                className="w-1.5 h-1.5"
+              />
+            </span>
+          );
+        }
+        // それ以外はそのままテキストとして表示
+        return (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          <Fragment key={index}>
+            {part.split("").map((text, i) => {
+              return (
+                <span
+                  key={`${index}-${
+                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                    i
+                  }`}
+                  className="text-[4px]"
+                >
+                  {text}
+                </span>
+              );
+            })}
+          </Fragment>
+        );
+      })}
+    </div>
+  );
+};
 const Attack: FC<{ attack: AttackType; masterCardId: string }> = ({
   attack,
   masterCardId,
@@ -299,7 +347,7 @@ const Attack: FC<{ attack: AttackType; masterCardId: string }> = ({
         <strong className="text-[7px] w-full">{attack.name}</strong>
         <strong className="text-[7px]">{attack.damage}</strong>
       </div>
-      <p className="text-[4px]">{attack.text}</p>
+      <p className="text-[4px]">{parseStringToReactNodes(attack.text)}</p>
     </div>
   );
 };

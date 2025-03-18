@@ -24,6 +24,14 @@ export const energyMap: Record<EnergyType, string> = {
   alchohol: "酒",
   popularity: "人気",
 };
+export const reverseEnergyMap: Record<string, EnergyType> = {
+  NULL: "null",
+  筋肉: "muscle",
+  金: "money",
+  知識: "knowledge",
+  酒: "alchohol",
+  人気: "popularity",
+};
 const colorMap: Record<EnergyType, string> = {
   null: "bg-gray-100 border-gray-300",
   muscle: "bg-red-500 border-red-600",
