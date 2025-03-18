@@ -35,6 +35,7 @@ export const Field: FC<Props> = (props) => {
           <ExpandableCard
             isMe={isMe}
             card={battle}
+            enabledUsable
             energy={energies[battle.id]}
             className={clsx(
               isMe &&
@@ -74,6 +75,7 @@ export const Field: FC<Props> = (props) => {
                 <ExpandableCard
                   isMe={isMe}
                   card={card}
+                  enabledUsable
                   className={clsx(
                     isMe &&
                       props.grabbedCard !== null &&

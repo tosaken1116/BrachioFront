@@ -101,7 +101,9 @@ const isUsableSkill = (skill: Skill, energies: EnergyType[]) => {
   });
   return isUsable;
 };
-export const ExpandableCard: FC<Props & { isMe: boolean }> = (props) => {
+export const ExpandableCard: FC<
+  Props & { isMe: boolean; enabledUsable?: boolean }
+> = (props) => {
   return (
     <Dialog>
       <DialogTrigger>
@@ -115,7 +117,8 @@ export const ExpandableCard: FC<Props & { isMe: boolean }> = (props) => {
           <Card
             {...props}
             skillWrapper={({ skill, children }) => {
-              const isUsable = isUsableSkill(skill, props.energy ?? []);
+              const isUsable =
+                isUsableSkill(skill, props.energy ?? []) && props.enabledUsable;
               const Elm = isUsable ? DialogClose : "div";
               return (
                 <Elm
