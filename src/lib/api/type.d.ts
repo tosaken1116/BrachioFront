@@ -136,6 +136,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 取得済みカード一覧の取得
+         * @description 取得済みカード一覧を取得する
+         */
+        get: operations["getCards"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ws": {
         parameters: {
             query?: never;
@@ -216,34 +236,35 @@ export interface components {
          *           "expansion": "expansion",
          *           "skills": [
          *             {
-         *               "damage": 0,
+         *               "damage": 6,
          *               "cost": [
-         *                 "grass",
-         *                 "grass"
+         *                 null,
+         *                 null
          *               ],
          *               "name": "name",
          *               "damageOption": "x",
          *               "text": "text"
          *             },
          *             {
-         *               "damage": 0,
+         *               "damage": 6,
          *               "cost": [
-         *                 "grass",
-         *                 "grass"
+         *                 null,
+         *                 null
          *               ],
          *               "name": "name",
          *               "damageOption": "x",
          *               "text": "text"
          *             }
          *           ],
+         *           "weakness": null,
          *           "imageUrl": "imageUrl",
          *           "name": "name",
-         *           "weekness": null,
          *           "ability": {
          *             "name": "name",
          *             "text": "text"
          *           },
-         *           "rarity": "rarity"
+         *           "rarity": 0,
+         *           "element": "null"
          *         },
          *         {
          *           "retreatCost": 1,
@@ -255,34 +276,35 @@ export interface components {
          *           "expansion": "expansion",
          *           "skills": [
          *             {
-         *               "damage": 0,
+         *               "damage": 6,
          *               "cost": [
-         *                 "grass",
-         *                 "grass"
+         *                 null,
+         *                 null
          *               ],
          *               "name": "name",
          *               "damageOption": "x",
          *               "text": "text"
          *             },
          *             {
-         *               "damage": 0,
+         *               "damage": 6,
          *               "cost": [
-         *                 "grass",
-         *                 "grass"
+         *                 null,
+         *                 null
          *               ],
          *               "name": "name",
          *               "damageOption": "x",
          *               "text": "text"
          *             }
          *           ],
+         *           "weakness": null,
          *           "imageUrl": "imageUrl",
          *           "name": "name",
-         *           "weekness": null,
          *           "ability": {
          *             "name": "name",
          *             "text": "text"
          *           },
-         *           "rarity": "rarity"
+         *           "rarity": 0,
+         *           "element": "null"
          *         }
          *       ]
          *     } */
@@ -303,7 +325,7 @@ export interface components {
             count: number;
         };
         /** @example {
-         *       "color": "grass",
+         *       "color": "null",
          *       "name": "name",
          *       "id": "id",
          *       "thumbnailCard": {
@@ -336,7 +358,7 @@ export interface components {
          *           "id": "id"
          *         }
          *       ],
-         *       "color": "grass",
+         *       "color": "null",
          *       "name": "name",
          *       "id": "id",
          *       "thumbnailCard": {
@@ -349,7 +371,67 @@ export interface components {
         };
         deck: components["schemas"]["deckBase"] & {
             cards: components["schemas"]["card"][];
-            energies?: components["schemas"]["element"][];
+            energies: components["schemas"]["element"][];
+        };
+        /** @description デッキ更新リクエスト */
+        updateDeck: {
+            /** @description デッキ名 */
+            name: string;
+            /** @description マスターカードID */
+            masterCardIds: string[];
+            /** @description サムネイルカードID */
+            thumbnailCardId: string;
+            energies: components["schemas"]["element"][];
+            color: components["schemas"]["element"];
+        };
+        myCardList: components["schemas"]["masterCardWithCount"][];
+        /** @example {
+         *       "count": 0,
+         *       "masterCard": {
+         *         "retreatCost": 1,
+         *         "masterCardId": "masterCardId",
+         *         "cardType": "monster",
+         *         "hp": 60,
+         *         "evolvesTo": "フシギバナ",
+         *         "evolvesFrom": "フシギダネ",
+         *         "expansion": "expansion",
+         *         "skills": [
+         *           {
+         *             "damage": 6,
+         *             "cost": [
+         *               null,
+         *               null
+         *             ],
+         *             "name": "name",
+         *             "damageOption": "x",
+         *             "text": "text"
+         *           },
+         *           {
+         *             "damage": 6,
+         *             "cost": [
+         *               null,
+         *               null
+         *             ],
+         *             "name": "name",
+         *             "damageOption": "x",
+         *             "text": "text"
+         *           }
+         *         ],
+         *         "weakness": null,
+         *         "imageUrl": "imageUrl",
+         *         "name": "name",
+         *         "ability": {
+         *           "name": "name",
+         *           "text": "text"
+         *         },
+         *         "rarity": 0,
+         *         "element": "null"
+         *       }
+         *     } */
+        masterCardWithCount: {
+            masterCard: components["schemas"]["masterCard"];
+            /** @description カード枚数 */
+            count: number;
         };
         masterCard: components["schemas"]["masterMonsterCard"] | components["schemas"]["masterSupporterCard"] | components["schemas"]["masterGoodsCard"];
         /** @example {
@@ -362,34 +444,35 @@ export interface components {
          *       "expansion": "expansion",
          *       "skills": [
          *         {
-         *           "damage": 0,
+         *           "damage": 6,
          *           "cost": [
-         *             "grass",
-         *             "grass"
+         *             null,
+         *             null
          *           ],
          *           "name": "name",
          *           "damageOption": "x",
          *           "text": "text"
          *         },
          *         {
-         *           "damage": 0,
+         *           "damage": 6,
          *           "cost": [
-         *             "grass",
-         *             "grass"
+         *             null,
+         *             null
          *           ],
          *           "name": "name",
          *           "damageOption": "x",
          *           "text": "text"
          *         }
          *       ],
+         *       "weakness": null,
          *       "imageUrl": "imageUrl",
          *       "name": "name",
-         *       "weekness": null,
          *       "ability": {
          *         "name": "name",
          *         "text": "text"
          *       },
-         *       "rarity": "rarity"
+         *       "rarity": 0,
+         *       "element": "null"
          *     } */
         masterMonsterCard: components["schemas"]["masterCardBase"] & {
             /**
@@ -397,10 +480,11 @@ export interface components {
              * @example 60
              */
             hp: number;
+            element: components["schemas"]["element"];
+            weakness: components["schemas"]["element"];
             /** @description ワザ */
             skills: components["schemas"]["skill"][];
             ability?: components["schemas"]["ability"];
-            weekness: components["schemas"]["element"];
             /**
              * @description 逃げるコスト
              * @example 1
@@ -425,7 +509,7 @@ export interface components {
             name: string;
             cardType: components["schemas"]["masterCardType"];
             /** @description レアリティ */
-            rarity?: string;
+            rarity?: number;
             /** @description カード画像URL */
             imageUrl: string;
             /** @description カードセット名 */
@@ -433,13 +517,15 @@ export interface components {
         };
         /** @enum {string} */
         masterCardType: "monster" | "supporter" | "goods";
+        /** @enum {string} */
+        element: "null" | "money" | "knowledge" | "muscle" | "alchohol" | "popularity";
         /**
          * @description ワザ
          * @example {
-         *       "damage": 0,
+         *       "damage": 6,
          *       "cost": [
-         *         "grass",
-         *         "grass"
+         *         null,
+         *         null
          *       ],
          *       "name": "name",
          *       "damageOption": "x",
@@ -457,12 +543,10 @@ export interface components {
              * @description x or +
              * @enum {string}
              */
-            damageOption: "x" | "+";
+            damageOption?: "x" | "+";
             /** @description コスト */
             cost: components["schemas"]["element"][];
         };
-        /** @enum {string} */
-        element: "grass" | "fire" | "water" | "lightning" | "psychic" | "fighting" | "darkness" | "metal" | "dragon" | "normal";
         /**
          * @description 特性
          * @example {
@@ -479,14 +563,10 @@ export interface components {
         masterSupporterCard: components["schemas"]["masterCardBase"] & {
             /** @description 説明文 */
             text: string;
-            /** @description 効果 */
-            effect: string;
         };
         masterGoodsCard: components["schemas"]["masterCardBase"] & {
             /** @description 説明文 */
             text: string;
-            /** @description 効果 */
-            effect: string;
         };
         /** @example {
          *       "id": "id"
@@ -673,7 +753,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["deck"];
+                "application/json": components["schemas"]["updateDeck"];
             };
         };
         responses: {
@@ -706,6 +786,26 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    getCards: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["myCardList"];
+                };
             };
         };
     };
