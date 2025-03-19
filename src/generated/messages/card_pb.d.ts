@@ -190,6 +190,11 @@ export declare type MasterMonsterCard = Message<"messages.card.MasterMonsterCard
    * @generated from field: messages.common.SubType sub_type = 10;
    */
   subType: SubType;
+
+  /**
+   * @generated from field: bool isEx = 11;
+   */
+  isEx: boolean;
 };
 
 /**

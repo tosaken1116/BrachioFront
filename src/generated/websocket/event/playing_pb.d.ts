@@ -922,6 +922,22 @@ export declare type NextEnergyEventToActor = Message<"websocket.event.playing.Ne
 export declare const NextEnergyEventToActorSchema: GenMessage<NextEnergyEventToActor>;
 
 /**
+ * @generated from message websocket.event.playing.NextEnergyEventToRecipient
+ */
+export declare type NextEnergyEventToRecipient = Message<"websocket.event.playing.NextEnergyEventToRecipient"> & {
+  /**
+   * @generated from field: websocket.payload.playing.NextEnergyPayload payload = 1;
+   */
+  payload?: NextEnergyPayload;
+};
+
+/**
+ * Describes the message websocket.event.playing.NextEnergyEventToRecipient.
+ * Use `create(NextEnergyEventToRecipientSchema)` to create a new message.
+ */
+export declare const NextEnergyEventToRecipientSchema: GenMessage<NextEnergyEventToRecipient>;
+
+/**
  * //
  * 描画する必要のあるイベント通知イベント
  * //
