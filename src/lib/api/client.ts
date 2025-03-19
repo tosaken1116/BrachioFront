@@ -16,7 +16,7 @@ const END_POINT = import.meta.env.DEV
   ? "http://localhost:8080"
   : import.meta.env.VITE_API_URL;
 export const client = createClient<paths>({
-  baseUrl: `${END_POINT}`,
+  baseUrl: "https://brachio.kurichi.dev/",
 });
 
 const getAccessToken = function getUser() {
