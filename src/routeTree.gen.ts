@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as PresentsIndexImport } from './routes/presents/index'
 import { Route as HomeIndexImport } from './routes/home/index'
 import { Route as DecksIndexImport } from './routes/decks/index'
 import { Route as CardsIndexImport } from './routes/cards/index'
@@ -23,6 +24,12 @@ import { Route as DecksIdIndexImport } from './routes/decks/$id/index'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PresentsIndexRoute = PresentsIndexImport.update({
+  id: '/presents/',
+  path: '/presents/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeIndexImport
       parentRoute: typeof rootRoute
     }
+    '/presents/': {
+      id: '/presents/'
+      path: '/presents'
+      fullPath: '/presents'
+      preLoaderRoute: typeof PresentsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/decks/$id/': {
       id: '/decks/$id/'
       path: '/decks/$id'
@@ -113,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/cards': typeof CardsIndexRoute
   '/decks': typeof DecksIndexRoute
   '/home': typeof HomeIndexRoute
+  '/presents': typeof PresentsIndexRoute
   '/decks/$id': typeof DecksIdIndexRoute
 }
 
@@ -122,6 +137,7 @@ export interface FileRoutesByTo {
   '/cards': typeof CardsIndexRoute
   '/decks': typeof DecksIndexRoute
   '/home': typeof HomeIndexRoute
+  '/presents': typeof PresentsIndexRoute
   '/decks/$id': typeof DecksIdIndexRoute
 }
 
@@ -132,14 +148,29 @@ export interface FileRoutesById {
   '/cards/': typeof CardsIndexRoute
   '/decks/': typeof DecksIndexRoute
   '/home/': typeof HomeIndexRoute
+  '/presents/': typeof PresentsIndexRoute
   '/decks/$id/': typeof DecksIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/battle' | '/cards' | '/decks' | '/home' | '/decks/$id'
+  fullPaths:
+    | '/'
+    | '/battle'
+    | '/cards'
+    | '/decks'
+    | '/home'
+    | '/presents'
+    | '/decks/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/battle' | '/cards' | '/decks' | '/home' | '/decks/$id'
+  to:
+    | '/'
+    | '/battle'
+    | '/cards'
+    | '/decks'
+    | '/home'
+    | '/presents'
+    | '/decks/$id'
   id:
     | '__root__'
     | '/'
@@ -147,6 +178,7 @@ export interface FileRouteTypes {
     | '/cards/'
     | '/decks/'
     | '/home/'
+    | '/presents/'
     | '/decks/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +189,7 @@ export interface RootRouteChildren {
   CardsIndexRoute: typeof CardsIndexRoute
   DecksIndexRoute: typeof DecksIndexRoute
   HomeIndexRoute: typeof HomeIndexRoute
+  PresentsIndexRoute: typeof PresentsIndexRoute
   DecksIdIndexRoute: typeof DecksIdIndexRoute
 }
 
@@ -166,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   CardsIndexRoute: CardsIndexRoute,
   DecksIndexRoute: DecksIndexRoute,
   HomeIndexRoute: HomeIndexRoute,
+  PresentsIndexRoute: PresentsIndexRoute,
   DecksIdIndexRoute: DecksIdIndexRoute,
 }
 
@@ -184,6 +218,7 @@ export const routeTree = rootRoute
         "/cards/",
         "/decks/",
         "/home/",
+        "/presents/",
         "/decks/$id/"
       ]
     },
@@ -201,6 +236,9 @@ export const routeTree = rootRoute
     },
     "/home/": {
       "filePath": "home/index.tsx"
+    },
+    "/presents/": {
+      "filePath": "presents/index.tsx"
     },
     "/decks/$id/": {
       "filePath": "decks/$id/index.tsx"

@@ -1,7 +1,8 @@
 import { Background } from "@/components/ui/background";
+import { useQuery } from "@/lib/api/client";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { CreditCardIcon, Home, Swords, Wallet2 } from "lucide-react";
+import { CreditCardIcon, GiftIcon, Home, Swords, Wallet2 } from "lucide-react";
 
 export const Route = createRootRoute({
   component: () => (
@@ -20,6 +21,9 @@ export const Route = createRootRoute({
         </Link>
         <Link to="/battle">
           <Swords className="w-12 h-12" />
+        </Link>
+        <Link to="/presents">
+          <GiftIcon className="w-12 h-12" />
         </Link>
       </footer>
     </Background>
