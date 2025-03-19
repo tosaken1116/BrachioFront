@@ -695,6 +695,26 @@ export declare const ConfirmActionEventToActorSchema: GenMessage<ConfirmActionEv
 
 /**
  * //
+ * 初期ラムポケ配置イベント(召喚イベントと同じ)
+ * //
+ *
+ * @generated from message websocket.event.playing.InitialSummonEventToServer
+ */
+export declare type InitialSummonEventToServer = Message<"websocket.event.playing.InitialSummonEventToServer"> & {
+  /**
+   * @generated from field: websocket.payload.playing.SummonMonsterPayload payload = 1;
+   */
+  payload?: SummonMonsterPayload;
+};
+
+/**
+ * Describes the message websocket.event.playing.InitialSummonEventToServer.
+ * Use `create(InitialSummonEventToServerSchema)` to create a new message.
+ */
+export declare const InitialSummonEventToServerSchema: GenMessage<InitialSummonEventToServer>;
+
+/**
+ * //
  * 初期ラムポケ配置完了イベント
  * //
  *

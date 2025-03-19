@@ -5,7 +5,7 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEffectEventToActor, DrawEffectEventToRecipient, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, NextEnergyEventToActor, NextEnergyEventToRecipient, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, SelectBattlePositionEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
+import type { AbilityEventToActor, AbilityEventToRecipient, AbilityEventToServer, AttackMonsterEventToActor, AttackMonsterEventToRecipient, AttackMonsterEventToServer, CoinTossEventToActor, CoinTossEventToServer, CoinTossResultEventToRecipient, ConfirmActionEventToActor, ConfirmEnergyEventToActor, ConfirmEnergyEventToServer, ConfirmTargetEventToActor, ConfirmTargetEventToServer, DrawEffectEventToActor, DrawEffectEventToRecipient, DrawEventToActor, DrawEventToRecipient, DrawEventToServer, EvolutionMonsterEventToActor, EvolutionMonsterEventToRecipient, EvolutionMonsterEventToServer, InitialPlacementCompleteEventToServer, InitialSummonEventToServer, NextEnergyEventToActor, NextEnergyEventToRecipient, RetreatEventToActor, RetreatEventToRecipient, RetreatEventToServer, SelectBattlePositionEventToServer, StartGameEventToClients, SummonMonsterEventToActor, SummonMonsterEventToRecipient, SummonMonsterEventToServer, SupplyEnergyEventToActor, SupplyEnergyEventToRecipient, SupplyEnergyEventToServer, SurrenderEventToActor, SurrenderEventToRecipient, SurrenderEventToServer, TakeGoodsEventToActor, TakeGoodsEventToRecipient, TakeGoodsEventToServer, TakeSupportEventToActor, TakeSupportEventToRecipient, TakeSupportEventToServer, TurnEndEventToClients, TurnStartEventToClients } from "./event/playing_pb";
 import type { DecideOrderEventToActor, DecideOrderEventToRecipient, EnterRoomEventToServer, MatchingCompleteEventToActor, MatchingCompleteEventToRecipient } from "./event/gm_pb";
 
 /**
@@ -368,6 +368,12 @@ export declare type EventEnvelope = Message<"event.EventEnvelope"> & {
      */
     value: NextEnergyEventToRecipient;
     case: "eventToRecipient";
+  } | {
+    /**
+     * @generated from field: websocket.event.playing.InitialSummonEventToServer initial_summon_event_to_server = 58;
+     */
+    value: InitialSummonEventToServer;
+    case: "initialSummonEventToServer";
   } | { case: undefined; value?: undefined };
 };
 
