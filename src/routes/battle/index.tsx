@@ -13,6 +13,7 @@ import { useState } from "react";
 
 function Battle() {
   const { data } = useGetDeckOne("1");
+
   const [cards, setCards] = useState(data.cards as BattleDeck["cards"]);
   const [grabbedCard, setGrabbedCard] = useState<string | null>(null);
   const [isGrabEnergy, setIsGrabEnergy] = useState(false);

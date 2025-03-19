@@ -21,9 +21,9 @@ declare module "@tanstack/react-router" {
 }
 
 async function enableMocking() {
-  if (!import.meta.env.DEV) return;
-  const { worker } = await import("./mocks/browser");
-  return worker.start();
+  // if (!import.meta.env.DEV) return;
+  // const { worker } = await import("./mocks/browser");
+  // return worker.start();
 }
 const cognitoAuthConfig = {
   authority: `${import.meta.env.VITE_COGNITO_AUTHORITY_URL}`,

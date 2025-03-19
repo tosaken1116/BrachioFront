@@ -10,142 +10,142 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as IndexImport } from "./routes/index";
-import { Route as DecksIndexImport } from "./routes/decks/index";
-import { Route as CardsIndexImport } from "./routes/cards/index";
-import { Route as BattleIndexImport } from "./routes/battle/index";
-import { Route as DecksIdIndexImport } from "./routes/decks/$id/index";
+import { Route as rootRoute } from './routes/__root'
+import { Route as IndexImport } from './routes/index'
+import { Route as DecksIndexImport } from './routes/decks/index'
+import { Route as CardsIndexImport } from './routes/cards/index'
+import { Route as BattleIndexImport } from './routes/battle/index'
+import { Route as DecksIdIndexImport } from './routes/decks/$id/index'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => rootRoute,
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DecksIndexRoute = DecksIndexImport.update({
-	id: "/decks/",
-	path: "/decks/",
-	getParentRoute: () => rootRoute,
-} as any);
+  id: '/decks/',
+  path: '/decks/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const CardsIndexRoute = CardsIndexImport.update({
-	id: "/cards/",
-	path: "/cards/",
-	getParentRoute: () => rootRoute,
-} as any);
+  id: '/cards/',
+  path: '/cards/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const BattleIndexRoute = BattleIndexImport.update({
-	id: "/battle/",
-	path: "/battle/",
-	getParentRoute: () => rootRoute,
-} as any);
+  id: '/battle/',
+  path: '/battle/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DecksIdIndexRoute = DecksIdIndexImport.update({
-	id: "/decks/$id/",
-	path: "/decks/$id/",
-	getParentRoute: () => rootRoute,
-} as any);
+  id: '/decks/$id/',
+  path: '/decks/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
-	interface FileRoutesByPath {
-		"/": {
-			id: "/";
-			path: "/";
-			fullPath: "/";
-			preLoaderRoute: typeof IndexImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/battle/": {
-			id: "/battle/";
-			path: "/battle";
-			fullPath: "/battle";
-			preLoaderRoute: typeof BattleIndexImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/cards/": {
-			id: "/cards/";
-			path: "/cards";
-			fullPath: "/cards";
-			preLoaderRoute: typeof CardsIndexImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/decks/": {
-			id: "/decks/";
-			path: "/decks";
-			fullPath: "/decks";
-			preLoaderRoute: typeof DecksIndexImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/decks/$id/": {
-			id: "/decks/$id/";
-			path: "/decks/$id";
-			fullPath: "/decks/$id";
-			preLoaderRoute: typeof DecksIdIndexImport;
-			parentRoute: typeof rootRoute;
-		};
-	}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/battle/': {
+      id: '/battle/'
+      path: '/battle'
+      fullPath: '/battle'
+      preLoaderRoute: typeof BattleIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/cards/': {
+      id: '/cards/'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof CardsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/decks/': {
+      id: '/decks/'
+      path: '/decks'
+      fullPath: '/decks'
+      preLoaderRoute: typeof DecksIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/decks/$id/': {
+      id: '/decks/$id/'
+      path: '/decks/$id'
+      fullPath: '/decks/$id'
+      preLoaderRoute: typeof DecksIdIndexImport
+      parentRoute: typeof rootRoute
+    }
+  }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-	"/": typeof IndexRoute;
-	"/battle": typeof BattleIndexRoute;
-	"/cards": typeof CardsIndexRoute;
-	"/decks": typeof DecksIndexRoute;
-	"/decks/$id": typeof DecksIdIndexRoute;
+  '/': typeof IndexRoute
+  '/battle': typeof BattleIndexRoute
+  '/cards': typeof CardsIndexRoute
+  '/decks': typeof DecksIndexRoute
+  '/decks/$id': typeof DecksIdIndexRoute
 }
 
 export interface FileRoutesByTo {
-	"/": typeof IndexRoute;
-	"/battle": typeof BattleIndexRoute;
-	"/cards": typeof CardsIndexRoute;
-	"/decks": typeof DecksIndexRoute;
-	"/decks/$id": typeof DecksIdIndexRoute;
+  '/': typeof IndexRoute
+  '/battle': typeof BattleIndexRoute
+  '/cards': typeof CardsIndexRoute
+  '/decks': typeof DecksIndexRoute
+  '/decks/$id': typeof DecksIdIndexRoute
 }
 
 export interface FileRoutesById {
-	__root__: typeof rootRoute;
-	"/": typeof IndexRoute;
-	"/battle/": typeof BattleIndexRoute;
-	"/cards/": typeof CardsIndexRoute;
-	"/decks/": typeof DecksIndexRoute;
-	"/decks/$id/": typeof DecksIdIndexRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/battle/': typeof BattleIndexRoute
+  '/cards/': typeof CardsIndexRoute
+  '/decks/': typeof DecksIndexRoute
+  '/decks/$id/': typeof DecksIdIndexRoute
 }
 
 export interface FileRouteTypes {
-	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths: "/" | "/battle" | "/cards" | "/decks" | "/decks/$id";
-	fileRoutesByTo: FileRoutesByTo;
-	to: "/" | "/battle" | "/cards" | "/decks" | "/decks/$id";
-	id: "__root__" | "/" | "/battle/" | "/cards/" | "/decks/" | "/decks/$id/";
-	fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/battle' | '/cards' | '/decks' | '/decks/$id'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/battle' | '/cards' | '/decks' | '/decks/$id'
+  id: '__root__' | '/' | '/battle/' | '/cards/' | '/decks/' | '/decks/$id/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-	IndexRoute: typeof IndexRoute;
-	BattleIndexRoute: typeof BattleIndexRoute;
-	CardsIndexRoute: typeof CardsIndexRoute;
-	DecksIndexRoute: typeof DecksIndexRoute;
-	DecksIdIndexRoute: typeof DecksIdIndexRoute;
+  IndexRoute: typeof IndexRoute
+  BattleIndexRoute: typeof BattleIndexRoute
+  CardsIndexRoute: typeof CardsIndexRoute
+  DecksIndexRoute: typeof DecksIndexRoute
+  DecksIdIndexRoute: typeof DecksIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-	IndexRoute: IndexRoute,
-	BattleIndexRoute: BattleIndexRoute,
-	CardsIndexRoute: CardsIndexRoute,
-	DecksIndexRoute: DecksIndexRoute,
-	DecksIdIndexRoute: DecksIdIndexRoute,
-};
+  IndexRoute: IndexRoute,
+  BattleIndexRoute: BattleIndexRoute,
+  CardsIndexRoute: CardsIndexRoute,
+  DecksIndexRoute: DecksIndexRoute,
+  DecksIdIndexRoute: DecksIdIndexRoute,
+}
 
 export const routeTree = rootRoute
-	._addFileChildren(rootRouteChildren)
-	._addFileTypes<FileRouteTypes>();
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {

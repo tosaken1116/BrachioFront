@@ -1,3 +1,6 @@
+import { Challenger } from "@/domains/battle/components/Challenger";
+import { PasswordInput } from "@/domains/battle/components/PasswordInput";
+import { useBattle } from "@/domains/battle/hooks/useBattle";
 import { client } from "@/lib/api/client";
 import { createFileRoute } from "@tanstack/react-router";
 import { useAuth } from "react-oidc-context";
@@ -12,6 +15,11 @@ function App() {
       logoutUri
     )}`;
   };
+  const {
+    handleConnect,
+    isConnected,
+    state: { otherId },
+  } = useBattle();
 
   if (auth.isLoading) {
     return <div>Loading...</div>;
@@ -31,6 +39,9 @@ function App() {
 
         <button onClick={() => auth.removeUser()}>Sign out</button>
         <button onClick={() => client.GET("/")}>request </button>
+        <button onClick={handleConnect}>connect!!!</button>
+        {isConnected && <PasswordInput />}
+        {otherId && <Challenger id={otherId} />}
       </div>
     );
   }

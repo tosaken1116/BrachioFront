@@ -1,5 +1,4 @@
 import { isMatch } from "lodash-es";
-import { User } from "oidc-client-ts";
 import createClient, { type Middleware } from "openapi-fetch";
 import type {
   PathsWithMethod,
@@ -11,8 +10,8 @@ import {
   createMutateHook,
   createQueryHook,
 } from "swr-openapi";
-import type { paths } from "./type";
 import { getAccessToken } from "../auth";
+import type { paths } from "./type";
 const END_POINT = import.meta.env.VITE_API_URL;
 export const client = createClient<paths>({
   baseUrl: `${END_POINT}/`,
