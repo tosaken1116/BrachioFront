@@ -1,5 +1,4 @@
 import { Background } from "@/components/ui/background";
-import { useQuery } from "@/lib/api/client";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { CreditCardIcon, GiftIcon, Home, Swords, Wallet2 } from "lucide-react";
