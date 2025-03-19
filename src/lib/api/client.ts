@@ -12,9 +12,9 @@ import {
   createQueryHook,
 } from "swr-openapi";
 import type { paths } from "./type";
-const END_POINT = import.meta.env.DEV
-  ? "http://localhost:8080"
-  : import.meta.env.VITE_API_URL;
+// const END_POINT = import.meta.env.DEV
+//   ? "http://localhost:8080"
+//   : import.meta.env.VITE_API_URL;
 export const client = createClient<paths>({
   baseUrl: "https://brachio.kurichi.dev/",
 });
