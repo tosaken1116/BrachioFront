@@ -9,7 +9,7 @@ import { HandCardsMe, HandCardsOpponent } from "../HandCards";
 type Props = {
   battle: MonsterType | null;
   bench: (MonsterType | null)[];
-  fieldEnergies: EnergyType[];
+  fieldEnergies: (EnergyType | null)[];
 
   energies: Record<string, EnergyType[]>;
 } & (
@@ -90,13 +90,18 @@ export const Field: FC<Props> = (props) => {
           );
         })}
       </div>
-      <div className="rounded-full border-2 border-slate-500 p-4 flex items-center justify-center absolute top-1/3 right-0 translate-x-[120%]">
+      <div className="rounded-full border-2 w-20 h-20 border-slate-500 p-4 flex items-center justify-center absolute top-1/3 right-0 translate-x-[120%]">
         <div className="relative">
-          <Draggable id={fieldEnergies[0]} label="energy">
-            <Energy size="large" energy={fieldEnergies[0]} />
+          {/* biome-ignore lint/style/noNonNullAssertion: <explanation> */}
+          <Draggable id={fieldEnergies[0]!} label="energy">
+            {fieldEnergies[0] !== null && (
+              <Energy size="large" energy={fieldEnergies[0]} />
+            )}
           </Draggable>
-          <div className="absolute -bottom-8 -right-8 p-2 border border-slate-500 rounded-full bg-slate-200">
-            <Energy size="medium" energy={fieldEnergies[1]} />
+          <div className="absolute -bottom-8 w-12 h-12 -right-8 p-2 border border-slate-500 rounded-full bg-slate-200">
+            {fieldEnergies[1] !== null && (
+              <Energy size="medium" energy={fieldEnergies[1]} />
+            )}
           </div>
         </div>
       </div>

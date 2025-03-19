@@ -1,6 +1,5 @@
 import type {
   AttackType,
-  CardBaseType,
   EnergyType,
   GoodsType,
   MonsterCardType,
@@ -20,7 +19,9 @@ import {
   DrawEventToServerSchema,
   EvolutionMonsterEventToServerSchema,
   InitialPlacementCompleteEventToServerSchema,
+  InitialSummonEventToServerSchema,
   RetreatEventToServerSchema,
+  SelectBattlePositionEventToServerSchema,
   SummonMonsterEventToServerSchema,
   SupplyEnergyEventToServerSchema,
   SurrenderEventToServerSchema,
@@ -34,12 +35,11 @@ import {
 } from "@/generated/websocket/event_pb";
 import { fromBinary, toBinary, create as toProto } from "@bufbuild/protobuf";
 import type { MutableRefObject } from "react";
-import type ReconnectingWebSocket from "reconnecting-websocket";
 import { create } from "zustand";
-import { getAccessToken } from "../auth";
+import { getUserInfo } from "../auth";
 
 type EventState = {
-  selfCard: CardBaseType[];
+  selfCard: MonsterCardType[];
   otherCardLength: number;
 
   selfBattle: MonsterType | null;
@@ -86,14 +86,14 @@ type Metadata = {
 };
 
 type State = {
-  socketRef: MutableRefObject<ReconnectingWebSocket | undefined> | null;
+  socketRef: MutableRefObject<WebSocket | undefined> | null;
   eventState: EventState;
   metadata: Metadata;
 };
 
 type Action = {
   setSocketRef: (
-    socketRef: MutableRefObject<ReconnectingWebSocket | undefined> | null
+    socketRef: MutableRefObject<WebSocket | undefined> | null
   ) => void;
   sendEvent: <Event extends EventEnvelope["event"]>(event: Event) => void;
   draw: (payload: RequestAnalyze<typeof DrawEventToServerSchema>) => void;
@@ -134,6 +134,12 @@ type Action = {
   ) => void;
   enterRoom: (
     payload: RequestAnalyze<typeof EnterRoomEventToServerSchema>
+  ) => void;
+  selectBattleCard: (
+    payload: RequestAnalyze<typeof SelectBattlePositionEventToServerSchema>
+  ) => void;
+  initialSummon: (
+    payload: RequestAnalyze<typeof InitialSummonEventToServerSchema>
   ) => void;
 };
 
@@ -334,6 +340,7 @@ const effectConverter = (effect: Effect["effect"]) => {
 };
 
 const cardConverter = (card: Card): MonsterCardType | undefined => {
+  console.log(card.id);
   if (card.masterCard?.cardVariant.case === "masterGoodsCard") {
     const goods: GoodsType = {
       id: card.id,
@@ -478,6 +485,17 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
       }),
     });
   },
+  initialSummon: (
+    payload: RequestAnalyze<typeof InitialSummonEventToServerSchema>
+  ) => {
+    const { sendEvent } = get();
+    sendEvent({
+      case: "initialSummonEventToServer",
+      value: toProto(InitialSummonEventToServerSchema, {
+        payload,
+      }),
+    });
+  },
   attackMonster: (
     payload: RequestAnalyze<typeof AttackMonsterEventToServerSchema>
   ) => {
@@ -588,6 +606,35 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
         payload,
       }),
     });
+    set((state) => {
+      if (payload.position === 0) {
+        return {
+          ...state,
+          eventState: {
+            ...state.eventState,
+            selfBattle: cardConverter(payload.card as Card) as MonsterType,
+            selfCard: state.eventState.selfCard.filter(
+              (card) => card.id !== payload.card.id
+            ),
+          },
+        };
+      }
+      return {
+        ...state,
+        eventState: {
+          ...state.eventState,
+          selfBench: state.eventState.selfBench.map((card, index) => {
+            if (index === payload.position - 1) {
+              return cardConverter(payload.card as Card) as MonsterType;
+            }
+            return card;
+          }),
+          selfCard: state.eventState.selfCard.filter(
+            (card) => card.id !== payload.card.id
+          ),
+        },
+      };
+    });
   },
   evolutionMonster: (
     payload: RequestAnalyze<typeof EvolutionMonsterEventToServerSchema>
@@ -611,6 +658,17 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
       }),
     });
   },
+  selectBattleCard: (
+    payload: RequestAnalyze<typeof SelectBattlePositionEventToServerSchema>
+  ) => {
+    const { sendEvent } = get();
+    sendEvent({
+      case: "selectBattlePositionEventToServer",
+      value: toProto(SelectBattlePositionEventToServerSchema, {
+        payload,
+      }),
+    });
+  },
   setSocketRef: (ref) => {
     if (!ref || !ref.current) {
       return;
@@ -621,26 +679,51 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
 
     ref.current.onmessage = (event) => {
       const res = fromBinary(EventEnvelopeSchema, new Uint8Array(event.data));
+      console.log(JSON.stringify(res, null, 2));
       const e = res.event;
       switch (e.case) {
         case "abilityEventToActor":
           break;
         case "drawEventToActor": {
-          const cards = e.value.payload?.cards;
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          const cards = e.value.payload!.cards;
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          const remain = e.value.payload!.remain;
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          const count = e.value.payload!.count;
           if (!cards) {
             return;
           }
-          const cardsWithId: MonsterCardType[] = (cards || [])
-            .map((card) => {
+          const currentCard = get().eventState.selfCard;
+          const cardsWithIdObject: Record<string, MonsterCardType> = [
+            ...(cards || []).map((card) => {
               const cardData = cardConverter(card);
               return cardData;
-            })
-            .filter((card): card is MonsterCardType => card !== undefined);
+            }),
+            ...currentCard,
+          ]
+            .filter((card): card is MonsterCardType => card !== undefined)
+            .reduce(
+              (acc, val) => {
+                if (acc[val.id] === undefined) {
+                  acc[val.id] = val;
+                }
+                return acc;
+              },
+              {} as Record<string, MonsterCardType>
+            );
+          const cardsWithId = Object.entries(cardsWithIdObject).map(
+            ([_, val]) => val
+          );
+          console.log(cardsWithId);
 
           set((state) => ({
             ...state,
             eventState: {
               ...state.eventState,
+              selfDeckLength: remain,
+              otherDeckLength: remain,
+              otherCardLength: count,
               selfCard: [...state.eventState.selfCard, ...cardsWithId],
             },
           }));
@@ -1573,16 +1656,29 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
           break;
         }
         case "startGameEventToClients": {
-          // TODO: ゲーム開始
+          break;
+        }
+        case "nextEnergyEventToActor": {
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          const energy = typeConverter(e.value.payload!.energy);
+          set((state) => ({
+            ...state,
+            eventState: {
+              ...state.eventState,
+              selfEnergy: [state.eventState.selfEnergy[1], energy],
+            },
+          }));
           break;
         }
         case "decideOrderEventToActor": {
-          const starter = e.value.payload?.firstUserId;
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          const starter = e.value.payload!.firstUserId!;
           const selfUserId = get().eventState.selfId;
           set((state) => ({
             ...state,
             eventState: {
               ...state.eventState,
+              firstPlayerId: starter,
               currentTurnUser: starter === selfUserId ? "self" : "other",
             },
           }));
@@ -1651,7 +1747,7 @@ export const useSocketRefStore = create<State & Action>()((set, get) => ({
     ref.current.onclose = () => {
       console.log("disconnected");
     };
-    const actorId = getAccessToken() ?? "";
+    const actorId = getUserInfo()?.profile.sub ?? "";
     return set((state) => ({
       ...state,
       socketRef: ref,

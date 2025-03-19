@@ -4,24 +4,46 @@ export const Route = createFileRoute("/battle/")({
   component: Battle,
 });
 
+import { TimedRender } from "@/components/functional/timedRenderer";
+import { Challenger } from "@/domains/battle/components/Challenger";
+import { PasswordInput } from "@/domains/battle/components/PasswordInput";
+import { useBattle } from "@/domains/battle/hooks/useBattle";
 import { Field } from "@/domains/card/components/Field";
-import type { EnergyType, MonsterType } from "@/domains/card/types";
-import type { BattleDeck } from "@/domains/deck/types";
-import { useGetDeckOne } from "@/domains/deck/usecase/cache";
+import type { EnergyType } from "@/domains/card/types";
 import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { useState } from "react";
 
 function Battle() {
-  const { data } = useGetDeckOne("1");
+  const {
+    supplyEnergy,
+    // confirmEnergy,
+    // retreat,
+    // draw,
+    handleConnect,
+    initialSummon,
+    // initialPlacementComplete,
+    isMatched,
+    summonMonster,
 
-  const [cards, setCards] = useState(data.cards as BattleDeck["cards"]);
+    state: {
+      otherCardLength,
+      otherBattle,
+      otherEnergy,
+      otherBench,
+
+      selfCard: cards,
+      selfBattle: battle,
+      selfBench: bench,
+      selfId,
+      otherId,
+
+      selfPokemonEnergy: energies,
+    },
+  } = useBattle();
+
   const [grabbedCard, setGrabbedCard] = useState<string | null>(null);
   const [isGrabEnergy, setIsGrabEnergy] = useState(false);
-  const [battle, setBattle] = useState<MonsterType | null>(null);
-  const [bench, setBench] = useState<
-    [MonsterType | null, MonsterType | null, MonsterType | null]
-  >([null, null, null]);
-  const [energies, setEnergies] = useState<Record<string, EnergyType[]>>({});
+
   const handleDragEnd = (event: DragEndEvent) => {
     setGrabbedCard(null);
     setIsGrabEnergy(false);
@@ -41,20 +63,35 @@ function Battle() {
         }
 
         const energyType = active.id.toString();
-        setEnergies((prev) => {
-          const newEnergies = prev[benchCardId] ?? [];
-          newEnergies.push(energyType as EnergyType);
-          prev[benchCardId] = newEnergies;
-          return prev;
+        const supplys: {
+          energies: EnergyType[];
+        }[] = [
+          { energies: [] },
+          { energies: [] },
+          { energies: [] },
+          { energies: [] },
+        ];
+        supplys[benchNum].energies.push(energyType as EnergyType);
+        supplyEnergy({
+          // @ts-ignore
+          supplys: supplys,
         });
       }
       if (over.id.toString() === "battle" && battle !== null) {
         const energyType = active.id.toString();
 
-        setEnergies((prev) => {
-          prev[battle.id ?? ""] = prev[battle?.id ?? ""] ?? [];
-          prev[battle.id ?? ""].push(energyType as EnergyType);
-          return prev;
+        const supplys: {
+          energies: EnergyType[];
+        }[] = [
+          { energies: [] },
+          { energies: [] },
+          { energies: [] },
+          { energies: [] },
+        ];
+        supplys[0].energies.push(energyType as EnergyType);
+        supplyEnergy({
+          // @ts-ignore
+          supplys: supplys,
         });
       }
       return;
@@ -63,10 +100,9 @@ function Battle() {
     if (over.id === "battle") {
       const targetCard = cards.find((card) => card.id === targetId);
       if (targetCard && targetCard.cardType === "monster") {
-        setBattle(targetCard);
-        setCards((prev) => {
-          const newCards = prev.filter((card) => card.id !== targetId);
-          return newCards;
+        summonMonster({
+          card: targetCard,
+          position: 0,
         });
       }
       return;
@@ -84,29 +120,50 @@ function Battle() {
       ) {
         return;
       }
-      setBench((prev) => {
-        prev[benchNum] = targetCard;
-        return prev;
-      });
-      setCards((prev) => {
-        const newCards = prev.filter((card) => card.id !== targetId);
-        return newCards;
+
+      summonMonster({
+        card: targetCard,
+        position: benchNum,
       });
     }
   };
   return (
     <div className=" h-screen overflow-hidden">
+      {isMatched && (
+        <TimedRender duration={700}>
+          {/* biome-ignore lint/style/noNonNullAssertion: <explanation> */}
+          <Challenger id={otherId!} />
+        </TimedRender>
+      )}
       <div className="">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col rotate-180 scale-75 h-[50vh]">
             <Field
               isMe={false}
-              cardLength={4}
-              battle={battle}
-              bench={bench}
+              cardLength={otherCardLength}
+              battle={otherBattle}
+              bench={otherBench}
               energies={energies}
-              fieldEnergies={["alchohol", "knowledge"]}
+              fieldEnergies={otherEnergy}
             />
+          </div>
+          <PasswordInput />
+          <button onClick={handleConnect} type="button">
+            connect
+          </button>
+          {selfId}
+          <div>
+            <button
+              type="button"
+              onClick={() =>
+                initialSummon({
+                  position: 0,
+                  card: cards[0],
+                })
+              }
+            >
+              send
+            </button>
           </div>
           <DndContext
             onDragStart={(e) => {

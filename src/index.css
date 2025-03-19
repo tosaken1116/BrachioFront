@@ -38,7 +38,12 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
+@font-face {
+  font-family: "Pocket Monk";
+  src: url("/PocketMonk.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 @theme {
   --aspect-card: 63 / 88;
   --animate-ping-small: ping-small 1s cubic-bezier(0, 0, 0.2, 1) infinite;
@@ -46,6 +51,7 @@
     forwards 1;
   --animate-slide-in: slide-in 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards 1;
   --animate-bg-coloring: bg-coloring 4s cubic-bezier(0.2, 0, 0.2, 1) infinite;
+  --font-pokemon: "Pocket Monk";
 }
 
 @keyframes ping-small {

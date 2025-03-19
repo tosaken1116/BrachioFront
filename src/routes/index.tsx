@@ -1,26 +1,11 @@
-import { Challenger } from "@/domains/battle/components/Challenger";
-import { PasswordInput } from "@/domains/battle/components/PasswordInput";
-import { useBattle } from "@/domains/battle/hooks/useBattle";
-import { client } from "@/lib/api/client";
-import { createFileRoute } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "react-oidc-context";
 
 function App() {
   const auth = useAuth();
-  const signOutRedirect = () => {
-    const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
-    const logoutUri = import.meta.env.VITE_REDIRECT_URI;
-    const cognitoDomain = import.meta.env.VITE_COGNITO_AUTH_DOMAIN;
-    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(
-      logoutUri
-    )}`;
-  };
-  const {
-    handleConnect,
-    isConnected,
-    state: { otherId },
-  } = useBattle();
 
+  const navigate = useNavigate();
   if (auth.isLoading) {
     return <div>Loading...</div>;
   }
@@ -29,31 +14,41 @@ function App() {
     return <div>Encountering error... {auth.error.message}</div>;
   }
 
-  if (auth.isAuthenticated) {
-    return (
-      <div>
-        <pre> Hello: {auth.user?.profile.email} </pre>
-        <pre> ID Token: {auth.user?.id_token} </pre>
-        <pre> Access Token: {auth.user?.access_token} </pre>
-        <pre> Refresh Token: {auth.user?.refresh_token} </pre>
-
-        <button onClick={() => auth.removeUser()}>Sign out</button>
-        <button onClick={() => client.GET("/")}>request </button>
-        <button onClick={handleConnect}>connect!!!</button>
-        {isConnected && <PasswordInput />}
-        {otherId && <Challenger id={otherId} />}
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <button onClick={() => auth.signinRedirect()}>Sign in</button>
-      <button onClick={() => signOutRedirect()}>Sign out</button>
-      <button onClick={() => client.GET("/")}>request </button>
+    <div className="flex flex-col items-center justify-center gap-12 w-fit mx-auto my-auto h-screen">
+      <Title />
+      <Button
+        variant="outline"
+        onClick={() => {
+          auth.isAuthenticated
+            ? navigate({ to: "/home" })
+            : auth.signinRedirect();
+        }}
+        className="text-4xl rounded-full px-12 py-8"
+      >
+        {auth.isAuthenticated ? "ログイン" : "始める"}
+      </Button>
     </div>
   );
 }
+
+export const Title = () => {
+  return (
+    <div className="flex flex-col">
+      <strong className=" font-pokemon font-bold text-9xl text-yellow-400  drop-shadow-[0_5.20px_1.10px_rgba(0,0,0,0.8)]">
+        Pokemon
+      </strong>
+      <div className="border-8 rounded-sm bg-gradient-to-b from-red-500 to-red-800 border-blue-950 text-white flex w-fit mx-auto  px-8">
+        <strong className="text-2xl font-bold text-center">
+          TRADING CARD GAME
+        </strong>
+      </div>
+      <div className="mx-auto">
+        <p className="text-5xl">Pocket</p>
+      </div>
+    </div>
+  );
+};
 
 export const Route = createFileRoute("/")({
   component: App,
